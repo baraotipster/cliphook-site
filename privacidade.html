@@ -412,22 +412,20 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <ul>
         <li><strong>Nós não recebemos</strong> seus vídeos, áudios, cortes nem decisões. O texto da transcrição passa pelo nosso servidor só a caminho da IA (seção 3) e não é guardado.</li>
         <li>O programa <strong>não tem telemetria</strong>: não envia estatísticas de uso, relatórios de erro nem identificadores para nós.</li>
-        <li>O app abre numa janela do navegador, mas o servidor dele só aceita conexões do próprio computador (endereço 127.0.0.1), protegidas por uma chave de sessão.</li>
-        <li>Se você usar uma chave própria da Anthropic, ela fica numa variável de ambiente do seu usuário no Windows, nunca nos arquivos dos projetos nem nos registros, e nunca é enviada para nós.</li>
+        <li>A janela do app conversa com um servidor interno que só aceita conexões do próprio computador (endereço 127.0.0.1), protegidas por uma chave de sessão.</li>
       </ul>
       <p>Os vídeos podem conter imagem e voz de outras pessoas. Como esse tratamento acontece no seu computador e por sua decisão, você é o responsável por ter autorização para usar esses vídeos.</p>
 
       <h2 id="anthropic">3. A IA da Anthropic</h2>
       <p>Para sugerir os cortes, o programa envia à API da Anthropic (api.anthropic.com) o <strong>texto da transcrição</strong> do vídeo e o título do corte, junto com as preferências que você escreveu (tom, duração, o que evitar). O vídeo e o áudio <strong>não</strong> são enviados.</p>
-      <p><strong>Com a IA incluída na assinatura</strong> (o padrão), o texto vai do seu computador ao nosso servidor e dele à Anthropic, usando a nossa conta. O servidor confere a assinatura e repassa o pedido; ele <strong>não guarda nem registra</strong> o texto enviado nem a resposta. Guardamos só a quantidade de texto processada (em tokens) por assinatura e por mês, para a cota. A Anthropic trata os dados conforme os termos comerciais dela, e eles podem ser processados fora do Brasil (LGPD, art. 33).</p>
-      <p><strong>Com uma chave própria da Anthropic</strong>, o envio vai direto do seu computador à Anthropic, na sua conta, e nós não participamos dele.</p>
-      <p>Em qualquer caso, se a transcrição contiver dados pessoais de terceiros, avalie se você pode enviá-los antes de pedir a análise.</p>
+      <p>O texto vai do seu computador ao nosso servidor e dele à Anthropic, usando a nossa conta. O servidor confere a assinatura e repassa o pedido; ele <strong>não guarda nem registra</strong> o texto enviado nem a resposta. Guardamos só a quantidade de texto processada (em tokens) por assinatura e por mês, para a cota. A Anthropic trata os dados conforme os termos comerciais dela, e eles podem ser processados fora do Brasil (LGPD, art. 33).</p>
+      <p>Se a transcrição contiver dados pessoais de terceiros, avalie se você pode enviá-los antes de pedir a análise.</p>
 
       <h2 id="outras">4. Outras conexões do programa</h2>
       <p>Além da Anthropic, o programa se conecta à internet só para conferir a assinatura e baixar componentes:</p>
       <ul>
         <li><strong>Conferência da assinatura:</strong> na ativação, o programa envia ao nosso servidor de licenças o e-mail e o código da transação da compra e um código do computador (um resumo criptográfico do identificador do Windows, que não revela quem você é nem o que há no computador). Depois, ao menos uma vez por semana, envia a licença atual para renová-la. Guardamos o código de cada computador ativado enquanto a assinatura existir, para respeitar o limite de computadores.</li>
-        <li><strong>Na instalação:</strong> Python e FFmpeg pelo winget da Microsoft (se você aceitar) e as bibliotecas Python pelo PyPI.</li>
+        <li><strong>Na instalação:</strong> o FFmpeg pelo winget da Microsoft ou pelo gyan.dev (se você aceitar) e as bibliotecas do programa pelo PyPI.</li>
         <li><strong>Na primeira transcrição:</strong> o modelo de transcrição Whisper, baixado do Hugging Face.</li>
       </ul>
       <p>Nesses downloads, os serviços recebem os dados técnicos de qualquer download (como o seu endereço IP), conforme as políticas deles. Nenhum conteúdo seu é enviado.</p>
