@@ -226,23 +226,6 @@ tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); 
 .cartao-preco ul, .requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
 .cartao-preco li, .requisitos li { display: flex; gap: 10px; }
 .cartao-preco li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--lime); }
-/* Carrossel de planos na página inicial: arrastar no celular, pontos para escolher; cada cartão leva aos preços. */
-.planos-carrossel { min-width: 0; }
-.carrossel-trilho { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  overscroll-behavior-x: contain; padding: 2px 2px 4px; border-radius: var(--r); }
-.carrossel-trilho::-webkit-scrollbar { display: none; }
-.carrossel-trilho:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
-.plano-slide { position: relative; flex: 0 0 88%; scroll-snap-align: center; display: block; color: inherit; text-decoration: none;
-  transition: border-color .16s var(--ease); }
-.plano-slide:hover { border-color: var(--lime); }
-.plano-slide:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
-.plano-slide .btn { display: flex; align-items: center; justify-content: center; }
-.carrossel-pontos { display: flex; justify-content: center; gap: 4px; margin-top: 12px; }
-.carrossel-pontos button { width: 32px; height: 32px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; padding: 0; }
-.carrossel-pontos button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line-2);
-  transition: background .16s var(--ease), width .16s var(--ease); }
-.carrossel-pontos button[aria-current="true"]::before { background: var(--lime); width: 22px; border-radius: 4px; }
-.planos-carrossel .garantia { margin-top: 8px; font-size: 14px; color: var(--text-2); text-align: center; }
 .requisitos h3 { font-size: 18px; }
 .requisitos li { color: var(--text-2); }
 .requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
@@ -538,38 +521,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   botao.addEventListener("click", function () { alternar(nav.dataset.menu !== "aberto"); });
   nav.querySelectorAll(".nav-links a").forEach(function (a) { a.addEventListener("click", function () { alternar(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") alternar(false); });
-})();
-
-// Carrossel de planos (página inicial): abre no Pro, os pontos acompanham o cartão do meio e levam a cada plano.
-(function () {
-  "use strict";
-  var trilho = document.getElementById("carrossel-planos");
-  if (!trilho) return;
-  var cartoes = Array.prototype.slice.call(trilho.children);
-  var pontos = Array.prototype.slice.call(document.querySelectorAll(".carrossel-pontos button"));
-  var suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var ir = function (i, animar) {
-    var c = cartoes[i];
-    trilho.scrollTo({ left: c.offsetLeft - trilho.offsetLeft - (trilho.clientWidth - c.clientWidth) / 2, behavior: animar && suave ? "smooth" : "auto" });
-  };
-  var marcar = function () {
-    var meio = trilho.scrollLeft + trilho.clientWidth / 2 + trilho.offsetLeft, atual = 0, menor = Infinity;
-    cartoes.forEach(function (c, i) {
-      var d = Math.abs(c.offsetLeft + c.clientWidth / 2 - meio);
-      if (d < menor) { menor = d; atual = i; }
-    });
-    pontos.forEach(function (p, i) { p.setAttribute("aria-current", String(i === atual)); });
-  };
-  pontos.forEach(function (p, i) { p.addEventListener("click", function () { ir(i, true); }); });
-  trilho.addEventListener("scroll", function () { window.requestAnimationFrame(marcar); }, { passive: true });
-  trilho.addEventListener("keydown", function (e) {
-    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-    var atual = pontos.findIndex(function (p) { return p.getAttribute("aria-current") === "true"; });
-    ir(Math.max(0, Math.min(cartoes.length - 1, atual + (e.key === "ArrowRight" ? 1 : -1))), true);
-    e.preventDefault();
-  });
-  ir(1, false);
-  marcar();
 })();
 </script>
 </body>
