@@ -726,21 +726,21 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="janela">
       <div class="janela-barra" aria-hidden="true"><span>127.0.0.1 · ClipHook</span><svg viewBox="0 0 30 10"><path d="M1 5h7M12 1h7v7h-7zM23 1l7 7M30 1l-7 7" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
       <div class="app" id="app">
-        <aside class="a-lib" aria-label="Seus vídeos">
+        <div class="a-lib" role="group" aria-label="Seus vídeos">
           <div class="a-marca"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</div>
           <button class="a-btn a-prim" type="button" tabindex="-1"><svg aria-hidden="true"><use href="#i-mais"/></svg>Novo vídeo</button>
           <div class="a-colar"><svg aria-hidden="true"><use href="#i-link"/></svg>Colar o caminho do vídeo</div>
-          <h4>Seus vídeos</h4>
+          <h4 role="none">Seus vídeos</h4>
           <div class="a-proj" aria-current="true"><b>podcast-ep-42</b><small id="lib-meta">3 cortes · 0 aprov. · 0 export.</small></div>
           <div class="a-proj"><b>live-de-sexta</b><small>6 cortes · 4 aprov. · 4 export.</small></div>
           <div class="a-proj"><b>entrevista-maio</b><small>4 cortes · 2 aprov. · 2 export.</small></div>
-          <div class="a-status"><i></i>IA conectada · v0.3</div>
-        </aside>
+          <div class="a-status"><i></i>IA (Criador) · v0.4</div>
+        </div>
 
         <div class="app-palco-wrap">
           <div class="a-palco">
             <div class="a-cab">
-              <div><h3>podcast-ep-42</h3><p id="a-meta"></p></div>
+              <div><h3 role="none">podcast-ep-42</h3><p id="a-meta"></p></div>
               <div class="a-exp">
                 <label class="a-opcao"><input type="checkbox" id="a-seguir" checked>Seguir quem fala</label>
                 <button class="a-btn a-prim" type="button" id="a-exportar"></button>
@@ -768,7 +768,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
                 <section class="a-sec a-sec-linha" aria-label="Linha do tempo">
                   <div class="a-sec-topo">
-                    <div><h4>Linha do tempo</h4><p>Áudio do vídeo inteiro e os trechos que a IA marcou.</p></div>
+                    <div><h4 role="none">Linha do tempo</h4><p>Áudio do vídeo inteiro e os trechos que a IA marcou.</p></div>
                     <div class="a-legenda-estados" aria-hidden="true">
                       <span><i style="background:rgba(245,245,240,.35)"></i>Pendente</span><span><i style="background:var(--lime)"></i>Aprovado</span><span><i style="background:var(--danger);opacity:.6"></i>Recusado</span>
                     </div>
@@ -781,14 +781,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
                 <section class="a-sec a-sec-cortes" aria-label="Cortes encontrados">
                   <div class="a-sec-topo">
-                    <div><h4>Cortes encontrados pela IA</h4><p>Cada corte traz o motivo da escolha.</p></div>
+                    <div><h4 role="none">Cortes encontrados pela IA</h4><p>Cada corte traz o motivo da escolha.</p></div>
                     <div class="a-filtros" id="a-filtros" role="group" aria-label="Filtrar cortes"></div>
                   </div>
                   <ul class="a-cards" id="a-cards"></ul>
                 </section>
               </div>
 
-              <aside class="a-insp" id="a-insp" aria-label="Corte selecionado"></aside>
+              <div class="a-insp" id="a-insp" role="group" aria-label="Corte selecionado"></div>
             </div>
           </div>
           <div class="a-tarefa" id="a-tarefa" aria-live="polite"><b id="a-tarefa-crono">00:00</b><span id="a-tarefa-texto"></span></div>
@@ -806,7 +806,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <li><p class="metrica num">7<small>s</small></p><h3>Transcreve</h3><p>113 segundos de fala transcritos com o horário de cada palavra, numa placa RTX 4060.</p></li>
         <li><p class="metrica num">18<small>s</small></p><h3>Sugere os cortes</h3><p>Análise completa de um vídeo de 2 min 34 s: a IA aponta os trechos e explica cada escolha.</p></li>
         <li class="voce"><p class="metrica">Você</p><h3>Revisa e aprova</h3><p>Assiste à prévia editada, ajusta o que quiser e aprova. Nada sai sem o seu sim.</p></li>
-        <li><p class="metrica num">11<small>s</small></p><h3>Edita e exporta</h3><p>Dois cortes 1080×1920 editados: pausas cortadas, legenda sincronizada, seguindo quem fala.</p></li>
+        <li><p class="metrica">Fila</p><h3>Edita e exporta</h3><p>Os cortes aprovados saem em 1080×1920, numa fila: pausas cortadas, legenda sincronizada, seguindo quem fala. O tempo depende da duração do corte e do computador.</p></li>
       </ol>
       <p class="nota">Tempos medidos em 29 e 30/10/2026 num PC com RTX 4060. Variam com a duração do vídeo e com o computador.</p>
       <a class="link-seta" href="como-funciona.html">Ver o passo a passo completo <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
@@ -1144,7 +1144,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       li.innerHTML =
         '<button class="a-card-abrir" type="button" aria-label="Abrir o corte ' + c.titulo + '">' +
           '<div class="a-thumb">' + miniatura(c) + seloHtml(c) + '<span class="dur">' + relogio(c.dur) + "</span></div>" +
-          '<div class="a-card-corpo"><h5>' + c.titulo + '</h5><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Nota editorial " + c.relev + "</b></p></div>" +
+          '<div class="a-card-corpo"><h5 role="none">' + c.titulo + '</h5><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Nota editorial " + c.relev + "</b></p></div>" +
         "</button>" +
         '<div class="a-card-acoes">' + (c.exportado
           ? '<span class="feito">Já exportado como clip_0' + c.id + ".mp4</span>"
@@ -1203,7 +1203,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       "</div>" +
       '<div><p class="a-titulo">' + c.titulo + '</p><div class="a-linha-meta">' + seloHtml(c) + "<span>" + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + " · " + c.dur + " s</span></div></div>" +
       decisao +
-      '<div class="a-bloco a-edicao"><h5>Edição do vídeo</h5>' +
+      '<div class="a-bloco a-edicao"><h5 role="none">Edição do vídeo</h5>' +
         grupo("Legenda", "estilo", [["destaque", "Destaque"], ["caixa", "Caixa"], ["minimal", "Minimalista"]], e.estilo) +
         grupo("Posição da legenda", "posicao", [["auto", "Automática"], ["inferior", "Embaixo"], ["meio", "Meio"], ["superior", "Topo"]], e.posicao) +
         grupo("Enquadramento", "enq", [["auto", "Seguir quem fala"], ["manual", "Manual"]], e.enquadramento === null ? "auto" : "manual") +
@@ -1211,7 +1211,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         chave("Cortar pausas longas", "Pausas acima de 0,6 s e “hum”, “ahn” saem.", "i-cortar", e.cortar) +
         chave("Zoom sutil nos cortes", "Aproxima 7% depois de cada corte seco.", "i-zoom", e.zoom) +
       "</div>" +
-      '<div class="a-bloco"><h5>Por que a IA escolheu</h5><p>' + c.motivo + "</p></div>";
+      '<div class="a-bloco"><h5 role="none">Por que a IA escolheu</h5><p>' + c.motivo + "</p></div>";
 
     var insp = $("a-insp");
     var on = function (sel, ev, fn) { var n = insp.querySelector(sel); if (n) n.addEventListener(ev, fn); };
