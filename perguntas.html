@@ -359,6 +359,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self' https://pay.hotmart.com">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -403,7 +420,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html" aria-current="page">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="preco.html">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
   </div>
 </header>
 
@@ -420,11 +437,11 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <section class="grupo-perguntas" id="produto">
       <h2>O produto</h2>
       <div class="perguntas">
-        <details><summary>O que exatamente sai do ClipHook?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Para cada corte aprovado: um MP4 vertical 1080×1920 com o trecho real do vídeo, editado (pausas longas cortadas, zoom sutil, áudio padronizado) e com a legenda queimada; a legenda em arquivo .srt; um .txt com título e texto sugeridos para o post; e uma capa .jpg 1080×1920. Também sai uma lista de cortes (.edl) para editores.</p></details>
+        <details><summary>O que exatamente sai do ClipHook?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Para cada corte aprovado: o vídeo vertical editado, com a legenda; a capa; um arquivo de texto com título e texto sugeridos para o post; e a legenda também em arquivo separado, para quem finaliza no editor.</p></details>
         <details><summary>A IA garante cortes que viralizam?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Não. Ela sugere trechos que formam uma ideia completa e explica por quê. Quem decide é você. Nenhuma ferramenta pode prometer viralização com honestidade.</p></details>
-        <details><summary>Como a IA escolhe os trechos?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Ela lê a transcrição e procura falas com começo, desenvolvimento e conclusão, dentro da duração que você definiu. Depois o ClipHook ajusta o início e o fim para frases inteiras. Você pode orientar o tom e o que evitar num arquivo de preferências.</p></details>
+        <details><summary>Como a IA escolhe os trechos?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Ela lê a transcrição e procura falas com começo, desenvolvimento e conclusão, dentro da duração que você definiu. Depois o ClipHook ajusta o início e o fim para frases inteiras. </p></details>
         <details><summary>Preciso saber editar vídeo?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Não. Você revisa numa prévia, escolhe o estilo da legenda e aprova. Se quiser finalizar no seu editor, os arquivos e a lista de cortes estão lá.</p></details>
-        <details><summary>Funciona com debate e várias pessoas em cena?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Sim, é para isso que o recorte segue quem fala. Ele depende de rostos visíveis de frente; quando não há rosto confiável, o recorte fica no centro, e você pode posicioná-lo à mão.</p></details>
+        <details><summary>Funciona com debate e várias pessoas em cena?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Sim, é para isso que o recorte segue quem fala. Funciona melhor com os rostos de frente para a câmera, e você sempre pode posicionar o recorte à mão.</p></details>
         <details><summary>Posso usar a identidade visual do meu canal ou dos meus clientes?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Sim, se quiser. Numa marca você define só o que quiser mudar: cores da legenda, fonte, logo como marca d'água e vinhetas de abertura e encerramento. Cada vídeo pode usar uma marca diferente. Sem marca, os cortes saem no visual padrão. Use só fontes, logos e vinhetas que você tem direito de usar.</p></details>
         <details><summary>Dá para processar vários vídeos de uma vez?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Sim. Escolha vários arquivos em “Novo vídeo” e eles entram numa fila, analisados um depois do outro. Depois de aprovar, “Exportar aprovados” exporta os cortes de todos os vídeos numa fila só. Se um vídeo falhar, os outros seguem e o aviso diz qual foi. Mantenha o ClipHook aberto até a fila terminar.</p></details>
         <details><summary>A capa é gerada por IA?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>A imagem não: é um quadro real do seu vídeo, escolhido pela nitidez e pelo rosto de quem fala, com tratamento de cor e a chamada por cima. Nada é inventado na cena. A chamada pode ser sua ou sugerida pela IA; as sugestões só aparecem se o ClipHook achar no vídeo a frase que as sustenta.</p></details>
@@ -446,7 +463,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <section class="grupo-perguntas" id="tecnico">
       <h2>Computador e instalação</h2>
       <div class="perguntas">
-        <details><summary>Qual computador eu preciso?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Windows 64 bits e 5 GB livres para a instalação, mais o espaço dos cortes. Uma GPU deixa a transcrição muito mais rápida. Sem ela funciona, mas a transcrição é bem mais lenta.</p></details>
+        <details><summary>Qual computador eu preciso?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Windows 64 bits e 5 GB livres para a instalação, mais o espaço dos cortes. Com placa de vídeo dedicada, a transcrição fica bem mais rápida.</p></details>
         <details><summary>Preciso saber programar?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Não. Você instala como qualquer programa do Windows e usa o ClipHook numa janela própria.</p></details>
         <details><summary>O Windows avisou que o editor é desconhecido. É seguro?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Sim, se o instalador veio da área de membros da Hotmart. O Windows mostra esse aviso para programas novos, que ainda não foram baixados por muita gente. Clique em “Mais informações” e depois em “Executar assim mesmo”. Na dúvida, não instale um arquivo do ClipHook recebido por outro caminho e escreva para <a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a>.</p></details>
         <details><summary>Funciona no Mac ou no Linux?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Ainda não. Por enquanto, o ClipHook é só para Windows.</p></details>
@@ -470,7 +487,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap">
       <h2>Pronto para o primeiro corte?</h2>
       <p>Instale, escolha o vídeo e aprove os cortes. O resto o ClipHook faz no seu computador.</p>
-      <a class="btn btn-lime" href="preco.html">Comece a cortar! <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 </main>

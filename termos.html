@@ -359,6 +359,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self' https://pay.hotmart.com">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -403,7 +420,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="preco.html">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
   </div>
 </header>
 

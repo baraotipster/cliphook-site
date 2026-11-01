@@ -359,6 +359,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <style>
   .custo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: start; }
@@ -412,93 +429,81 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="#comprar">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="#comprar">Ver os planos</a>
   </div>
 </header>
 
 <main>
   <section class="wrap pagina-topo">
     <h1>Uma assinatura. A IA incluída.</h1>
-    <p class="lead">Assinatura mensal com a IA incluída e uma cota de horas de vídeo por mês, conforme o plano. Sem conta de IA para criar, sem cobrança à parte.</p>
+    <p class="lead">Todos os planos têm todos os recursos. Muda quantas horas de vídeo a IA analisa por mês e em quantos computadores você usa.</p>
   </section>
 
-  <section class="wrap preco" id="comprar" style="padding-bottom:128px">
-    <div>
-      <h2>Assinatura mensal</h2>
-      <p class="lead">Cobrança recorrente todo mês pela Hotmart. As atualizações e os recursos novos entram na assinatura, sem custo extra.</p>
-      <div class="requisitos" id="requisitos" style="margin-top:48px">
-        <h3>Antes de comprar, confira</h3>
+  <section class="wrap" id="comprar" style="padding-bottom:128px">
+    <div class="planos-grade" id="planos">
+      <div class="cartao-preco">
+        <p class="rotulo">Básico</p>
+        <p class="para">Para quem está começando</p>
+        <p class="valor"><b class="num">R$ 29,90</b><span>por mês</span></p>
+        <p class="por-hora num">R$ 2,49 por hora de vídeo</p>
         <ul>
-          <li><svg aria-hidden="true"><use href="#i-info"/></svg>Windows 64 bits</li>
-          <li><svg aria-hidden="true"><use href="#i-info"/></svg>GPU recomendada. Sem ela funciona, mas a transcrição é bem mais lenta</li>
-          <li><svg aria-hidden="true"><use href="#i-info"/></svg>5 GB livres para a instalação (ela baixa cerca de 3 GB), mais o espaço dos cortes exportados</li>
-          <li><svg aria-hidden="true"><use href="#i-info"/></svg>Internet para a IA e para conferir a assinatura (ao menos uma vez por semana)</li>
-          <li><svg aria-hidden="true"><use href="#i-info"/></svg>Direito de uso sobre os vídeos que você vai cortar</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>12 horas de vídeo por mês</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>1 computador</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
         </ul>
+        <a class="btn" href="https://pay.hotmart.com/E108273884O?off=jphma0x8&amp;src=site-preco-basico">Assinar o Básico</a>
+      </div>
+      <div class="cartao-preco gancho">
+        <p class="rotulo">Pro <span class="selo-plano">Recomendado</span></p>
+        <p class="para">Para canais de cortes e podcasts</p>
+        <p class="valor"><b class="num">R$ 75</b><span>por mês</span></p>
+        <p class="por-hora num">R$ 2,08 por hora de vídeo</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>36 horas de vídeo por mês</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>2 computadores</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
+        </ul>
+        <a class="btn btn-lime" href="https://pay.hotmart.com/E108273884O?off=8mch0fgp&amp;src=site-preco-pro">Assinar o Pro</a>
+      </div>
+      <div class="cartao-preco">
+        <p class="rotulo">Agência</p>
+        <p class="para">Para editores e agências</p>
+        <p class="valor"><b class="num">R$ 200</b><span>por mês</span></p>
+        <p class="por-hora num">R$ 1,33 por hora de vídeo</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>150 horas de vídeo por mês</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>4 computadores</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
+        </ul>
+        <a class="btn" href="https://pay.hotmart.com/E108273884O?off=h3ccqu61&amp;src=site-preco-agencia">Assinar o Agência</a>
       </div>
     </div>
-    <div class="cartao-preco gancho">
-      <p class="rotulo">Plano Pro</p>
-      <p class="valor"><b class="num">R$ 75</b><span>por mês</span></p>
-      <ul>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aplicativo para Windows: escolher vídeo, revisar, editar e exportar</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>IA incluída: 36 horas de vídeo analisadas por mês, em 2 computadores</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Começando? O Básico sai por R$ 29,90 por mês, com 12 horas de IA</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Transcrição local com horário por palavra</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cortes 9:16 editados, seguindo quem fala</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Legendas em três estilos, pausas cortadas, zoom e áudio padronizado</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Instalação com dois cliques no Windows</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pacote de conteúdo: posts e carrossel a partir do episódio</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Atualizações incluídas enquanto a assinatura estiver ativa</li>
+    <p class="garantia-pagina">Cobrança mensal pela Hotmart, com reembolso em até 7 dias após a primeira cobrança. Na primeira semana de uma assinatura nova, a IA usa até 25% da cota do plano; o restante libera no 8º dia.</p>
+  </section>
+
+  <section class="bloco" id="extras">
+    <div class="wrap">
+      <h2>Precisa de mais horas?</h2>
+      <p class="lead">Compre horas extras por Pix, direto no app, de 3 a 30 horas por vez. Elas somam à cota do mês da compra.</p>
+      <ul class="faixas-preco">
+        <li><b class="num">R$ 2,50</b><span>por hora, até 10 h</span></li>
+        <li><b class="num">R$ 2,20</b><span>por hora, de 11 a 20 h</span></li>
+        <li><b class="num">R$ 2,00</b><span>por hora, de 21 a 30 h</span></li>
       </ul>
-      <a class="btn btn-lime" href="https://pay.hotmart.com/E108273884O?off=8mch0fgp&amp;src=site-preco-pro">Comece a cortar!</a>
-      <p class="garantia">Cobrança mensal pela Hotmart. Reembolso em até 7 dias após a primeira cobrança. Na primeira semana de uma assinatura nova, a IA usa até 25% da cota do plano; o restante libera no 8º dia. <a href="#planos">Ver os planos Básico e Agência e as horas extras</a>.</p>
+      <p class="nota">A cota vale só para a análise da IA e renova todo dia 1º. A transcrição, a edição e a exportação rodam no seu computador e não usam a cota. O app mostra quanto você já usou.</p>
     </div>
   </section>
 
-  <section class="bloco" id="planos">
-    <div class="wrap">
-      <h2>Planos</h2>
-      <p class="lead">Todos os planos têm todos os recursos. Muda só quanto de IA vem incluído por mês e em quantos computadores você usa.</p>
-      <div class="tabela planos" tabindex="0" role="region" aria-label="Planos do ClipHook">
-        <table>
-          <thead><tr><th scope="col">Plano</th><th scope="col">Preço</th><th scope="col">IA incluída</th><th scope="col">Computadores</th><th scope="col">Para quem</th><th scope="col"><span class="sr">Assinar</span></th></tr></thead>
-          <tbody>
-            <tr><td data-rotulo="Plano"><span class="celula"><b>Básico</b></span></td><td data-rotulo="Preço"><span class="celula">R$ 29,90/mês</span></td><td data-rotulo="IA incluída"><span class="celula">12 h de vídeo por mês</span></td><td data-rotulo="Computadores"><span class="celula">1</span></td><td data-rotulo="Para quem"><span class="celula">Quem está começando ou corta poucos vídeos</span></td><td><a class="btn btn-sm" href="https://pay.hotmart.com/E108273884O?off=jphma0x8&amp;src=site-preco-basico">Assinar</a></td></tr>
-            <tr><td data-rotulo="Plano"><span class="celula"><b>Pro</b></span></td><td data-rotulo="Preço"><span class="celula">R$ 75/mês</span></td><td data-rotulo="IA incluída"><span class="celula">36 h de vídeo por mês</span></td><td data-rotulo="Computadores"><span class="celula">2</span></td><td data-rotulo="Para quem"><span class="celula">Canal de cortes, podcaster</span></td><td><a class="btn btn-sm" href="https://pay.hotmart.com/E108273884O?off=8mch0fgp&amp;src=site-preco-pro">Assinar</a></td></tr>
-            <tr><td data-rotulo="Plano"><span class="celula"><b>Agência</b></span></td><td data-rotulo="Preço"><span class="celula">R$ 200/mês</span></td><td data-rotulo="IA incluída"><span class="celula">150 h de vídeo por mês</span></td><td data-rotulo="Computadores"><span class="celula">4</span></td><td data-rotulo="Para quem"><span class="celula">Editor freelancer, agência com vários clientes</span></td><td><a class="btn btn-sm" href="https://pay.hotmart.com/E108273884O?off=h3ccqu61&amp;src=site-preco-agencia">Assinar</a></td></tr>
-            <tr><td data-rotulo="Plano"><span class="celula"><b>Horas extras (Pix, no app)</b></span></td><td data-rotulo="Preço"><span class="celula">De 3 a 30 h por compra<br>Até 10 h: R$ 2,50/hora<br>11 a 20 h: R$ 2,20/hora<br>21 a 30 h: R$ 2,00/hora</span></td><td data-rotulo="IA incluída"><span class="celula">Somam à cota do mês da compra</span></td><td data-rotulo="Computadores"><span class="celula">—</span></td><td data-rotulo="Para quem"><span class="celula">Para um mês puxado, em qualquer plano</span></td><td></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="nota">A transcrição, a edição e a exportação rodam no seu computador e não usam a cota. A cota vale só para a IA, renova todo dia 1º, e o app mostra quanto você já usou.</p>
-    </div>
-  </section>
-
-  <section class="bloco" id="custo-ia">
-    <div class="wrap">
-      <div>
-        <h2>Quanto da cota um vídeo usa?</h2>
-        <p class="lead">A IA só lê a transcrição, em texto, então o uso cresce com a duração da fala, não com o tamanho do arquivo. O app mostra quanto da cota do mês já foi usado.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloco">
-    <div class="wrap">
-      <h2>Comparado às ferramentas na nuvem</h2>
-      <div class="tabela" tabindex="0" role="region" aria-label="Comparação com ferramentas na nuvem">
-        <table>
-          <thead><tr><th scope="col"><span class="sr">Item</span></th><th scope="col">Ferramentas na nuvem</th><th scope="col">ClipHook</th></tr></thead>
-          <tbody>
-            <tr><td>Preço</td><td>Assinatura mensal, cobrada por minutos de vídeo</td><td>Assinatura mensal com a IA incluída e cota de horas de vídeo por mês</td></tr>
-            <tr><td>Seus vídeos</td><td>Enviados para servidores de terceiros</td><td>Ficam no seu computador</td></tr>
-            <tr><td>Limites</td><td>Minutos por mês, marca d'água no plano gratuito</td><td>Horas de vídeo por mês conforme o plano, sem marca d'água</td></tr>
-            <tr><td>Quem decide</td><td>A IA escolhe, você ajusta depois</td><td>A IA sugere e explica, você aprova antes de exportar</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <a class="link-seta" href="perguntas.html#compra">Dúvidas sobre a compra <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+  <section class="bloco" id="requisitos">
+    <div class="wrap requisitos">
+      <h2>Antes de assinar, confira</h2>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-info"/></svg>Windows 64 bits</li>
+        <li><svg aria-hidden="true"><use href="#i-info"/></svg>Placa de vídeo dedicada recomendada: a transcrição fica bem mais rápida</li>
+        <li><svg aria-hidden="true"><use href="#i-info"/></svg>5 GB livres para a instalação, mais o espaço dos cortes exportados</li>
+        <li><svg aria-hidden="true"><use href="#i-info"/></svg>Internet para a IA e para conferir a assinatura (ao menos uma vez por semana)</li>
+        <li><svg aria-hidden="true"><use href="#i-info"/></svg>Direito de uso sobre os vídeos que você vai cortar</li>
+      </ul>
     </div>
   </section>
 </main>

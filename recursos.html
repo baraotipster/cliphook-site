@@ -359,6 +359,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <style>
   .recurso-pagina { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; padding: 88px 0; border-top: 1px solid var(--line); align-items: start; }
@@ -413,14 +430,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="preco.html">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
   </div>
 </header>
 
 <main>
   <section class="wrap pagina-topo">
     <h1>Tudo o que um corte precisa para ir ao ar.</h1>
-    <p class="lead">Cada recurso abaixo foi testado com vídeo real antes de entrar nesta página.</p>
+    <p class="lead">Do recorte à legenda, da capa ao texto do post: o que o ClipHook faz em cada corte.</p>
     <nav class="indice" aria-label="Nesta página">
       <a href="#falante">Quem fala</a><a href="#legenda">Legendas</a><a href="#edicao">Edição</a><a href="#versoes">Versões</a><a href="#audio">Áudio</a><a href="#revisao">Revisão</a><a href="#marca">Marca</a><a href="#capa">Capa</a><a href="#volume">Busca e fila</a><a href="#privacidade">Privacidade</a><a href="#editores">Editores</a>
     </nav>
@@ -436,7 +453,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <dt>Pensado para várias pessoas em cena</dt><dd>Podcast com dois microfones, debate, mesa-redonda. Rostos pequenos (plateia, plano aberto) nunca viram alvo.</dd>
         <dt>Câmera estável</dt><dd>O recorte só se move quando a troca de falante se confirma, e uma troca de câmera vira corte seco, sem balançar.</dd>
         <dt>Vídeos de react</dt><dd>No modo Reação, o vídeo reagido vai em cima e a webcam de quem reage embaixo, cada um em close. O ClipHook acha os dois sozinho; o chat da live e o fundo preto ficam de fora.</dd>
-        <dt>Plano B seguro</dt><dd>Sem rosto confiável no trecho, o recorte fica no centro. E você pode posicionar à mão, corte a corte.</dd>
+        <dt>Você no controle</dt><dd>Prefere outro enquadramento? Posicione o recorte à mão, corte a corte.</dd>
       </dl>
     </section>
 
@@ -447,7 +464,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       </div>
       <dl class="detalhe">
         <dt>Destaque, Caixa e Minimalista</dt><dd>Caixa alta com contorno, faixa escura atrás do texto, ou texto limpo com sombra. Escolha por corte e veja na prévia antes de exportar.</dd>
-        <dt>Sincronia conferida no arquivo final</dt><dd>Transcrevemos de novo o áudio de dois cortes exportados e comparamos: 73 de 74 palavras batem, com 0 a 20 ms de diferença típica.</dd>
         <dt>Blocos que respeitam a frase</dt><dd>O fim de uma frase não divide a tela com o começo da próxima, e uma pausa longa abre um bloco novo.</dd>
       </dl>
     </section>
@@ -458,8 +474,8 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <p class="lead">O corte sai do trecho original do vídeo, com movimento, gestos e áudio. A edição tira o que sobra e disfarça os cortes, sem efeitos chamativos.</p>
       </div>
       <dl class="detalhe">
-        <dt>Pausas longas cortadas</dt><dd>Silêncios acima de 0,6 s e hesitações como “hum” e “ahn” saem. Pausas naturais ficam, para a fala continuar respirando.</dd>
-        <dt>Zoom sutil nos cortes secos</dt><dd>Depois de cada pausa cortada, o quadro alterna entre o plano normal e 7% mais perto. É o jeito usual de esconder o pulo da imagem.</dd>
+        <dt>Pausas longas cortadas</dt><dd>Silêncios longos saem. Pausas naturais ficam, para a fala continuar respirando.</dd>
+        <dt>Zoom sutil nos cortes secos</dt><dd>Depois de cada pausa cortada, o quadro alterna entre o plano normal e um pouco mais perto. É o jeito usual de esconder o pulo da imagem.</dd>
         <dt>Imagem mais limpa, na medida do vídeo</dt><dd>O ClipHook mede cada trecho e corrige só o que precisa: ruído, luz fraca, ampliação mais limpa do recorte e nitidez na medida da ampliação. Vídeo que já está bom quase não muda. Dá para comparar antes e depois no app, e escolher Natural, Aprimorada ou Desligada.</dd>
         <dt>Ajuste fino</dt><dd>Início e fim de meio em meio segundo, título editável e cada recurso liga e desliga por corte.</dd>
       </dl>
@@ -475,14 +491,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <dt>Retenção</dt><dd>Abre com a frase mais forte do trecho, volta ao começo da ideia e corta as pausas com mais rigor.</dd>
         <dt>Contexto</dt><dd>Começa antes, quando o trecho depende do que foi dito, e mantém as pausas naturais.</dd>
         <dt>Impacto</dt><dd>Aproxima o quadro nas falas mais fortes, conferidas na transcrição.</dd>
-        <dt>Duração real de cada uma</dt><dd>Num corte de teste: Padrão 24,9 s, Retenção 29,8 s, Contexto 32,7 s e Impacto 24,9 s. A prévia mostra a duração antes de exportar.</dd>
       </dl>
     </section>
 
     <section class="recurso-pagina" id="audio">
       <div>
         <h2>Áudio pronto para as redes.</h2>
-        <p class="lead">Volume padronizado em -14 LUFS, a referência das plataformas de vídeo curto, com filtro de ruído grave e uma transição curtinha em cada corte para não estalar.</p>
+        <p class="lead">Volume padronizado na referência das plataformas de vídeo curto, sem estalo nas emendas.</p>
       </div>
       <dl class="detalhe">
         <dt>Música de fundo opcional</dt><dd>Escolha um arquivo seu. A música entra baixa e abaixa sozinha quando alguém fala. Use só músicas que você tem direito de usar; o ClipHook não fornece nem baixa músicas.</dd>
@@ -536,7 +551,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <dt>Busca no que foi dito</dt><dd>Uma palavra ou frase em todos os vídeos, sem se importar com acentos. Abra o vídeo no segundo exato ou crie um corte a partir dali.</dd>
         <dt>Fila de análise</dt><dd>Escolha vários vídeos de uma vez; eles são analisados um depois do outro.</dd>
         <dt>Exportar aprovados</dt><dd>Um clique exporta os cortes aprovados de todos os vídeos. Se um falhar, os outros seguem, e o aviso diz qual foi.</dd>
-        <dt>Mantenha o app aberto</dt><dd>A fila roda enquanto o ClipHook estiver aberto. Fechar o app interrompe a fila.</dd>
       </dl>
     </section>
 
@@ -554,15 +568,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <section class="recurso-pagina" id="editores">
       <div>
         <h2>Pronto para postar, ou para o seu editor.</h2>
-        <p class="lead">Cada corte sai com o vídeo, a legenda em arquivo separado e o texto do post. Para quem finaliza no editor, há também a lista de cortes.</p>
+        <p class="lead">Cada corte sai com o vídeo, a legenda em arquivo separado e o texto do post. Para quem finaliza no editor, a legenda também vem em arquivo.</p>
       </div>
       <dl class="detalhe">
         <dt>clip_NN.mp4</dt><dd>1080×1920, editado e legendado.</dd>
         <dt>clip_NN.srt</dt><dd>Legenda no tempo do vídeo editado, para subir separada.</dd>
-        <dt>clip_NN.txt</dt><dd>Título e descrição sugeridos para o post.</dd>
+        <dt>clip_NN.txt</dt><dd>Título, texto e hashtags sugeridos para o post.</dd>
         <dt>clip_NN_capa.jpg</dt><dd>Capa 1080×1920 com a chamada.</dd>
         <dt>pacote.md (opcional)</dt><dd>Do episódio inteiro: textos de post para Instagram, LinkedIn e X, um roteiro de carrossel e ideias de pauta. Cada frase citada foi conferida na transcrição e vem com o horário; sugestão sem citação encontrada fica de fora. São sugestões para você revisar.</dd>
-        <dt>cortes.edl</dt><dd>Lista de cortes no formato CMX3600. Ainda não testamos a importação em todos os editores.</dd>
       </dl>
     </section>
 
@@ -572,7 +585,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap">
       <h2>Veja o seu próximo episódio virar cortes.</h2>
       <p>Assinatura mensal com a IA incluída, sem marca d'água.</p>
-      <a class="btn btn-lime" href="preco.html">Comece a cortar! <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 </main>

@@ -359,6 +359,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self' https://pay.hotmart.com">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -403,7 +420,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="preco.html">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
   </div>
 </header>
 
@@ -420,11 +437,11 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <li class="etapa" id="instalar">
       <div>
         <h2>Instale com dois cliques.</h2>
-        <p class="lead">Baixe o instalador do ClipHook, abra e clique em Avançar. Ele já traz o que o programa precisa, confere o FFmpeg, prepara a transcrição na sua placa de vídeo e cria o atalho “ClipHook”.</p>
+        <p class="lead">Baixe o instalador do ClipHook, abra e clique em Avançar. Ele já traz tudo o que o programa precisa e cria o atalho “ClipHook”.</p>
       </div>
       <div>
         <ul class="lista-check">
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Windows 64 bits.</b> GPU recomendada; sem ela, tudo funciona, mas a transcrição é bem mais lenta.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Windows 64 bits.</b> Com placa de vídeo dedicada, a transcrição fica bem mais rápida.</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>IA incluída.</b> Não precisa criar conta nem chave em lugar nenhum: a IA vem com a assinatura.</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Ativação.</b> E-mail da compra e código da transação (começa com HP, vem no e-mail da Hotmart), uma vez por computador.</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Programa de verdade.</b> O ClipHook abre numa janela própria, como qualquer aplicativo do Windows, e sai em Configurações > Aplicativos se você quiser desinstalar.</span></li>
@@ -436,7 +453,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <li class="etapa" id="escolher">
       <div>
         <h2>Escolha o vídeo. A transcrição começa sozinha.</h2>
-        <p class="lead">Clique em “Novo vídeo” e escolha o arquivo, ou cole o caminho. O ClipHook transcreve a fala no seu PC, com o horário de cada palavra.</p>
+        <p class="lead">Clique em “Novo vídeo” e escolha o arquivo, ou cole um link do YouTube ou do TikTok. O ClipHook transcreve a fala no seu computador, com o horário de cada palavra.</p>
       </div>
       <div>
         <ul class="lista-check">
@@ -445,7 +462,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Analisou de novo o mesmo vídeo? A transcrição é reaproveitada</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vários vídeos de uma vez entram numa fila, um depois do outro</li>
         </ul>
-        <p class="fato"><b class="num">7 s</b>para transcrever 113 s de fala numa RTX 4060, com o modelo Whisper large-v3-turbo.</p>
       </div>
     </li>
 
@@ -462,7 +478,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Duração mínima e máxima definidas por você</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Só o texto vai para a IA; o vídeo e o áudio ficam com você</li>
         </ul>
-        <p class="fato"><b class="num">18 s</b>para transcrever e analisar um vídeo de 2 min 34 s, do começo ao fim.</p>
       </div>
     </li>
 
@@ -494,7 +509,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Recorte que acompanha quem está falando</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas longas cortadas e zoom sutil em cada corte seco</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Legenda palavra a palavra, abaixo do rosto</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Volume padronizado para as redes (-14 LUFS)</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Volume padronizado para as redes</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Capa 1080×1920 para cada corte</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg>Vários vídeos? “Exportar aprovados” exporta todos numa fila</li>
         </ul>
@@ -523,7 +538,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap">
       <h2>Seu próximo episódio já tem cortes dentro dele.</h2>
       <p>Assinatura mensal com a IA incluída. Os seus vídeos não saem do seu computador.</p>
-      <a class="btn btn-lime" href="preco.html">Comece a cortar! <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 </main>
@@ -536,7 +551,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     </div>
     <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a></nav>
     <nav aria-label="Ajuda"><b>Ajuda</b><a href="perguntas.html">Perguntas frequentes</a><a href="preco.html#requisitos">Requisitos</a><a href="termos.html">Termos de uso</a><a href="privacidade.html">Política de privacidade</a><a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a></nav>
-    <div class="fino"><span>© 2026 ClipHook</span><span>Produto independente. Tempos medidos em 29 e 30/10/2026 num PC com RTX 4060.</span></div>
+    <div class="fino"><span>© 2026 ClipHook</span></div>
   </div>
 </footer>
 <script>

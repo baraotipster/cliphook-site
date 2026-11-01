@@ -360,6 +360,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- planos (página de preço) ---------- */
+.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.planos-grade .cartao-preco { display: flex; flex-direction: column; }
+.planos-grade .cartao-preco ul { margin-bottom: 0; }
+.planos-grade .cartao-preco .btn { margin-top: auto; }
+.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
+.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
+.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
+.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
+.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
 </style>
 <style>
   /* ---------- hero ---------- */
@@ -555,13 +572,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .legenda-demo { margin-top: 14px; font-size: 13px; color: var(--text-2); }
 
   /* ---------- seções da landing ---------- */
-  .pipeline { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .pipeline { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
   .pipeline::before { content: ""; position: absolute; top: 7px; left: 0; right: 0; height: 1px; background: var(--line-2); }
   .pipeline li { position: relative; padding: 36px 28px 0 0; }
   .pipeline li::before { content: ""; position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line-2); }
   .pipeline li.voce::before { background: var(--lime); border-color: var(--lime); }
-  .pipeline .metrica { font-size: 40px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
-  .pipeline .metrica small { font-size: 16px; color: var(--text-2); font-weight: 400; letter-spacing: 0; margin-left: 4px; }
+  .pipeline .passo { font-size: 14px; font-weight: 600; color: var(--text-3); letter-spacing: .04em; }
+  .pipeline li.voce .passo { color: var(--lime); }
   .pipeline h3 { font-size: 18px; margin-top: 18px; letter-spacing: -0.015em; }
   .pipeline p { font-size: 15px; color: var(--text-2); margin-top: 6px; }
 
@@ -601,7 +618,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     .a-editor > *, .a-col > * { min-width: 0; max-width: 100%; }
     .a-cards { grid-template-columns: 1fr; }
     .a-ctrl .ocultar { display: none; }
-    .pipeline { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+    .pipeline { grid-template-columns: 1fr; row-gap: 40px; }
     .pipeline::before { display: none; }
   }
   @media (max-width: 560px) {
@@ -717,20 +734,20 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <a href="perguntas.html">Perguntas</a>
     </nav>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
-    <a class="btn btn-lime btn-sm" href="preco.html">Comece a cortar!</a>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
   </div>
 </header>
 
 <main>
   <section class="wrap hero">
     <h1>Toda conversa longa esconde um <span class="marca-texto">gancho</span>.</h1>
-    <p class="sub">O ClipHook acha os trechos que prendem a atenção nos seus podcasts, debates e lives, corta em vertical com legenda e você aprova cada corte antes de exportar. Tudo no seu PC.</p>
+    <p class="sub">O ClipHook encontra os melhores trechos dos seus podcasts, debates e lives e entrega cortes editados, com legenda e seguindo quem fala. Você aprova cada um antes de exportar.</p>
     <div class="acoes">
-      <a class="btn btn-lime" href="preco.html">Comece a cortar! <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
-      <a class="btn" href="como-funciona.html">Como funciona</a>
+      <a class="btn btn-lime" href="#preco">Ver os planos <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn" href="#produto">Ver o app</a>
     </div>
     <div class="provas">
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>Roda no seu PC</span>
+      <span><svg aria-hidden="true"><use href="#i-check"/></svg>Seu vídeo não sai do computador</span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg>Você aprova cada corte</span>
       <span><svg aria-hidden="true"><use href="#i-check"/></svg>A partir de R$ 29,90/mês</span>
     </div>
@@ -742,7 +759,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
   <section class="wrap produto" id="produto" aria-label="Demonstração do app">
     <div class="janela">
-      <div class="janela-barra" aria-hidden="true"><span>127.0.0.1 · ClipHook</span><svg viewBox="0 0 30 10"><path d="M1 5h7M12 1h7v7h-7zM23 1l7 7M30 1l-7 7" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="janela-barra" aria-hidden="true"><span>ClipHook</span><svg viewBox="0 0 30 10"><path d="M1 5h7M12 1h7v7h-7zM23 1l7 7M30 1l-7 7" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
       <div class="app" id="app">
         <div class="a-lib" role="group" aria-label="Seus vídeos">
           <div class="a-marca"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</div>
@@ -752,7 +769,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <div class="a-proj" aria-current="true"><b>podcast-ep-42</b><small id="lib-meta">3 cortes · 0 aprov. · 0 export.</small></div>
           <div class="a-proj"><b>live-de-sexta</b><small>6 cortes · 4 aprov. · 4 export.</small></div>
           <div class="a-proj"><b>entrevista-maio</b><small>4 cortes · 2 aprov. · 2 export.</small></div>
-          <div class="a-status"><i></i>IA (Pro) · v0.4</div>
+          <div class="a-status"><i></i>Assinatura Pro ativa</div>
         </div>
 
         <div class="app-palco-wrap">
@@ -813,21 +830,17 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         </div>
       </div>
     </div>
-    <p class="legenda-demo">Demonstração interativa do app, com dados de exemplo e um estúdio ilustrado: escolha um corte, troque o estilo da legenda, aprove e exporte. No seu computador, o ClipHook faz isso com o seu vídeo.</p>
+    <p class="legenda-demo">Experimente: escolha um corte, troque o estilo da legenda, aprove e exporte. Demonstração com dados ilustrativos.</p>
   </section>
 
   <section class="bloco" id="fluxo">
     <div class="wrap">
-      <h2>Do vídeo longo ao corte publicado.</h2>
-      <p class="lead">Quatro etapas, todas no seu computador. O vídeo original nunca é alterado.</p>
+      <h2>Do vídeo longo ao corte pronto, em três passos.</h2>
       <ol class="pipeline">
-        <li><p class="metrica num">7<small>s</small></p><h3>Transcreve</h3><p>113 segundos de fala transcritos com o horário de cada palavra, numa placa RTX 4060.</p></li>
-        <li><p class="metrica num">18<small>s</small></p><h3>Sugere os cortes</h3><p>Análise completa de um vídeo de 2 min 34 s: a IA aponta os trechos e explica cada escolha.</p></li>
-        <li class="voce"><p class="metrica">Você</p><h3>Revisa e aprova</h3><p>Assiste à prévia editada, ajusta o que quiser e aprova. Nada sai sem o seu sim.</p></li>
-        <li><p class="metrica">Fila</p><h3>Edita e exporta</h3><p>Os cortes aprovados saem em 1080×1920, numa fila: pausas cortadas, legenda sincronizada, seguindo quem fala. O tempo depende da duração do corte e do computador.</p></li>
+        <li><p class="passo num">01</p><h3>Escolha o vídeo</h3><p>Um arquivo do seu computador ou um link do YouTube. O ClipHook transcreve a fala e a IA sugere os melhores trechos, cada um com o motivo da escolha.</p></li>
+        <li class="voce"><p class="passo num">02</p><h3>Revise e aprove</h3><p>Assista à prévia já editada, ajuste o começo e o fim e aprove. Nada sai sem o seu sim.</p></li>
+        <li><p class="passo num">03</p><h3>Exporte</h3><p>Os cortes aprovados saem editados, com legenda, capa e o texto do post, prontos para publicar.</p></li>
       </ol>
-      <p class="nota">Tempos medidos em 29 e 30/10/2026 num PC com RTX 4060. Variam com a duração do vídeo e com o computador.</p>
-      <a class="link-seta" href="como-funciona.html">Ver o passo a passo completo <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 
@@ -836,11 +849,11 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <div class="recurso">
         <div>
           <h2>O corte segue quem fala.</h2>
-          <p class="lead">Em podcast e debate, quem fala muda o tempo todo. O ClipHook cruza o movimento da boca de cada rosto com o áudio e leva o recorte vertical até quem tem a palavra.</p>
+          <p class="lead">Em podcast e debate, a palavra muda de dono o tempo todo. O ClipHook acompanha quem está falando e leva o recorte vertical até essa pessoa.</p>
           <ul class="lista-check">
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Plateia e quem só escuta não roubam o quadro</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Quem só escuta não rouba o quadro</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Troca de câmera vira corte seco, sem tremer</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sem rosto confiável, fica no centro, ou onde você posicionar</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tela dividida quando duas pessoas conversam</li>
           </ul>
         </div>
         <div class="painel">
@@ -855,11 +868,11 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <div class="recurso inverte">
         <div>
           <h2>Edição de verdade, não uma imagem com legenda.</h2>
-          <p class="lead">O corte sai do vídeo original, com movimento e áudio. As pausas longas saem, as naturais ficam, e um zoom sutil disfarça cada corte seco.</p>
+          <p class="lead">O corte sai do vídeo original, com movimento e som. As pausas longas saem, as naturais ficam, e um zoom sutil disfarça cada emenda.</p>
           <ul class="lista-check">
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas acima de 0,6 s e “hum”, “ahn” removidos</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Áudio padronizado para redes (-14 LUFS)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Música de fundo opcional, que abaixa quando alguém fala</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas longas e hesitações removidas</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Som no volume certo para as redes</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Música de fundo que abaixa quando alguém fala</li>
           </ul>
         </div>
         <div class="painel linha-edicao" aria-label="Exemplo de corte antes e depois da edição">
@@ -868,21 +881,20 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
             <div class="faixa" aria-hidden="true"><span class="fala" style="flex:9"></span><span class="pausa" style="flex:1.4"></span><span class="fala" style="flex:12"></span><span class="pausa" style="flex:1"></span><span class="fala" style="flex:15"></span><span class="pausa" style="flex:.9"></span><span class="fala" style="flex:2"></span></div>
           </div>
           <div>
-            <p class="rot"><span>Vídeo editado</span><b>0:38,6</b></p>
+            <p class="rot"><span>Corte editado</span><b>0:38,6</b></p>
             <div class="faixa" aria-hidden="true"><span class="fala" style="flex:9"></span><span class="z" style="flex:12"></span><span class="fala" style="flex:15"></span><span class="z" style="flex:2"></span><span style="flex:2.4;background:none"></span></div>
           </div>
-          <p class="faixa-legenda"><span><i style="background:rgba(245,245,240,.55)"></i>Fala, plano normal</span><span><i style="background:var(--lime)"></i>Fala com zoom de 7%</span><span><i style="background:repeating-linear-gradient(135deg,rgba(240,132,139,.5) 0 3px,transparent 3px 6px)"></i>Pausa cortada</span></p>
+          <p class="faixa-legenda"><span><i style="background:rgba(245,245,240,.55)"></i>Fala</span><span><i style="background:var(--lime)"></i>Fala com zoom</span><span><i style="background:repeating-linear-gradient(135deg,rgba(240,132,139,.5) 0 3px,transparent 3px 6px)"></i>Pausa cortada</span></p>
         </div>
       </div>
 
       <div class="recurso">
         <div>
           <h2>Legenda palavra a palavra, no estilo do seu canal.</h2>
-          <p class="lead">A palavra falada acende no ritmo da fala e a legenda desce para baixo do rosto quando ele ocupa a tela. Cada corte sai com o vídeo, a legenda em arquivo e o texto do post.</p>
+          <p class="lead">A palavra falada acende no ritmo da fala, e a legenda sai do caminho do rosto. Cada corte vem com o vídeo, a capa e o texto do post.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Três estilos: Destaque, Caixa e Minimalista</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sincronia conferida no arquivo final: 20 ms de diferença típica</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>SRT e lista de cortes para abrir no seu editor</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Legenda também em arquivo, para o seu editor</li>
           </ul>
         </div>
         <div class="painel estilos">
@@ -897,10 +909,10 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
               <button type="button" aria-pressed="false" data-estilo="minimal">Minimalista</button>
             </div>
             <ul class="arquivos">
-              <li><span>clip_01.mp4</span><span>1080×1920, editado</span></li>
-              <li><span>clip_01.srt</span><span>legenda em arquivo</span></li>
+              <li><span>clip_01.mp4</span><span>corte editado</span></li>
+              <li><span>clip_01_capa.jpg</span><span>capa com a chamada</span></li>
               <li><span>clip_01.txt</span><span>título e texto do post</span></li>
-              <li><span>cortes.edl</span><span>lista para o editor</span></li>
+              <li><span>clip_01.srt</span><span>legenda em arquivo</span></li>
             </ul>
           </div>
         </div>
@@ -911,35 +923,15 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   <section class="bloco" id="mais">
     <div class="wrap">
       <h2>Feito para quem corta toda semana.</h2>
-      <p class="lead">Além de cortar e legendar, o ClipHook ajuda a decidir, a manter o visual do canal e a dar conta do volume.</p>
       <div class="grade">
-        <article class="cartao"><h3>Análise editorial</h3><p>Cada sugestão vem avaliada em sete critérios, com a frase do vídeo que justifica a nota. Se o trecho depende do que foi dito antes, o ClipHook avisa e oferece incluir o contexto.</p></article>
-        <article class="cartao"><h3>Quatro versões do mesmo corte</h3><p>Padrão, Retenção (abre com a frase mais forte), Contexto (começa antes) e Impacto (zoom nas falas fortes). Compare na prévia antes de exportar.</p></article>
-        <article class="cartao"><h3>Sua marca, se quiser</h3><p>Cores, fonte, logo e vinhetas de abertura e encerramento, por canal ou por cliente. Opcional: sem marca, o corte sai no visual padrão.</p></article>
-        <article class="cartao"><h3>Capa para cada corte</h3><p>Uma imagem 1080×1920 por corte, com o quadro mais nítido de quem fala e uma chamada em três estilos. As chamadas sugeridas pela IA são conferidas com o que foi dito.</p></article>
-        <article class="cartao"><h3>Busca no que foi dito</h3><p>Procure uma palavra ou frase em todos os vídeos já transcritos, abra o vídeo no segundo exato e crie um corte a partir dali.</p></article>
-        <article class="cartao"><h3>Fila de vídeos</h3><p>Escolha vários vídeos de uma vez: o ClipHook analisa um depois do outro. Depois, exporta todos os cortes aprovados numa fila só.</p></article>
+        <article class="cartao"><h3>Escolha explicada</h3><p>Cada sugestão vem com nota, motivo e a frase do vídeo que justifica a escolha. Se o trecho depende do que veio antes, o ClipHook avisa.</p></article>
+        <article class="cartao"><h3>Versões do mesmo corte</h3><p>Abrir com a frase mais forte, começar um pouco antes ou dar zoom nas falas de impacto. Compare na prévia e fique com a melhor.</p></article>
+        <article class="cartao"><h3>A cara do seu canal</h3><p>Cores, fonte, logo e vinhetas, por canal ou por cliente.</p></article>
+        <article class="cartao"><h3>Capa para cada corte</h3><p>O quadro mais nítido de quem fala, com uma chamada fiel ao que foi dito.</p></article>
+        <article class="cartao"><h3>Busca em tudo o que foi dito</h3><p>Ache uma frase em todos os seus vídeos e crie um corte a partir dali.</p></article>
+        <article class="cartao"><h3>Vários vídeos de uma vez</h3><p>Coloque vários vídeos na fila e exporte todos os cortes aprovados de uma vez.</p></article>
       </div>
-      <a class="link-seta" href="recursos.html">Todos os recursos e limitações <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
-    </div>
-  </section>
-
-  <section class="bloco">
-    <div class="wrap">
-      <h2>Sem upload. Sem marca d'água. Você decide cada corte.</h2>
-      <p class="lead">As ferramentas de corte na nuvem funcionam bem, mas pedem que você suba seus vídeos. O ClipHook segue outro caminho.</p>
-      <div class="tabela">
-        <table>
-          <thead><tr><th scope="col"><span class="sr">Item</span></th><th scope="col">Ferramentas na nuvem</th><th scope="col">ClipHook</th></tr></thead>
-          <tbody>
-            <tr><td>Preço</td><td>Assinatura mensal, cobrada por minutos de vídeo</td><td>Assinatura mensal com a IA incluída: 12, 36 ou 150 horas de vídeo por mês, conforme o plano, e horas extras por Pix</td></tr>
-            <tr><td>Seus vídeos</td><td>Enviados para servidores de terceiros</td><td>Ficam no seu computador</td></tr>
-            <tr><td>Limites</td><td>Minutos por mês, marca d'água no plano gratuito</td><td>Horas de vídeo por mês conforme o plano, sem marca d'água</td></tr>
-            <tr><td>Quem decide</td><td>A IA escolhe, você ajusta depois</td><td>A IA sugere e explica, você aprova antes de exportar</td></tr>
-            <tr><td>Várias pessoas em cena</td><td>Depende da ferramenta</td><td>O recorte segue quem está falando</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <a class="link-seta" href="recursos.html">Todos os recursos <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 
@@ -947,45 +939,39 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap preco">
       <div>
         <h2>Uma assinatura. A IA incluída.</h2>
-        <p class="lead">Assinatura mensal com cobrança recorrente e a IA incluída: de 12 horas de vídeo por mês no Básico (R$ 29,90) a 150 no Agência (R$ 200). Precisa de mais? Horas extras por Pix.</p>
+        <p class="lead">Todos os planos têm todos os recursos. A diferença é quantas horas de vídeo a IA analisa por mês e em quantos computadores.</p>
       </div>
       <div class="planos-carrossel">
         <div class="carrossel-trilho" id="carrossel-planos" role="region" aria-label="Planos do ClipHook" tabindex="0">
           <a class="cartao-preco plano-slide" href="preco.html#planos" aria-label="Plano Básico, R$ 29,90 por mês. Ver os planos e assinar">
-            <p class="rotulo">Plano Básico · para quem está começando</p>
+            <p class="rotulo">Básico</p>
             <p class="valor"><b class="num">R$ 29,90</b><span>por mês</span></p>
+            <p class="por-hora num">R$ 2,49 por hora de vídeo</p>
             <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>IA incluída: 12 h de vídeo por mês, em 1 computador</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aplicativo para Windows: escolher vídeo, revisar, editar e exportar</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cortes 9:16 editados, com legenda, seguindo quem fala</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Versões, capas, marcas, busca e fila de vídeos</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Atualizações incluídas enquanto a assinatura estiver ativa</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>12 horas de vídeo por mês</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>1 computador</li>
             </ul>
-            <span class="btn btn-lime" aria-hidden="true">Ver os planos e assinar</span>
+            <span class="btn" aria-hidden="true">Assinar o Básico</span>
           </a>
-          <a class="cartao-preco plano-slide gancho" href="preco.html#planos" aria-label="Plano Pro, R$ 75 por mês. Ver os planos e assinar">
-            <p class="rotulo">Plano Pro · para canal de cortes e podcaster</p>
+          <a class="cartao-preco plano-slide gancho" href="preco.html#planos" aria-label="Plano Pro, recomendado, R$ 75 por mês. Ver os planos e assinar">
+            <p class="rotulo">Pro <span class="selo-plano">Recomendado</span></p>
             <p class="valor"><b class="num">R$ 75</b><span>por mês</span></p>
+            <p class="por-hora num">R$ 2,08 por hora de vídeo</p>
             <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>IA incluída: 36 h de vídeo por mês, em 2 computadores</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aplicativo para Windows: escolher vídeo, revisar, editar e exportar</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cortes 9:16 editados, com legenda, seguindo quem fala</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Versões, capas, marcas, busca e fila de vídeos</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Atualizações incluídas enquanto a assinatura estiver ativa</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>36 horas de vídeo por mês</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>2 computadores</li>
             </ul>
-            <span class="btn btn-lime" aria-hidden="true">Ver os planos e assinar</span>
+            <span class="btn btn-lime" aria-hidden="true">Assinar o Pro</span>
           </a>
           <a class="cartao-preco plano-slide" href="preco.html#planos" aria-label="Plano Agência, R$ 200 por mês. Ver os planos e assinar">
-            <p class="rotulo">Plano Agência · para editor freelancer e agência</p>
+            <p class="rotulo">Agência</p>
             <p class="valor"><b class="num">R$ 200</b><span>por mês</span></p>
+            <p class="por-hora num">R$ 1,33 por hora de vídeo</p>
             <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>IA incluída: 150 h de vídeo por mês, em 4 computadores</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aplicativo para Windows: escolher vídeo, revisar, editar e exportar</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cortes 9:16 editados, com legenda, seguindo quem fala</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Versões, capas, marcas, busca e fila de vídeos</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Atualizações incluídas enquanto a assinatura estiver ativa</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>150 horas de vídeo por mês</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>4 computadores</li>
             </ul>
-            <span class="btn btn-lime" aria-hidden="true">Ver os planos e assinar</span>
+            <span class="btn" aria-hidden="true">Assinar o Agência</span>
           </a>
         </div>
         <div class="carrossel-pontos" role="group" aria-label="Escolher o plano mostrado">
@@ -993,7 +979,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <button type="button" aria-label="Plano Pro"></button>
           <button type="button" aria-label="Plano Agência"></button>
         </div>
-        <p class="garantia">Cobrança mensal pela Hotmart. Reembolso em até 7 dias após a primeira cobrança.</p>
+        <p class="garantia">Em todos: atualizações incluídas e horas extras por Pix, se precisar. Cobrança mensal pela Hotmart, com reembolso em até 7 dias após a primeira cobrança.</p>
       </div>
     </div>
   </section>
@@ -1015,7 +1001,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap">
       <h2>Toda conversa longa tem um gancho. Ache o seu.</h2>
       <p>Instale, escolha o vídeo e aprove os cortes. O resto o ClipHook faz no seu computador.</p>
-      <a class="btn btn-lime" href="preco.html">Comece a cortar! <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
     </div>
   </section>
 </main>
@@ -1028,7 +1014,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     </div>
     <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a></nav>
     <nav aria-label="Ajuda"><b>Ajuda</b><a href="perguntas.html">Perguntas frequentes</a><a href="preco.html#requisitos">Requisitos</a><a href="termos.html">Termos de uso</a><a href="privacidade.html">Política de privacidade</a><a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a></nav>
-    <div class="fino"><span>© 2026 ClipHook</span><span>Produto independente. Pessoas e dados da demonstração são ilustrativos.</span></div>
+    <div class="fino"><span>© 2026 ClipHook</span><span>As pessoas e os dados da demonstração são ilustrativos.</span></div>
   </div>
 </footer>
 
