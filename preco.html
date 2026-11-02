@@ -220,18 +220,8 @@ thead th:last-child { color: var(--lime); }
 tbody td:first-child { color: var(--text-2); width: 24%; }
 tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); }
 
-/* preço */
-.preco { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
-.cartao-preco { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 32px; --gancho-folga: -1px; --gancho-braco: 22px; }
-.cartao-preco .rotulo { font-size: 15px; color: var(--text-2); }
-.cartao-preco .valor { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
-.cartao-preco .valor b { font-family: var(--display); font-size: 64px; font-weight: 900; line-height: 1; }
-.cartao-preco .valor span { color: var(--text-2); }
-.cartao-preco .btn { width: 100%; margin-top: 28px; min-height: 52px; font-size: 16px; }
-.cartao-preco .garantia { margin-top: 14px; font-size: 14px; color: var(--text-2); text-align: center; }
-.cartao-preco ul, .requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
-.cartao-preco li, .requisitos li { display: flex; gap: 10px; }
-.cartao-preco li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
+.requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
+.requisitos li { display: flex; gap: 10px; }
 .requisitos h3 { font-size: 18px; }
 .requisitos li { color: var(--text-2); }
 .requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
@@ -332,7 +322,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 2px; padding: 8px var(--gutter) 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
   .nav[data-menu="aberto"] .nav-links { display: flex; }
   .nav-links a { padding: 12px; font-size: 16px; }
-  .recurso, .preco { grid-template-columns: 1fr; gap: 40px; }
+  .recurso { grid-template-columns: 1fr; gap: 40px; }
   .recurso.inverte > :first-child { order: 0; }
   .recurso + .recurso { margin-top: 96px; }
   section.bloco { padding: 96px 0; }
@@ -345,7 +335,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .cartao-preco { padding: 24px; }
   .final { padding: 104px 0; }
   h2, .recurso h2 { font-size: 36px; }
   .final h2 { font-size: 44px; }
@@ -358,22 +347,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
 
-/* ---------- planos (página de preço) ---------- */
-.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-.planos-grade .cartao-preco { display: flex; flex-direction: column; }
-.planos-grade .cartao-preco ul { margin-bottom: 0; }
-.planos-grade .cartao-preco .btn { margin-top: auto; }
-.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
-.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
-.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
-.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
-.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+/* ---------- página de preço ---------- */
 .garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
 .faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
 .faixas-preco b { font-family: var(--display); font-size: 40px; font-weight: 900; line-height: 1; }
 .faixas-preco span { color: var(--text-2); font-size: 15px; }
-@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .faixas-preco { grid-template-columns: 1fr; } }
 
 /* ---------- landing: a página é um episódio ----------
    O trilho à esquerda é a linha do tempo da página; cada seção é um trecho, e o trecho em leitura acende. */
@@ -482,45 +462,24 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   </section>
 
   <section class="wrap" id="comprar" style="padding-bottom:128px">
-    <div class="planos-grade" id="planos">
-      <div class="cartao-preco">
-        <p class="rotulo">Básico</p>
-        <p class="para">Para quem está começando</p>
-        <p class="valor"><b class="num">R$ 29,90</b><span>por mês</span></p>
-        <p class="por-hora num">R$ 2,49 por hora de vídeo</p>
-        <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>12 horas de vídeo por mês</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>1 computador</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
-        </ul>
-        <a class="btn" href="https://pay.hotmart.com/E108273884O?off=jphma0x8&amp;src=site-preco-basico">Assinar o Básico</a>
+    <div class="regua" id="planos">
+      <div class="plano">
+        <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador</p></div>
+        <div class="barra" style="--h:5.1%"><i></i><span><b class="num">12</b>horas por mês</span></div>
+        <div class="preco-col"><p class="valor num">R$ 29,90</p><small class="num">por mês, R$ 2,49 a hora de vídeo</small><a class="btn" href="https://pay.hotmart.com/E108273884O?off=jphma0x8&amp;src=site-preco-basico">Assinar o Básico</a></div>
       </div>
-      <div class="cartao-preco gancho">
-        <p class="rotulo">Pro <span class="selo-plano">Recomendado</span></p>
-        <p class="para">Para canais de cortes e podcasts</p>
-        <p class="valor"><b class="num">R$ 75</b><span>por mês</span></p>
-        <p class="por-hora num">R$ 2,08 por hora de vídeo</p>
-        <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>36 horas de vídeo por mês</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>2 computadores</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
-        </ul>
-        <a class="btn btn-lime" href="https://pay.hotmart.com/E108273884O?off=8mch0fgp&amp;src=site-preco-pro">Assinar o Pro</a>
+      <div class="plano rec">
+        <div><h3>Pro</h3><p class="para">Recomendado para canais de cortes e podcasts<br>2 computadores</p></div>
+        <div class="barra" style="--h:15.4%"><i class="gancho"></i><span><b class="num">36</b>horas por mês</span></div>
+        <div class="preco-col"><p class="valor num">R$ 75</p><small class="num">por mês, R$ 2,08 a hora de vídeo</small><a class="btn btn-lime" href="https://pay.hotmart.com/E108273884O?off=8mch0fgp&amp;src=site-preco-pro">Assinar o Pro</a></div>
       </div>
-      <div class="cartao-preco">
-        <p class="rotulo">Agência</p>
-        <p class="para">Para editores e agências</p>
-        <p class="valor"><b class="num">R$ 200</b><span>por mês</span></p>
-        <p class="por-hora num">R$ 1,33 por hora de vídeo</p>
-        <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>150 horas de vídeo por mês</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>4 computadores</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Todos os recursos e atualizações</li>
-        </ul>
-        <a class="btn" href="https://pay.hotmart.com/E108273884O?off=h3ccqu61&amp;src=site-preco-agencia">Assinar o Agência</a>
+      <div class="plano">
+        <div><h3>Agência</h3><p class="para">Para editores e agências<br>4 computadores</p></div>
+        <div class="barra" style="--h:64%"><i></i><span><b class="num">150</b>horas por mês</span></div>
+        <div class="preco-col"><p class="valor num">R$ 200</p><small class="num">por mês, R$ 1,33 a hora de vídeo</small><a class="btn" href="https://pay.hotmart.com/E108273884O?off=h3ccqu61&amp;src=site-preco-agencia">Assinar o Agência</a></div>
       </div>
     </div>
-    <p class="garantia-pagina">Cobrança mensal pela Hotmart, com reembolso em até 7 dias após a primeira cobrança. Na primeira semana de uma assinatura nova, a IA usa até 25% da cota do plano; o restante libera no 8º dia.</p>
+    <p class="garantia-pagina">Todos os planos têm todos os recursos e atualizações. Cobrança mensal pela Hotmart, com reembolso em até 7 dias após a primeira cobrança. Na primeira semana de uma assinatura nova, a IA usa até 25% da cota do plano; o restante libera no 8º dia.</p>
   </section>
 
   <section class="bloco" id="extras">

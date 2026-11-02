@@ -220,18 +220,8 @@ thead th:last-child { color: var(--lime); }
 tbody td:first-child { color: var(--text-2); width: 24%; }
 tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); }
 
-/* preço */
-.preco { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
-.cartao-preco { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 32px; --gancho-folga: -1px; --gancho-braco: 22px; }
-.cartao-preco .rotulo { font-size: 15px; color: var(--text-2); }
-.cartao-preco .valor { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
-.cartao-preco .valor b { font-family: var(--display); font-size: 64px; font-weight: 900; line-height: 1; }
-.cartao-preco .valor span { color: var(--text-2); }
-.cartao-preco .btn { width: 100%; margin-top: 28px; min-height: 52px; font-size: 16px; }
-.cartao-preco .garantia { margin-top: 14px; font-size: 14px; color: var(--text-2); text-align: center; }
-.cartao-preco ul, .requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
-.cartao-preco li, .requisitos li { display: flex; gap: 10px; }
-.cartao-preco li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
+.requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
+.requisitos li { display: flex; gap: 10px; }
 .requisitos h3 { font-size: 18px; }
 .requisitos li { color: var(--text-2); }
 .requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
@@ -332,7 +322,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 2px; padding: 8px var(--gutter) 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
   .nav[data-menu="aberto"] .nav-links { display: flex; }
   .nav-links a { padding: 12px; font-size: 16px; }
-  .recurso, .preco { grid-template-columns: 1fr; gap: 40px; }
+  .recurso { grid-template-columns: 1fr; gap: 40px; }
   .recurso.inverte > :first-child { order: 0; }
   .recurso + .recurso { margin-top: 96px; }
   section.bloco { padding: 96px 0; }
@@ -345,7 +335,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .cartao-preco { padding: 24px; }
   .final { padding: 104px 0; }
   h2, .recurso h2 { font-size: 36px; }
   .final h2 { font-size: 44px; }
@@ -358,22 +347,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 /* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
 .rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
 
-/* ---------- planos (página de preço) ---------- */
-.planos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-.planos-grade .cartao-preco { display: flex; flex-direction: column; }
-.planos-grade .cartao-preco ul { margin-bottom: 0; }
-.planos-grade .cartao-preco .btn { margin-top: auto; }
-.planos-grade .cartao-preco ul + .btn { margin-top: 28px; }
-.cartao-preco .rotulo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text); }
-.cartao-preco .para { margin-top: 4px; font-size: 14px; color: var(--text-2); }
-.selo-plano { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); }
-.por-hora { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+/* ---------- página de preço ---------- */
 .garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
 .faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
 .faixas-preco b { font-family: var(--display); font-size: 40px; font-weight: 900; line-height: 1; }
 .faixas-preco span { color: var(--text-2); font-size: 15px; }
-@media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .faixas-preco { grid-template-columns: 1fr; } }
 
 /* ---------- landing: a página é um episódio ----------
    O trilho à esquerda é a linha do tempo da página; cada seção é um trecho, e o trecho em leitura acende. */
