@@ -114,11 +114,20 @@ input, textarea, [contenteditable] { caret-color: var(--lime); }
   font-stretch: 62% 125%;
   font-display: swap;
 }
+/* Títulos: Big Shoulders (OFL), a letra de letreiro e de tarja de TV. Reduzida ao latino, pesos 700 a 900. */
+@font-face {
+  font-family: "Big Shoulders";
+  src: url("fonts/BigShoulders-latino.woff2") format("woff2");
+  font-weight: 700 900;
+  font-display: swap;
+}
 :root {
   /* Cor, forma e movimento vêm de marca.css (sistema central, em clipforge/src/clipforge/ui). Aqui só o que é do site. */
   --bg: var(--ground);
   --max: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
+  --display: "Big Shoulders", "Archivo", sans-serif;
+  --trilho: 156px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -130,6 +139,8 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { text-wrap: balance; font-weight: 600; letter-spacing: -0.025em; }
+/* Títulos na letra de tarja, estreita e pesada; h3 e texto continuam na Archivo. */
+h1, h2 { font-family: var(--display); font-weight: 900; letter-spacing: .005em; }
 a { color: inherit; }
 button, input { font: inherit; color: inherit; }
 .num { font-variant-numeric: tabular-nums; }
@@ -150,9 +161,8 @@ svg { flex: none; }
 .btn-lime:hover { background: var(--lime-hover); border-color: var(--lime-hover); }
 .btn-sm { min-height: 36px; padding: 0 14px; font-size: 14px; }
 .btn svg { width: 16px; height: 16px; }
-.link-seta { display: inline-flex; align-items: center; gap: 6px; color: var(--lime); font-weight: 500; text-decoration: none; font-size: 16px; margin-top: 28px; }
-.link-seta svg { width: 16px; height: 16px; transition: transform .16s var(--ease); }
-.link-seta:hover svg { transform: translateX(3px); }
+.link-seta { display: inline-block; color: var(--text); font-weight: 500; font-size: 16px; margin-top: 28px; text-decoration: underline; text-decoration-color: var(--text-3); text-underline-offset: 5px; transition: text-decoration-color .16s var(--ease); }
+.link-seta:hover { text-decoration-color: var(--text); }
 
 /* ---------- navegação ---------- */
 .nav { position: sticky; top: 0; z-index: 50; background: rgba(17, 19, 24, .92); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s var(--ease); }
@@ -169,22 +179,18 @@ svg { flex: none; }
 
 /* ---------- seções ---------- */
 section.bloco { padding: 128px 0; border-top: 1px solid var(--line); position: relative; }
-/* cada seção começa com o gancho de canto, alinhado à margem do conteúdo */
-section.bloco::before, .final::before {
-  content: ""; position: absolute; top: -1px; width: var(--gancho-braco); height: var(--gancho-braco);
-  left: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
-  border-top: var(--gancho-traco) solid var(--lime); border-left: var(--gancho-traco) solid var(--lime);
-}
-h2 { font-size: clamp(32px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.03em; max-width: 18em; }
+/* O verde marca só o que vai para o ar (trecho escolhido, palavra falada, corte aprovado) e a ação de assinar.
+   O gancho de canto fica onde há uma escolha: o trecho do topo e o plano recomendado, não no começo de cada seção. */
+h2 { font-size: clamp(40px, 4.6vw, 64px); line-height: .95; max-width: 16em; }
 .lead { font-size: 19px; color: var(--text-2); max-width: 54ch; margin-top: 16px; }
 
 .recurso { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 72px; align-items: center; }
 .recurso + .recurso { margin-top: 128px; }
 .recurso.inverte > :first-child { order: 2; }
-.recurso h2 { font-size: clamp(28px, 3vw, 38px); }
+.recurso h2 { font-size: clamp(36px, 3.6vw, 50px); }
 .lista-check { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--text-2); font-size: 16px; }
 .lista-check li { display: flex; gap: 10px; }
-.lista-check li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--lime); }
+.lista-check li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
 .lista-check li b { color: var(--text); font-weight: 500; }
 .painel { border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); padding: 20px; }
 .nota { margin-top: 40px; font-size: 13px; color: var(--text-2); }
@@ -219,13 +225,13 @@ tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); 
 .cartao-preco { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 32px; --gancho-folga: -1px; --gancho-braco: 22px; }
 .cartao-preco .rotulo { font-size: 15px; color: var(--text-2); }
 .cartao-preco .valor { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
-.cartao-preco .valor b { font-size: 56px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.cartao-preco .valor b { font-family: var(--display); font-size: 64px; font-weight: 900; line-height: 1; }
 .cartao-preco .valor span { color: var(--text-2); }
 .cartao-preco .btn { width: 100%; margin-top: 28px; min-height: 52px; font-size: 16px; }
 .cartao-preco .garantia { margin-top: 14px; font-size: 14px; color: var(--text-2); text-align: center; }
 .cartao-preco ul, .requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
 .cartao-preco li, .requisitos li { display: flex; gap: 10px; }
-.cartao-preco li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--lime); }
+.cartao-preco li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
 .requisitos h3 { font-size: 18px; }
 .requisitos li { color: var(--text-2); }
 .requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
@@ -243,13 +249,13 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 
 /* final */
 .final { padding: 144px 0; border-top: 1px solid var(--line); text-align: center; position: relative; }
-.final h2 { margin: 0 auto; max-width: 16em; font-size: clamp(36px, 4.4vw, 56px); }
+.final h2 { margin: 0 auto; max-width: 12em; font-size: clamp(48px, 6vw, 88px); }
 .final p { margin: 16px auto 0; color: var(--text-2); max-width: 44ch; font-size: 18px; }
 .final .btn { margin-top: 32px; min-height: 52px; padding: 0 26px; font-size: 16px; }
 
 /* ---------- páginas informativas ---------- */
 .pagina-topo { padding-top: 96px; padding-bottom: 72px; } /* só vertical: a margem lateral é do .wrap */
-.pagina-topo h1 { font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.035em; max-width: 15em; }
+.pagina-topo h1 { font-size: clamp(52px, 6.4vw, 96px); line-height: .92; max-width: 13em; }
 .pagina-topo .lead { font-size: clamp(18px, 1.5vw, 21px); }
 .indice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
 .indice a { text-decoration: none; font-size: 14px; color: var(--text-2); padding: 8px 14px; border-radius: var(--r-sm); background: var(--s1); transition: color .16s var(--ease), background-color .16s var(--ease); }
@@ -258,7 +264,7 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 .etapas-pagina { list-style: none; margin: 0 auto; counter-reset: etapa; } /* a margem lateral vem do .wrap */
 .etapa { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 40px; padding: 72px 0; border-top: 1px solid var(--line); align-items: start; }
 .etapa::before { counter-increment: etapa; content: counter(etapa, decimal-leading-zero); font-size: 15px; font-weight: 600; color: var(--lime); padding-top: 8px; font-variant-numeric: tabular-nums; }
-.etapa h2 { font-size: clamp(26px, 2.6vw, 34px); }
+.etapa h2 { font-size: clamp(34px, 3.2vw, 44px); }
 .etapa .lead { font-size: 17px; }
 .etapa .lista-check { font-size: 15px; }
 .fato { display: flex; align-items: baseline; gap: 10px; margin-top: 24px; padding: 14px 16px; border-radius: var(--r); background: var(--s1); font-size: 14px; color: var(--text-2); }
@@ -274,9 +280,18 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 .cartao p { margin-top: 8px; color: var(--text-2); font-size: 15px; }
 .cartao svg.icone { width: 22px; height: 22px; color: var(--lime); margin-bottom: 16px; }
 
+/* recursos da landing: lista em duas colunas, sem cartões; os dois primeiros abrem maiores */
+.lista-recursos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; margin-top: 48px; }
+.lista-recursos > div { padding: 24px 0 28px; border-top: 1px solid var(--line); }
+.lista-recursos h3 { font-size: 18px; letter-spacing: -0.015em; }
+.lista-recursos p { margin-top: 6px; color: var(--text-2); font-size: 16px; max-width: 46ch; }
+.lista-recursos > div:nth-child(-n+2) { padding: 32px 0 40px; }
+.lista-recursos > div:nth-child(-n+2) h3 { font-size: clamp(22px, 2vw, 26px); }
+.lista-recursos > div:nth-child(-n+2) p { font-size: 17px; margin-top: 10px; }
+
 
 .grupo-perguntas + .grupo-perguntas { margin-top: 72px; }
-.grupo-perguntas h2 { font-size: clamp(24px, 2.4vw, 30px); }
+.grupo-perguntas h2 { font-size: clamp(32px, 3vw, 40px); }
 
 /* ---------- documentos legais ---------- */
 .legal { display: grid; grid-template-columns: 220px minmax(0, 68ch); gap: 64px; padding-bottom: 128px; align-items: start; }
@@ -284,7 +299,7 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 .legal-indice a { text-decoration: none; color: var(--text-2); padding: 6px 10px; border-radius: var(--r-sm); }
 .legal-indice a:hover { color: var(--text); background: var(--s1); }
 .legal-texto { font-size: 16px; color: var(--text-2); }
-.legal-texto h2 { font-size: 22px; letter-spacing: -0.015em; color: var(--text); margin: 56px 0 14px; scroll-margin-top: 88px; }
+.legal-texto h2 { font-family: var(--font); font-weight: 600; font-size: 22px; letter-spacing: -0.015em; color: var(--text); margin: 56px 0 14px; scroll-margin-top: 88px; }
 .legal-texto h2:first-child { margin-top: 0; }
 .legal-texto p + p, .legal-texto p + ul, .legal-texto ul + p { margin-top: 12px; }
 .legal-texto ul { padding-left: 20px; margin: 12px 0 0; display: flex; flex-direction: column; gap: 6px; }
@@ -323,7 +338,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   section.bloco { padding: 96px 0; }
   .etapa { grid-template-columns: 1fr; gap: 20px; padding: 56px 0; }
   .etapa::before { padding-top: 0; }
-  .grade { grid-template-columns: 1fr; }
+  .grade, .lista-recursos { grid-template-columns: 1fr; }
   .rodape { grid-template-columns: 1fr 1fr; }
   .rodape > div:first-child { grid-column: 1 / -1; }
   .pagina-topo { padding-top: 64px; padding-bottom: 48px; }
@@ -332,8 +347,8 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   body { font-size: 16px; }
   .cartao-preco { padding: 24px; }
   .final { padding: 104px 0; }
-  h2, .recurso h2 { font-size: 27px; }
-  .final h2 { font-size: 30px; }
+  h2, .recurso h2 { font-size: 36px; }
+  .final h2 { font-size: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -356,13 +371,57 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
 .faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
-.faixas-preco b { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; }
+.faixas-preco b { font-family: var(--display); font-size: 40px; font-weight: 900; line-height: 1; }
 .faixas-preco span { color: var(--text-2); font-size: 15px; }
 @media (max-width: 900px) { .planos-grade, .faixas-preco { grid-template-columns: 1fr; } }
+
+/* ---------- landing: a página é um episódio ----------
+   O trilho à esquerda é a linha do tempo da página; cada seção é um trecho, e o trecho em leitura acende. */
+.trilho { display: none; }
+@media (min-width: 1100px) {
+  .episodio { display: grid; grid-template-columns: var(--trilho) minmax(0, 1fr); }
+  .trilho { display: flex; flex-direction: column; position: sticky; top: 64px; height: calc(100vh - 64px); padding: 40px 0 40px var(--gutter); }
+}
+.trilho ol { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; position: relative; }
+.trilho ol::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 22px; background: repeating-linear-gradient(180deg, var(--s4) 0 2px, transparent 2px 6px); }
+.trilho li { flex: var(--peso, 1); position: relative; }
+.trilho a { position: absolute; inset: 0; padding: 0 0 0 34px; text-decoration: none; font-size: 12px; line-height: 1.35; color: var(--text-3); }
+.trilho a b { display: block; font-weight: 600; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.trilho a::before { content: ""; position: absolute; left: 0; top: 0; bottom: 6px; width: 22px; background: repeating-linear-gradient(180deg, var(--lime) 0 2px, transparent 2px 6px); opacity: 0; transition: opacity .25s var(--ease); }
+.trilho a:hover { color: var(--text-2); }
+.trilho a[aria-current="true"] { color: var(--text); }
+.trilho a[aria-current="true"] b { color: var(--corte); }
+.trilho a[aria-current="true"]::before { opacity: 1; }
+.trilho a:focus-visible { outline-offset: 0; }
+.trilho .total { font-size: 12px; color: var(--text-3); padding-top: 12px; }
+
+/* ---------- landing: planos numa régua de horas, em vez de três cartões iguais ---------- */
+.regua { margin-top: 56px; }
+.plano { display: grid; grid-template-columns: 200px minmax(0, 1fr) 200px; gap: 32px; align-items: center; padding: 32px 0; border-top: 1px solid var(--line); }
+.plano:last-child { border-bottom: 1px solid var(--line); }
+.plano h3 { font-family: var(--display); font-weight: 900; font-size: 44px; line-height: 1; letter-spacing: .005em; }
+.plano .para { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.barra { position: relative; height: 32px; }
+.barra i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--h); background: repeating-linear-gradient(90deg, var(--s4) 0 2px, transparent 2px 6px); }
+.plano.rec .barra i { background: repeating-linear-gradient(90deg, var(--lime) 0 2px, transparent 2px 6px); --gancho-folga: -7px; --gancho-braco: 10px; }
+.barra span { position: absolute; left: calc(var(--h) + 14px); top: 50%; transform: translateY(-50%); font-size: 15px; color: var(--text-2); white-space: nowrap; }
+.barra span b { font-family: var(--display); font-weight: 900; font-size: 32px; color: var(--text); margin-right: 6px; vertical-align: -2px; }
+.preco-col { text-align: right; }
+.preco-col .valor { font-family: var(--display); font-weight: 900; font-size: 52px; line-height: 1; }
+.preco-col small { display: block; margin: 6px 0 14px; font-size: 13px; color: var(--text-2); }
+.preco-col .btn { min-width: 168px; }
+@media (max-width: 860px) {
+  .plano { grid-template-columns: 1fr; gap: 16px; }
+  .barra { margin-bottom: 36px; }
+  .barra span { left: 0; top: auto; bottom: -40px; transform: none; }
+  .preco-col { text-align: left; }
+  .preco-col .btn { width: 100%; }
+}
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self' https://pay.hotmart.com">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -429,7 +488,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Ativação.</b> E-mail da compra e código da transação (começa com HP, vem no e-mail da Hotmart), uma vez por computador.</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Programa de verdade.</b> O ClipHook abre numa janela própria, como qualquer aplicativo do Windows, e sai em Configurações > Aplicativos se você quiser desinstalar.</span></li>
         </ul>
-        <a class="link-seta" href="preco.html#requisitos">Ver todos os requisitos <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+        <a class="link-seta" href="preco.html#requisitos">Ver todos os requisitos</a>
       </div>
     </li>
 
@@ -521,7 +580,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="wrap">
       <h2>Seu próximo episódio já tem cortes dentro dele.</h2>
       <p>Assinatura mensal com a IA incluída. Os seus vídeos não saem do seu computador.</p>
-      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook <svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook</a>
     </div>
   </section>
 </main>
@@ -556,6 +615,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   botao.addEventListener("click", function () { alternar(nav.dataset.menu !== "aberto"); });
   nav.querySelectorAll(".nav-links a").forEach(function (a) { a.addEventListener("click", function () { alternar(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") alternar(false); });
+})();
+
+// Trilho da landing: acende o trecho (seção) que está no meio da tela.
+(function () {
+  "use strict";
+  var links = Array.prototype.slice.call(document.querySelectorAll(".trilho a"));
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.setAttribute("aria-current", String(a.hash === "#" + e.target.id)); });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  links.forEach(function (a) {
+    var alvo = document.getElementById(a.hash.slice(1));
+    if (alvo) obs.observe(alvo);
+  });
 })();
 </script>
 </body>
