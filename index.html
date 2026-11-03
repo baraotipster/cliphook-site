@@ -400,6 +400,29 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .preco-col { text-align: left; }
   .preco-col .btn { width: 100%; }
 }
+
+/* Seja um testador */
+.testador { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); color: var(--text); }
+.testador::backdrop { background: rgba(5, 6, 8, .72); }
+.testador-form, .testador-ok { position: relative; display: grid; gap: 14px; padding: 28px; }
+.testador h2 { margin: 0; font-size: 40px; line-height: 1; }
+.testador-sub, .testador-ok p { margin: 0; color: var(--text-2); font-size: 15px; }
+.testador label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; }
+.testador input, .testador select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; font-size: 15px; }
+.testador input:focus, .testador select:focus { outline: 2px solid var(--lime); outline-offset: 1px; }
+.testador small { color: var(--text-2); font-weight: 400; font-size: 13px; }
+.testador-duplo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.testador .testador-aceite { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--text-2); }
+.testador-aceite input { min-height: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--lime); flex: none; }
+.testador-aceite a { color: var(--text); }
+.testador-fechar { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; color: var(--text-2); cursor: pointer; }
+.testador-fechar svg { width: 18px; height: 18px; transform: rotate(45deg); }
+.testador-fechar:hover { background: var(--s2); color: var(--text); }
+.testador .testador-nota { font-size: 13px; }
+@media (max-width: 560px) { .testador-duplo { grid-template-columns: 1fr; } .testador-form, .testador-ok { padding: 22px; } }
+.testador [hidden] { display: none; }
+.testador-isca { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.testador .testador-erro { margin: 0; color: #ff8a7a; font-size: 14px; }
 </style>
 <style>
   /* ---------- hero ---------- */
@@ -784,7 +807,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <div class="acoes">
       <a class="btn btn-lime" href="#preco">Ver os planos</a>
       <a class="btn" href="#produto">Ver o app</a>
-      <a class="btn" href="mailto:contato@cliphook.com.br?subject=Quero%20ser%20testador%20do%20ClipHook&amp;body=Oi%21%20Quero%20testar%20o%20ClipHook.%0A%0ANome%3A%0ACanal%20ou%20perfil%20onde%20posto%3A%0AQue%20tipo%20de%20v%C3%ADdeo%20eu%20corto%20%28podcast%2C%20debate%2C%20live...%29%3A%0AMeu%20computador%20%28Windows%2C%20tem%20placa%20de%20v%C3%ADdeo%3F%29%3A%0A">Seja um testador</a>
+      <a class="btn" href="#testador" data-testador>Seja um testador</a>
     </div>
     <div class="provas">
       <span><svg aria-hidden="true"><use href="#i-check"/></svg>Seu vídeo não sai do computador</span>
@@ -1019,13 +1042,41 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <p>Instale, escolha o vídeo e aprove os cortes. O resto o ClipHook faz no seu computador.</p>
       <div class="final-acoes">
         <a class="btn btn-lime" href="preco.html">Assinar o ClipHook</a>
-        <a class="btn" href="mailto:contato@cliphook.com.br?subject=Quero%20ser%20testador%20do%20ClipHook&amp;body=Oi%21%20Quero%20testar%20o%20ClipHook.%0A%0ANome%3A%0ACanal%20ou%20perfil%20onde%20posto%3A%0AQue%20tipo%20de%20v%C3%ADdeo%20eu%20corto%20%28podcast%2C%20debate%2C%20live...%29%3A%0AMeu%20computador%20%28Windows%2C%20tem%20placa%20de%20v%C3%ADdeo%3F%29%3A%0A">Seja um testador</a>
+        <a class="btn" href="#testador" data-testador>Seja um testador</a>
       </div>
       <p class="final-nota">Testadores ganham 10 horas de IA por 30 dias, sem pagar, em troca da opinião sincera.</p>
     </div>
   </section>
 </main>
 </div>
+
+<dialog class="testador" id="testador" aria-labelledby="testador-titulo">
+  <form class="testador-form" id="testador-form" method="dialog">
+    <button class="testador-fechar" type="button" value="fechar" aria-label="Fechar"><svg aria-hidden="true"><use href="#i-mais"/></svg></button>
+    <h2 id="testador-titulo">Seja um testador</h2>
+    <p class="testador-sub">10 horas de IA por 30 dias, sem pagar. Em troca, queremos sua opinião sincera sobre os cortes.</p>
+    <label>Nome<input name="nome" required autocomplete="name"></label>
+    <label>E-mail<input name="email" type="email" required autocomplete="email"><small>O código de ativação chega neste e-mail.</small></label>
+    <label>WhatsApp<input name="whatsapp" type="tel" required autocomplete="tel" placeholder="(11) 90000-0000"></label>
+    <label>Canal ou perfil onde você posta<input name="canal" placeholder="youtube.com/@seucanal"><small>Deixe vazio se não possuir.</small></label>
+    <div class="testador-duplo">
+      <label>Que vídeo você corta?<select name="tipo" required><option value="">Escolha</option><option>Podcast</option><option>Debate</option><option>Live</option><option>Entrevista</option><option>Aula ou palestra</option><option>Outro</option></select></label>
+      <label>Vídeos longos por semana<select name="volume" required><option value="">Escolha</option><option>1 ou menos</option><option>2 a 4</option><option>5 a 10</option><option>Mais de 10</option></select></label>
+    </div>
+    <label>Como faz os cortes hoje?<select name="hoje" required><option value="">Escolha</option><option>Edito na mão</option><option>Uso outra ferramenta</option><option>Pago um editor</option><option>Ainda não faço</option></select></label>
+    <label class="testador-aceite"><input type="checkbox" name="aceite" required>Aceito que o ClipHook entre em contato por e-mail e WhatsApp sobre o teste. <a href="privacidade.html">Privacidade</a></label>
+    <input class="testador-isca" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="testador-erro" id="testador-erro" role="alert" hidden></p>
+    <button class="btn btn-lime" type="submit">Quero testar</button>
+  </form>
+  <div class="testador-ok" id="testador-ok" hidden>
+    <h2>Pronto, você está na lista.</h2>
+    <p>Baixe o instalador agora. O código de ativação chega no seu e-mail em até 24 horas.</p>
+    <a class="btn btn-lime" id="testador-baixar" href="#">Baixar o ClipHook para Windows</a>
+    <p class="testador-nota">Se o Windows mostrar "O Windows protegeu o computador", clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>.</p>
+  </div>
+</dialog>
+
 
 <footer>
   <div class="wrap rodape">
@@ -1074,6 +1125,44 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   links.forEach(function (a) {
     var alvo = document.getElementById(a.hash.slice(1));
     if (alvo) obs.observe(alvo);
+  });
+})();
+
+// Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
+(function () {
+  var dlg = document.getElementById("testador");
+  if (!dlg) return;
+  var form = document.getElementById("testador-form");
+  document.querySelectorAll("[data-testador]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); dlg.showModal(); });
+  });
+  dlg.querySelector(".testador-fechar").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  var servidor = "https://licencas.cliphook.com.br";
+  var erro = document.getElementById("testador-erro");
+  var enviar = form.querySelector("[type=submit]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var dados = {};
+    new FormData(form).forEach(function (valor, campo) { dados[campo] = valor; });
+    dados.aceite = form.elements.aceite.checked;
+    erro.hidden = true;
+    enviar.disabled = true;
+    enviar.textContent = "Enviando...";
+    // text/plain: o navegador manda direto, sem a consulta prévia de outro domínio
+    fetch(servidor + "/testador", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(dados) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.erro || "falha"); return j; }); })
+      .then(function (j) {
+        document.getElementById("testador-baixar").href = servidor + j.download;
+        form.hidden = true;
+        document.getElementById("testador-ok").hidden = false;
+      })
+      .catch(function (falha) {
+        var texto = falha && falha.message && falha.message !== "Failed to fetch" ? falha.message : "não deu para enviar agora";
+        erro.textContent = texto.charAt(0).toUpperCase() + texto.slice(1) + ". Tente de novo em instantes.";
+        erro.hidden = false;
+      })
+      .then(function () { enviar.disabled = false; enviar.textContent = "Quero testar"; });
   });
 })();
 </script>

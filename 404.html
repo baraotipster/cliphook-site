@@ -389,6 +389,29 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .preco-col { text-align: left; }
   .preco-col .btn { width: 100%; }
 }
+
+/* Seja um testador */
+.testador { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); color: var(--text); }
+.testador::backdrop { background: rgba(5, 6, 8, .72); }
+.testador-form, .testador-ok { position: relative; display: grid; gap: 14px; padding: 28px; }
+.testador h2 { margin: 0; font-size: 40px; line-height: 1; }
+.testador-sub, .testador-ok p { margin: 0; color: var(--text-2); font-size: 15px; }
+.testador label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; }
+.testador input, .testador select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; font-size: 15px; }
+.testador input:focus, .testador select:focus { outline: 2px solid var(--lime); outline-offset: 1px; }
+.testador small { color: var(--text-2); font-weight: 400; font-size: 13px; }
+.testador-duplo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.testador .testador-aceite { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--text-2); }
+.testador-aceite input { min-height: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--lime); flex: none; }
+.testador-aceite a { color: var(--text); }
+.testador-fechar { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; color: var(--text-2); cursor: pointer; }
+.testador-fechar svg { width: 18px; height: 18px; transform: rotate(45deg); }
+.testador-fechar:hover { background: var(--s2); color: var(--text); }
+.testador .testador-nota { font-size: 13px; }
+@media (max-width: 560px) { .testador-duplo { grid-template-columns: 1fr; } .testador-form, .testador-ok { padding: 22px; } }
+.testador [hidden] { display: none; }
+.testador-isca { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.testador .testador-erro { margin: 0; color: #ff8a7a; font-size: 14px; }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self' https://pay.hotmart.com">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -496,6 +519,44 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   links.forEach(function (a) {
     var alvo = document.getElementById(a.hash.slice(1));
     if (alvo) obs.observe(alvo);
+  });
+})();
+
+// Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
+(function () {
+  var dlg = document.getElementById("testador");
+  if (!dlg) return;
+  var form = document.getElementById("testador-form");
+  document.querySelectorAll("[data-testador]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); dlg.showModal(); });
+  });
+  dlg.querySelector(".testador-fechar").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  var servidor = "https://licencas.cliphook.com.br";
+  var erro = document.getElementById("testador-erro");
+  var enviar = form.querySelector("[type=submit]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var dados = {};
+    new FormData(form).forEach(function (valor, campo) { dados[campo] = valor; });
+    dados.aceite = form.elements.aceite.checked;
+    erro.hidden = true;
+    enviar.disabled = true;
+    enviar.textContent = "Enviando...";
+    // text/plain: o navegador manda direto, sem a consulta prévia de outro domínio
+    fetch(servidor + "/testador", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(dados) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.erro || "falha"); return j; }); })
+      .then(function (j) {
+        document.getElementById("testador-baixar").href = servidor + j.download;
+        form.hidden = true;
+        document.getElementById("testador-ok").hidden = false;
+      })
+      .catch(function (falha) {
+        var texto = falha && falha.message && falha.message !== "Failed to fetch" ? falha.message : "não deu para enviar agora";
+        erro.textContent = texto.charAt(0).toUpperCase() + texto.slice(1) + ". Tente de novo em instantes.";
+        erro.hidden = false;
+      })
+      .then(function () { enviar.disabled = false; enviar.textContent = "Quero testar"; });
   });
 })();
 </script>
