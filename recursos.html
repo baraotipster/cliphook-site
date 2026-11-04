@@ -580,6 +580,9 @@ main:focus { outline: none; }
 .plano:not(.rec) h3 { color: var(--text-2); }
 .plano .para .exemplo { color: var(--text-3); }
 .plano.rec .para .exemplo { color: var(--text-2); }
+.nav-contato { margin-left: auto; font-size: 14px; color: var(--text-2); }  /* checkout: só o logo e o contato, sem rotas de fuga */
+.nav-contato:hover { color: var(--text); }
+@media (max-width: 480px) { .nav-contato { font-size: 12px; } }
 </style>
 <style>
   .recurso-pagina { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; padding: 88px 0; border-top: 1px solid var(--line); align-items: start; }
@@ -840,7 +843,7 @@ main:focus { outline: none; }
     <div class="wrap">
       <h2>Veja o seu próximo episódio virar cortes.</h2>
       <p>Assinatura mensal com a IA incluída, sem marca d'água.</p>
-      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook</a>
+      <a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-recursos-final">Assinar a partir de R$ 29,90</a>
     </div>
   </section>
 </main>

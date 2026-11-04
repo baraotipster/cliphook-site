@@ -581,6 +581,9 @@ main:focus { outline: none; }
 .plano:not(.rec) h3 { color: var(--text-2); }
 .plano .para .exemplo { color: var(--text-3); }
 .plano.rec .para .exemplo { color: var(--text-2); }
+.nav-contato { margin-left: auto; font-size: 14px; color: var(--text-2); }  /* checkout: só o logo e o contato, sem rotas de fuga */
+.nav-contato:hover { color: var(--text); }
+@media (max-width: 480px) { .nav-contato { font-size: 12px; } }
 </style>
 <style>
   /* ---------- hero ---------- */
@@ -1102,7 +1105,7 @@ main:focus { outline: none; }
 
   <section class="bloco" id="fluxo">
     <div class="wrap">
-      <h2>Do vídeo longo ao corte pronto, em três passos.</h2>
+      <h2>Três passos entre a live e o post.</h2>
       <ol class="pipeline">
         <li><p class="passo num">01</p><h3>Escolha o vídeo</h3><p>Um arquivo do seu computador ou um link do YouTube. O ClipHook transcreve a fala e a IA sugere os melhores trechos, cada um com o motivo da escolha.</p></li>
         <li class="voce"><p class="passo num">02</p><h3>Revise e aprove</h3><p>Assista à prévia já editada, ajuste o começo e o fim e aprove. Nada sai sem o seu sim.</p></li>
@@ -1116,7 +1119,7 @@ main:focus { outline: none; }
       <div class="recurso">
         <div>
           <h2>O corte segue quem fala.</h2>
-          <p class="lead">Em podcast e debate, a palavra muda de dono o tempo todo. O ClipHook acompanha quem está falando e leva o recorte vertical até essa pessoa.</p>
+          <p class="lead">Debate com quatro pessoas? A câmera vai sozinha em quem está com a palavra.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Quem só escuta não rouba o quadro</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Troca de câmera vira corte seco, sem tremer</li>
@@ -1134,8 +1137,8 @@ main:focus { outline: none; }
 
       <div class="recurso inverte">
         <div>
-          <h2>Edição de verdade, não uma imagem com legenda.</h2>
-          <p class="lead">O corte sai do vídeo original, com movimento e som. As pausas longas saem, as naturais ficam, e um zoom sutil disfarça cada emenda.</p>
+          <h2>Corte com ritmo de editor.</h2>
+          <p class="lead">Pausa longa sai, a natural fica, e um zoom esconde cada emenda. Tudo sobre o vídeo original, com movimento e som.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas longas e hesitações removidas</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Som no volume certo para as redes</li>
@@ -1158,8 +1161,8 @@ main:focus { outline: none; }
 
       <div class="recurso">
         <div>
-          <h2>Legenda palavra a palavra, no estilo do seu canal.</h2>
-          <p class="lead">A palavra falada acende no ritmo da fala, e a legenda sai do caminho do rosto. Cada corte vem com o vídeo, a capa e o texto do post.</p>
+          <h2>Legenda que acende palavra a palavra.</h2>
+          <p class="lead">No ritmo da fala, longe do rosto, nas cores do seu canal. Cada corte sai com o vídeo, a capa e o texto do post.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Três estilos: Destaque, Caixa e Minimalista</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Chamada na tela nos primeiros segundos, para fazer parar quem está rolando o feed</li>
@@ -1192,7 +1195,7 @@ main:focus { outline: none; }
 
   <section class="bloco" id="mais">
     <div class="wrap">
-      <h2>Feito para quem corta toda semana.</h2>
+      <h2>Feito para cortar em volume.</h2>
       <div class="lista-recursos">
         <div><h3>Escolha explicada</h3><p>Cada sugestão vem com nota, motivo e a frase do vídeo que justifica a escolha. Se o trecho depende do que veio antes, o ClipHook avisa.</p></div>
         <div><h3>Versões do mesmo corte</h3><p>Abrir com a frase mais forte, começar um pouco antes ou dar zoom nas falas de impacto. Compare na prévia e fique com a melhor.</p></div>
@@ -1211,7 +1214,7 @@ main:focus { outline: none; }
   <section class="bloco" id="preco">
     <div class="wrap">
       <h2>Até 14 vezes mais horas de vídeo que o principal concorrente.</h2>
-      <p class="lead">A IA vem incluída na assinatura, e todos os planos têm todos os recursos. Muda quantas horas de vídeo a IA analisa por mês e em quantos computadores.</p>
+      <p class="lead">IA incluída e todos os recursos em todos os planos. Você escolhe quantas horas: 12, 36 ou 150 por mês.</p>
       <div class="regua">
         <div class="plano">
           <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador<br><span class="exemplo">~6 episódios de 2 h por mês</span></p></div>
@@ -1235,7 +1238,7 @@ main:focus { outline: none; }
 
   <section class="bloco" id="perguntas">
     <div class="wrap">
-      <h2>Perguntas frequentes</h2>
+      <h2>O que todo mundo pergunta antes de assinar.</h2>
       <div class="perguntas">
         <details><summary>A IA garante cortes que viralizam?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Não. Ela sugere falas que formam uma ideia completa e explica por quê. Quem decide é você. Nenhuma ferramenta pode prometer viralização com honestidade.</p></details>
         <details><summary>O vídeo sai do meu computador?<svg aria-hidden="true"><use href="#i-mais"/></svg></summary><p>Não. A transcrição, a edição e a exportação acontecem no seu PC. Só o texto da transcrição vai para a Inteligência Artificial, para escolher as falas.</p></details>
@@ -1248,10 +1251,10 @@ main:focus { outline: none; }
 
   <section class="final" id="final">
     <div class="wrap">
-      <h2>Toda conversa longa tem um gancho. Ache o seu.</h2>
-      <p>Instale, escolha o vídeo e aprove os cortes. O resto o ClipHook faz no seu computador.</p>
+      <h2>Seu último episódio tem cortes escondidos. Ache todos.</h2>
+      <p>Escolha o vídeo, aprove os cortes, exporte. O ClipHook faz o resto no seu computador.</p>
       <div class="final-acoes">
-        <a class="btn btn-lime" href="preco.html">Assinar o ClipHook</a>
+        <a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-inicio-final">Assinar a partir de R$ 29,90</a>
         <a class="btn" href="#testador" data-testador>Seja um testador</a>
       </div>
       <p class="final-nota">Testadores ganham 10 horas de IA por 30 dias, sem pagar, em troca da opinião sincera.</p>

@@ -580,6 +580,9 @@ main:focus { outline: none; }
 .plano:not(.rec) h3 { color: var(--text-2); }
 .plano .para .exemplo { color: var(--text-3); }
 .plano.rec .para .exemplo { color: var(--text-2); }
+.nav-contato { margin-left: auto; font-size: 14px; color: var(--text-2); }  /* checkout: só o logo e o contato, sem rotas de fuga */
+.nav-contato:hover { color: var(--text); }
+@media (max-width: 480px) { .nav-contato { font-size: 12px; } }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -740,7 +743,7 @@ main:focus { outline: none; }
     <div class="wrap">
       <h2>Seu próximo episódio já tem cortes dentro dele.</h2>
       <p>Assinatura mensal com a IA incluída. Os seus vídeos não saem do seu computador.</p>
-      <a class="btn btn-lime" href="preco.html">Assinar o ClipHook</a>
+      <a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-como-final">Assinar a partir de R$ 29,90</a>
     </div>
   </section>
 </main>
