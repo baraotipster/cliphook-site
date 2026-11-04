@@ -328,7 +328,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 /* ---------- landing: a página é um episódio ----------
    O trilho à esquerda é a linha do tempo da página; cada seção é um trecho, e o trecho em leitura acende. */
 .trilho { display: none; }
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {  /* notebook 1366 px com o Windows em 125% enxerga ~1093 px */
   .episodio { display: grid; grid-template-columns: var(--trilho) minmax(0, 1fr); }
   .trilho { display: flex; flex-direction: column; position: sticky; top: 64px; height: calc(100vh - 64px); padding: 40px 0 40px var(--gutter); }
 }
@@ -1319,21 +1319,35 @@ main:focus { outline: none; }
   });
 })();
 
-// Trilho da landing: acende o trecho (seção) que está no meio da tela.
+// Trilho da landing: acende o trecho (seção) em leitura. O trecho clicado fica aceso até a rolagem parar; depois,
+// vale a última seção cujo topo já passou de um terço da tela (antes, uma faixa no meio da tela acendia a seção
+// seguinte quando a clicada era curta), e no fim da página, a última.
 (function () {
   "use strict";
   var links = Array.prototype.slice.call(document.querySelectorAll(".trilho a"));
-  if (!links.length || !("IntersectionObserver" in window)) return;
-  var obs = new IntersectionObserver(function (entradas) {
-    entradas.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      links.forEach(function (a) { a.setAttribute("aria-current", String(a.hash === "#" + e.target.id)); });
+  var secoes = links.map(function (a) { return document.getElementById(a.hash.slice(1)); });
+  if (!links.length || secoes.some(function (s) { return !s; })) return;
+  var travado = null, espera = 0, pedido = 0;
+  function acender(i) { links.forEach(function (a, j) { a.setAttribute("aria-current", String(i === j)); }); }
+  function calcular() {
+    pedido = 0;
+    if (travado !== null) return acender(travado);
+    var fim = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    var linha = window.innerHeight / 3, ativo = 0;
+    secoes.forEach(function (s, i) { if (s.getBoundingClientRect().top <= linha) ativo = i; });
+    acender(fim ? secoes.length - 1 : ativo);
+  }
+  window.addEventListener("scroll", function () {
+    if (travado !== null) { clearTimeout(espera); espera = setTimeout(function () { travado = null; }, 180); }
+    if (!pedido) pedido = requestAnimationFrame(calcular);
+  }, { passive: true });
+  links.forEach(function (a, i) {
+    a.addEventListener("click", function () {
+      travado = i; acender(i);
+      clearTimeout(espera); espera = setTimeout(function () { travado = null; }, 900);  // sem rolagem (já estava lá)
     });
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  links.forEach(function (a) {
-    var alvo = document.getElementById(a.hash.slice(1));
-    if (alvo) obs.observe(alvo);
   });
+  calcular();
 })();
 
 // Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
