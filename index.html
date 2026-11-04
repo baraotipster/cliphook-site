@@ -833,7 +833,7 @@ main:focus { outline: none; }
 
   .quadro { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #000; }
   .quadro > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  #estilos-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .recurso.recurso-texto { grid-template-columns: minmax(0, 1fr); max-width: 760px; }  /* sem demonstração ao lado (dono, 04/11/2026) */
   #falante-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .janela-916 { position: absolute; top: 0; bottom: 0; width: 31.6%; left: 11.7%; border: 2px solid var(--lime); border-radius: 4px; box-shadow: 0 0 0 100vmax rgba(10, 12, 16, .55); }
   .falante-legenda { margin-top: 14px; font-size: 15px; color: var(--text-2); min-height: 1.6em; }
@@ -1176,7 +1176,7 @@ main:focus { outline: none; }
         </div>
       </div>
 
-      <div class="recurso">
+      <div class="recurso recurso-texto">
         <div>
           <h2>Legenda que acende palavra a palavra.</h2>
           <p class="lead">No ritmo da fala, longe do rosto, nas cores do seu canal. Cada corte sai com o vídeo, a capa e o texto do post.</p>
@@ -1186,26 +1186,6 @@ main:focus { outline: none; }
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Palavras-chave em destaque e imagens suas no vídeo</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Legenda também em arquivo, para o seu editor</li>
           </ul>
-        </div>
-        <div class="painel estilos">
-          <div class="a-vertical">
-            <video id="estilos-video" src="demo/orig-8.mp4" poster="demo/thumb-8.jpg" muted playsinline loop preload="metadata"
-              aria-label="Corte vertical real com a legenda acendendo palavra a palavra no estilo escolhido"></video>
-            <p class="a-leg" id="leg-estilos" data-estilo="destaque" style="bottom:22%" aria-hidden="true"></p>
-          </div>
-          <div>
-            <div class="a-seg" id="seg-estilos" role="group" aria-label="Estilo da legenda">
-              <button type="button" aria-pressed="true" data-estilo="destaque">Destaque</button>
-              <button type="button" aria-pressed="false" data-estilo="caixa">Caixa</button>
-              <button type="button" aria-pressed="false" data-estilo="minimal">Minimalista</button>
-            </div>
-            <ul class="arquivos">
-              <li><span>clip_01.mp4</span><span>corte editado</span></li>
-              <li><span>clip_01_capa.jpg</span><span>capa com a chamada</span></li>
-              <li><span>clip_01.txt</span><span>título e texto do post</span></li>
-              <li><span>clip_01.srt</span><span>legenda em arquivo</span></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
