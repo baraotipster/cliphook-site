@@ -760,6 +760,10 @@ main:focus { outline: none; }
   .a-seg button:hover { color: var(--text); }
   .a-seg button[aria-pressed="true"] { background: var(--s3); color: var(--text); font-weight: 500; }
   .a-midia { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  /* Vídeo real na demonstração (04/11/2026): o player mostra o original; a prévia recorta o mesmo vídeo (demo.js). */
+  #a-orig { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  #v-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s var(--ease, ease); }
+  .a-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .a-vertical { position: relative; width: 200px; aspect-ratio: 9 / 16; border-radius: var(--r); overflow: hidden; background: #000; --escala: calc(200 / 1080); }
   .a-vertical > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .a-vertical .barra-mp4 { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 6px; padding: 18px 8px 6px; background: linear-gradient(transparent, rgba(0, 0, 0, .7)); font-size: 10px; color: #fff; font-variant-numeric: tabular-nums; }
@@ -829,6 +833,8 @@ main:focus { outline: none; }
 
   .quadro { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #000; }
   .quadro > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #estilos-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  #falante-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .janela-916 { position: absolute; top: 0; bottom: 0; width: 31.6%; left: 11.7%; border: 2px solid var(--lime); border-radius: 4px; box-shadow: 0 0 0 100vmax rgba(10, 12, 16, .55); }
   .falante-legenda { margin-top: 14px; font-size: 15px; color: var(--text-2); min-height: 1.6em; }
   .falante-legenda strong { color: var(--text); font-weight: 500; }
@@ -968,56 +974,6 @@ main:focus { outline: none; }
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Ilustração do estúdio (não é vídeo de ninguém): usada no player, nas miniaturas e na prévia 9:16. -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g-parede" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2433"/><stop offset="1" stop-color="#131823"/></linearGradient>
-    <radialGradient id="g-luz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#34405a" stop-opacity=".8"/><stop offset="1" stop-color="#34405a" stop-opacity="0"/></radialGradient>
-    <linearGradient id="g-mesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3a31"/><stop offset="1" stop-color="#2e2520"/></linearGradient>
-  </defs>
-  <symbol id="cena" viewBox="0 0 160 90">
-    <rect width="160" height="90" fill="url(#g-parede)"/>
-    <ellipse cx="44" cy="30" rx="42" ry="30" fill="url(#g-luz)"/>
-    <ellipse cx="116" cy="30" rx="42" ry="30" fill="url(#g-luz)"/>
-    <g fill="#222a3a">
-      <rect x="62" y="8" width="11" height="11" rx="1"/><rect x="74.5" y="8" width="11" height="11" rx="1"/><rect x="87" y="8" width="11" height="11" rx="1"/>
-      <rect x="62" y="20.5" width="11" height="11" rx="1"/><rect x="74.5" y="20.5" width="11" height="11" rx="1"/><rect x="87" y="20.5" width="11" height="11" rx="1"/>
-    </g>
-    <rect x="74" y="36" width="12" height="4.2" rx="1" fill="#b7f36b" opacity=".9"/>
-    <rect x="132" y="18" width="24" height="1.4" fill="#2f3647"/>
-    <rect x="134" y="10" width="2.6" height="8" fill="#4b5d7a"/><rect x="137" y="11.5" width="2.2" height="6.5" fill="#7a5340"/><rect x="139.6" y="9.5" width="3" height="8.5" fill="#56644a"/><rect x="146" y="13" width="7" height="5" rx="2.5" fill="#3d4a3a"/>
-    <rect x="4" y="22" width="24" height="1.4" fill="#2f3647"/>
-    <circle cx="10" cy="17" r="4.2" fill="#2e4535"/><circle cx="14" cy="15.5" r="3.4" fill="#365240"/><rect x="8" y="18.5" width="8" height="3.5" rx=".8" fill="#4a3f38"/>
-    <!-- pessoa A -->
-    <path d="M27 67c1-10 6.5-16 17-16s16 6 17 16z" fill="#3d5a80"/>
-    <path d="M38.5 51.5 44 57l5.5-5.5" fill="none" stroke="#2c4566" stroke-width="1.2"/>
-    <rect x="41" y="44" width="6" height="8" rx="2" fill="#b47a56"/>
-    <ellipse cx="37" cy="39" rx="1.3" ry="2" fill="#b47a56"/><ellipse cx="51" cy="39" rx="1.3" ry="2" fill="#b47a56"/>
-    <ellipse cx="44" cy="38" rx="7" ry="8.5" fill="#c98d66"/>
-    <path d="M36.8 37.5c-.8-7.6 3.6-11 7.6-11 4.6 0 7.6 3.4 6.8 10.6-1.1-3.6-3.6-5.2-7.2-5-3.6.2-6 2.1-7.2 5.4z" fill="#2a1d17"/>
-    <circle cx="41.4" cy="38.2" r=".75" fill="#1a1310"/><circle cx="46.6" cy="38.2" r=".75" fill="#1a1310"/>
-    <path d="M40.4 35.8h2.2M45.4 35.8h2.2" stroke="#2a1d17" stroke-width=".6" stroke-linecap="round"/>
-    <ellipse id="boca-a" cx="44" cy="42.6" rx="1.9" ry=".45" fill="#5c2b24"/>
-    <!-- pessoa B -->
-    <ellipse cx="116" cy="33.5" rx="10.5" ry="9.5" fill="#1b1311"/>
-    <path d="M99 67c1-10 6.5-16 17-16s16 6 17 16z" fill="#a0583f"/>
-    <rect x="113" y="44" width="6" height="8" rx="2" fill="#7d4c31"/>
-    <ellipse cx="109" cy="39" rx="1.3" ry="2" fill="#7d4c31"/><ellipse cx="123" cy="39" rx="1.3" ry="2" fill="#7d4c31"/>
-    <ellipse cx="116" cy="38.5" rx="7" ry="8.3" fill="#8e5a3b"/>
-    <path d="M109 36c.6-5 3.4-7.4 7-7.4s6.6 2.4 7 7.4c-1.6-2.8-4-4.2-7-4.2s-5.4 1.4-7 4.2z" fill="#1b1311"/>
-    <circle cx="113.4" cy="38.6" r=".75" fill="#140d0b"/><circle cx="118.6" cy="38.6" r=".75" fill="#140d0b"/>
-    <path d="M112.4 36.3h2.2M117.4 36.3h2.2" stroke="#1b1311" stroke-width=".6" stroke-linecap="round"/>
-    <ellipse id="boca-b" cx="116" cy="43" rx="1.9" ry=".45" fill="#4a2018"/>
-    <!-- mesa, braços, microfones -->
-    <rect x="0" y="62" width="160" height="5" fill="url(#g-mesa)"/>
-    <rect x="0" y="67" width="160" height="23" fill="#191c24"/>
-    <rect x="28" y="59.5" width="15" height="4.5" rx="2.2" fill="#35507a"/><ellipse cx="43" cy="61.8" rx="2.6" ry="2" fill="#c98d66"/>
-    <rect x="117" y="59.5" width="15" height="4.5" rx="2.2" fill="#8f4e38"/><ellipse cx="117" cy="61.8" rx="2.6" ry="2" fill="#8e5a3b"/>
-    <rect x="71" y="55.5" width="5.2" height="6.5" rx="1" fill="#e8e4da"/><path d="M76.2 57.2h1.2a1.4 1.4 0 0 1 0 2.8h-1.2" fill="none" stroke="#e8e4da" stroke-width=".8"/>
-    <rect x="86" y="58" width="10" height="4" rx=".6" fill="#2a2f3b"/><rect x="87" y="52" width="8" height="6" rx=".6" fill="#3a4152"/>
-    <path d="M66 62V50l-9-5" fill="none" stroke="#0c0e12" stroke-width="1"/><rect x="52" y="41" width="4.4" height="8" rx="2.2" transform="rotate(-25 54 45)" fill="#0d0f14"/>
-    <path d="M94 62V50l9-5" fill="none" stroke="#0c0e12" stroke-width="1"/><rect x="103.6" y="41" width="4.4" height="8" rx="2.2" transform="rotate(25 106 45)" fill="#0d0f14"/>
-  </symbol>
-</svg>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -1094,16 +1050,16 @@ main:focus { outline: none; }
           <button class="a-btn a-prim" type="button" tabindex="-1"><svg aria-hidden="true"><use href="#i-mais"/></svg>Novo vídeo</button>
           <div class="a-colar"><svg aria-hidden="true"><use href="#i-link"/></svg>Colar o caminho do vídeo</div>
           <div class="a-h4">Seus vídeos</div>
-          <div class="a-proj" aria-current="true"><b>podcast-ep-42</b><small id="lib-meta">3 cortes · 0 aprov. · 0 export.</small></div>
-          <div class="a-proj"><b>live-de-sexta</b><small>6 cortes · 4 aprov. · 4 export.</small></div>
-          <div class="a-proj"><b>entrevista-maio</b><small>4 cortes · 2 aprov. · 2 export.</small></div>
+          <div class="a-proj" aria-current="true"><b>debate-jones-x-kim</b><small id="lib-meta">3 cortes · 0 aprov. · 0 export.</small></div>
+          <div class="a-proj"><b>mamae-falei-react</b><small>18 cortes · 4 aprov. · 1 export.</small></div>
+          <div class="a-proj"><b>arthur-x-chavoso</b><small>8 cortes · 2 aprov. · 2 export.</small></div>
           <div class="a-status"><i></i>Assinatura Pro ativa</div>
         </div>
 
         <div class="app-palco-wrap">
           <div class="a-palco">
             <div class="a-cab">
-              <div><div class="a-h3">podcast-ep-42</div><p id="a-meta"></p></div>
+              <div><div class="a-h3">debate-jones-x-kim</div><p id="a-meta"></p></div>
               <div class="a-exp">
                 <label class="a-opcao"><input type="checkbox" id="a-seguir" checked>Seguir quem fala</label>
                 <button class="a-btn a-prim" type="button" id="a-exportar"></button>
@@ -1114,7 +1070,7 @@ main:focus { outline: none; }
               <div class="a-col">
                 <section class="a-player" aria-label="Player">
                   <div class="a-video">
-                    <svg viewBox="0 0 160 90" aria-hidden="true"><use href="#cena" width="160" height="90"/></svg>
+                    <video id="a-orig" src="demo/orig-9.mp4" data-id="9" muted playsinline loop preload="metadata" aria-hidden="true"></video>
                     <span class="a-selo-player" id="a-selo-player"></span>
                   </div>
                   <div class="a-ctrl">
@@ -1138,7 +1094,7 @@ main:focus { outline: none; }
                   </div>
                   <div class="a-linha">
                     <div class="a-onda" id="a-onda"><svg id="a-onda-svg" preserveAspectRatio="none" aria-hidden="true"></svg><div class="a-agulha" id="a-agulha"></div></div>
-                    <div class="a-regua"><span>0:00</span><span>29:20</span><span>58:40</span></div>
+                    <div class="a-regua"><span>0:00</span><span>8:28</span><span>16:57</span></div>
                   </div>
                 </section>
 
@@ -1158,7 +1114,7 @@ main:focus { outline: none; }
         </div>
       </div>
     </div>
-    <p class="legenda-demo">Experimente: escolha um corte, troque o estilo da legenda, aprove e exporte. Demonstração com dados ilustrativos.</p>
+    <p class="legenda-demo">Experimente: escolha um corte, troque o estilo da legenda, aprove e exporte. Cortes reais do debate Jones Manoel × Kim Kataguiri, do canal Cortes das Lives; a exportação na página é simulada.</p>
   </section>
 
   <section class="bloco" id="fluxo">
@@ -1185,11 +1141,14 @@ main:focus { outline: none; }
           </ul>
         </div>
         <div class="painel">
-          <div class="quadro" aria-hidden="true">
-            <svg viewBox="0 0 160 90"><use href="#cena" width="160" height="90"/></svg>
-            <div class="janela-916" id="janela-916"></div>
+          <!-- Vídeo real ("Rodada extra do debate", Jones Manoel, 04/11/2026): a janela verde segue a trilha de quem fala que o
+               ClipHook calculou; as pessoas desfocadas atrás não roubam o quadro (speaker.in_focus). -->
+          <div class="quadro">
+            <video id="falante-video" src="demo/falante.mp4" poster="demo/falante.jpg" muted playsinline loop preload="metadata"
+              aria-label="Debate com pessoas ao fundo; a janela vertical do corte fica em quem está falando"></video>
+            <div class="janela-916" id="janela-916" aria-hidden="true"></div>
           </div>
-          <p class="falante-legenda" id="falante-legenda" aria-live="off"><strong>Apresentador</strong> “Essa é a pergunta que todo mundo faz.”</p>
+          <p class="falante-legenda" id="falante-legenda" aria-live="off">A janela verde é o corte vertical: ela fica em quem fala, não em quem está atrás.</p>
         </div>
       </div>
 
@@ -1229,9 +1188,10 @@ main:focus { outline: none; }
           </ul>
         </div>
         <div class="painel estilos">
-          <div class="a-vertical" aria-hidden="true">
-            <svg viewBox="90.7 0 50.6 90" preserveAspectRatio="xMidYMid slice"><use href="#cena" width="160" height="90"/></svg>
-            <p class="a-leg" id="leg-estilos" data-estilo="destaque" style="bottom:22%"></p>
+          <div class="a-vertical">
+            <video id="estilos-video" src="demo/orig-8.mp4" poster="demo/thumb-8.jpg" muted playsinline loop preload="metadata"
+              aria-label="Corte vertical real com a legenda acendendo palavra a palavra no estilo escolhido"></video>
+            <p class="a-leg" id="leg-estilos" data-estilo="destaque" style="bottom:22%" aria-hidden="true"></p>
           </div>
           <div>
             <div class="a-seg" id="seg-estilos" role="group" aria-label="Estilo da legenda">
@@ -1529,39 +1489,26 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 })();
 </script>
 <script>
-// Demonstração da landing: uma cópia do app (src/clipforge/ui) com dados de exemplo e um estúdio ilustrado.
-// Mesma estrutura e mesmas regras de prévia do app: recorte 9:16 no centro de quem fala, zoom de 7% nos trechos
-// ímpares depois de um corte seco, legenda em blocos no estilo escolhido.
+// Demonstração da landing: uma cópia do app (src/clipforge/ui) com 3 cortes reais do debate Jones Manoel × Kim Kataguiri
+// (canal Cortes das Lives, 04/11/2026): o vídeo original, as palavras ditas e a trilha de quem fala que o ClipHook calculou.
+// Mesmas regras de prévia do app: recorte 9:16 no centro de quem fala, zoom de 7% opcional, legenda em blocos no estilo
+// escolhido, acendendo no tempo de cada palavra.
 (function () {
   "use strict";
   var reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (id) { return document.getElementById(id); };
   if (!$("app")) return;
 
-  var TOTAL = 3520; // 58:40
-  var FALANTE = { a: 44 / 160, b: 116 / 160 };
+  var TOTAL = 1017; // 16:57
   var BLOCO = { destaque: 3, caixa: 5, minimal: 4 };
   var ESTADOS = { pendente: "Pendente", aprovada: "Aprovado", recusada: "Recusado", exportada: "Exportado" };
-  var CORTES = [
-    { id: 1, inicio: 728, dur: 41, final: 38.6, pausas: 2, falante: "a", relev: 84,
-      titulo: "O erro que quase acabou com o canal",
-      motivo: "História completa em 41 s: começa com o problema, conta a virada e termina numa frase que se entende sozinha.",
-      texto: "A gente postava todo dia e ninguém via. O erro era achar que mais vídeo resolvia tudo." },
-    { id: 2, inicio: 1900, dur: 58, final: 54.9, pausas: 3, falante: "b", relev: 91,
-      titulo: "Por que cortes curtos trazem inscritos",
-      motivo: "Responde à pergunta do apresentador com um exemplo concreto e fecha com uma conclusão clara.",
-      texto: "O corte é a porta de entrada. Quem gosta de um minuto volta para ouvir a conversa inteira." },
-    { id: 3, inicio: 2835, dur: 33, final: 31.8, pausas: 1, falante: "a", relev: 72,
-      titulo: "Microfone bom não salva conteúdo ruim",
-      motivo: "Opinião direta, com uma frase de efeito no fim; funciona sem o resto do episódio.",
-      texto: "Microfone bom não salva conteúdo ruim. Comece com o celular e uma ideia clara." },
-  ];
+  var CORTES = [{"id": 9, "inicio": 962.1, "dur": 39, "relev": 55, "titulo": "Você me mataria em uma revolução?", "motivo": "Traz uma tese clara (responsabilizar criminalmente neoliberais) e termina com uma pergunta que fecha o embate.", "palavras": [[0.0, 0.36, "Primeiro,"], [0.6, 0.72, "a"], [0.72, 1.0, "fala"], [1.0, 1.26, "dele"], [1.26, 1.38, "em"], [1.38, 1.68, "relação"], [1.68, 1.86, "de"], [1.86, 2.0, "que,"], [2.0, 2.16, "olha,"], [2.48, 2.7, "matar"], [2.7, 3.12, "pessoas"], [3.12, 3.28, "numa"], [3.28, 3.76, "revolução"], [3.76, 3.9, "é"], [3.9, 3.94, "uma"], [3.94, 4.56, "contingência"], [4.56, 4.68, "que"], [4.68, 5.26, "acontece,"], [5.54, 5.72, "né,"], [5.9, 6.32, "essa"], [6.32, 6.94, "abordagem"], [6.94, 7.82, "personalista"], [7.82, 7.94, "em"], [7.94, 8.24, "relação"], [8.24, 8.48, "ao"], [8.48, 8.96, "Stalin"], [8.96, 9.44, "é"], [9.44, 9.86, "ceder"], [9.86, 10.28, "ao"], [10.28, 10.82, "liberalismo."], [10.88, 10.96, "Então,"], [11.04, 11.14, "mais"], [11.14, 11.26, "uma"], [11.26, 11.42, "vez"], [11.42, 11.5, "eu"], [11.5, 11.78, "pergunto,"], [11.84, 11.96, "então,"]], "trilha": [0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548, 0.548], "fps": 8}, {"id": 7, "inicio": 681.2, "dur": 35, "relev": 60, "titulo": "Conquistas do movimento comunista!", "motivo": "O trecho desenvolve uma tese completa, com exemplos (jornada de oito horas, férias, licença-maternidade, voto de analfabetos) e termina com uma conclusão clara.", "palavras": [[0.0, 0.08, "quem"], [0.08, 0.3, "começou"], [0.3, 0.38, "a"], [0.38, 0.62, "defender"], [0.62, 0.82, "foram"], [0.82, 0.96, "os"], [0.96, 1.48, "comunistas."], [2.76, 3.16, "Era,"], [3.16, 3.56, "quando"], [3.56, 3.84, "foi"], [3.84, 4.2, "criado"], [4.2, 4.4, "o"], [4.4, 4.6, "Partido"], [4.6, 4.94, "Comunista"], [4.94, 5.04, "no"], [5.04, 5.28, "Brasil"], [5.28, 5.4, "em"], [5.4, 5.84, "1922,"], [6.16, 6.24, "era"], [6.24, 6.3, "uma"], [6.3, 6.4, "das"], [6.4, 6.74, "principais"], [6.74, 7.2, "bandeiras,"], [7.26, 7.44, "até"], [7.44, 7.64, "então"], [7.64, 7.76, "não"], [7.76, 8.22, "existia."], [8.32, 8.4, "Então,"], [8.46, 8.58, "nas"], [8.58, 9.04, "fábricas"], [9.04, 9.2, "aqui"], [9.2, 9.3, "em"], [9.3, 9.44, "São"], [9.44, 9.78, "Paulo,"], [10.04, 10.18, "as"], [10.18, 10.26, "pessoas"], [10.26, 10.64, "trabalhavam"], [10.64, 11.0, "14,"], [11.12, 11.32, "16"], [11.32, 11.56, "horas"], [11.56, 11.82, "por"], [11.82, 12.0, "dia."]], "trilha": [0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533, 0.533], "fps": 8}, {"id": 8, "inicio": 756.2, "dur": 37, "relev": 70, "titulo": "Jim Crow até os anos 60", "motivo": "O trecho conta um caso histórico com começo, meio e fechamento, sem depender de outras partes do vídeo.", "palavras": [[0.0, 0.18, "Nos"], [0.18, 0.42, "Estados"], [0.42, 0.76, "Unidos,"], [0.94, 1.14, "até"], [1.14, 1.26, "os"], [1.26, 1.36, "anos"], [1.36, 1.66, "60,"], [1.76, 1.88, "tinha"], [1.88, 1.96, "um"], [1.96, 2.18, "regime"], [2.18, 2.3, "de"], [2.3, 2.72, "segregação"], [2.72, 3.02, "racial,"], [3.14, 3.22, "né?"], [3.22, 3.3, "O"], [3.3, 3.6, "regime"], [3.6, 3.86, "Jim"], [3.86, 4.16, "Crow,"], [4.34, 4.64, "que"], [4.64, 5.04, "impedia,"], [5.14, 5.22, "por"], [5.22, 5.42, "exemplo,"], [5.52, 5.9, "negros"], [5.9, 5.98, "e"], [5.98, 6.28, "negras"], [6.28, 6.38, "de"], [6.38, 6.5, "terem"], [6.5, 6.94, "direitos"], [6.94, 7.6, "civis."], [8.22, 8.66, "Quando"], [8.66, 8.96, "a"], [8.96, 9.34, "Suprema"], [9.34, 9.68, "Corte"], [9.68, 9.9, "foi"], [9.9, 10.26, "julgar"], [10.26, 10.42, "nos"], [10.42, 10.58, "anos"], [10.58, 10.94, "50"], [10.94, 11.16, "se"], [11.16, 11.26, "a"], [11.26, 11.72, "segregação"], [11.72, 11.86, "era"], [11.86, 12.0, "constitucional"]], "trilha": [0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.47, 0.516, 0.542, 0.557, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565, 0.565], "fps": 8}];
   CORTES.forEach(function (c) {
-    c.decisao = ""; c.exportado = false; c.palavras = c.texto.split(" ");
+    c.decisao = ""; c.exportado = false;
     c.ed = { estilo: "destaque", posicao: "auto", enquadramento: null, cortar: true, zoom: true };
   });
 
-  var st = { sel: 1, t: 0, tocando: false, filtro: "todos", aba: "previa", seguir: true, exportando: false, visivel: false };
+  var st = { sel: CORTES[0].id, t: 0, tocando: false, filtro: "todos", aba: "previa", seguir: true, exportando: false, visivel: false };
   var atual = function () { return CORTES.find(function (c) { return c.id === st.sel; }); };
   var estado = function (c) { return c.exportado ? "exportada" : c.decisao === "sim" ? "aprovada" : c.decisao === "não" ? "recusada" : "pendente"; };
   var relogio = function (s) { s = Math.max(0, Math.floor(s)); var m = Math.floor(s / 60), r = s % 60; return m + ":" + String(r).padStart(2, "0"); };
@@ -1612,7 +1559,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   function renderMeta() {
     var ap = CORTES.filter(function (c) { return c.decisao === "sim"; }).length;
     var ex = CORTES.filter(function (c) { return c.exportado; }).length;
-    $("a-meta").innerHTML = "Vídeo de <b>58:40</b> · <b>3 cortes encontrados</b> pela IA · " + plural(ap, "aprovado", "aprovados") + " · " + plural(ex, "exportado", "exportados");
+    $("a-meta").innerHTML = "Vídeo de <b>16:57</b> · <b>3 dos 10 cortes</b> que a IA encontrou · " + plural(ap, "aprovado", "aprovados") + " · " + plural(ex, "exportado", "exportados");
     $("lib-meta").textContent = "3 cortes · " + ap + " aprov. · " + ex + " export.";
     var pend = CORTES.filter(function (c) { return c.decisao === "sim" && !c.exportado; }).length;
     var b = $("a-exportar");
@@ -1645,8 +1592,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   }
 
   function miniatura(c) {
-    var cx = FALANTE[c.falante] * 160;
-    return '<svg viewBox="' + (cx - 36).toFixed(1) + ' 14 72 40.5" preserveAspectRatio="xMidYMid slice"><use href="#cena" width="160" height="90"/></svg>';
+    return '<img src="demo/thumb-' + c.id + '.jpg" alt="" loading="lazy">';
   }
 
   function seloHtml(c) {
@@ -1699,8 +1645,9 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     var e = c.ed;
     var enq = e.enquadramento !== null ? "Enquadramento manual" : st.seguir ? "Seguindo quem fala" : "Enquadramento central";
     var partes = [enq];
-    partes.push(e.cortar ? plural(c.pausas, "pausa cortada", "pausas cortadas") + " (−" + seg1(c.dur - c.final) + ")" : "pausas mantidas");
-    return "<b>Vídeo final: " + seg1(e.cortar ? c.final : c.dur) + "</b> · " + partes.join(" · ");
+    partes.push(e.cortar ? "pausas longas cortadas" : "pausas mantidas");
+    partes.push(e.zoom ? "zoom sutil" : "sem zoom");
+    return "<b>Corte de " + c.dur + " s</b> · " + partes.join(" · ");
   }
 
   function renderInsp() {
@@ -1719,9 +1666,9 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
       (c.exportado ? '<div class="a-seg" role="group" aria-label="O que mostrar"><button type="button" data-aba="previa" aria-pressed="' + (st.aba === "previa") + '">Prévia da edição</button><button type="button" data-aba="exportado" aria-pressed="' + (st.aba === "exportado") + '">Vídeo exportado</button></div>' : "") +
       '<div class="a-midia">' +
         '<div class="a-vertical" aria-label="Prévia vertical do corte editado" role="img">' +
-          '<svg id="v-svg" viewBox="0 0 50.6 90" preserveAspectRatio="xMidYMid slice"><use href="#cena" width="160" height="90"/></svg>' +
+          '<video id="v-video" src="demo/orig-' + c.id + '.mp4" muted playsinline preload="auto" aria-hidden="true"></video>' +
           '<p class="a-leg" id="v-leg" data-estilo="' + e.estilo + '"></p>' +
-          (st.aba === "exportado" ? '<div class="barra-mp4">' + icone(st.tocando ? "i-pausa" : "i-play") + '<span id="v-t">0:00</span><i id="v-barra"></i><span>' + relogio(e.cortar ? c.final : c.dur) + "</span></div>" : "") +
+          (st.aba === "exportado" ? '<div class="barra-mp4">' + icone(st.tocando ? "i-pausa" : "i-play") + '<span id="v-t">0:00</span><i id="v-barra"></i><span>' + relogio(c.dur) + "</span></div>" : "") +
         "</div>" +
         '<p class="a-nota">' + (st.aba === "exportado" ? "clip_0" + c.id + ".mp4 · 1080×1920, o arquivo final." : notaPrevia(c)) + "</p>" +
         '<div class="a-acoes-previa"><button class="a-btn" type="button" id="i-assistir">' + icone(st.tocando ? "i-pausa" : "i-play") + (st.tocando ? "Pausar" : "Assistir prévia editada") + "</button></div>" +
@@ -1744,11 +1691,11 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     on("#i-recusar", "click", function () { decidir(c, c.decisao === "não" ? "" : "não"); });
     on("#i-exportar", "click", function () { exportar([c]); });
     on("#i-refazer", "click", function () { c.exportado = false; exportar([c]); });
-    on("#i-assistir", "click", function () { if (!st.tocando && st.t >= c.dur - 0.1) st.t = 0; alternar(!st.tocando); });
+    on("#i-assistir", "click", function () { alternar(!st.tocando); });
     insp.querySelectorAll("[data-aba]").forEach(function (b) { b.addEventListener("click", function () { st.aba = b.dataset.aba; renderInsp(); st.sujo = true; }); });
     insp.querySelectorAll("[data-estilo]").forEach(function (b) { b.addEventListener("click", function () { mudar({ estilo: b.dataset.estilo }); }); });
     insp.querySelectorAll("[data-posicao]").forEach(function (b) { b.addEventListener("click", function () { mudar({ posicao: b.dataset.posicao }); }); });
-    insp.querySelectorAll("[data-enq]").forEach(function (b) { b.addEventListener("click", function () { mudar({ enquadramento: b.dataset.enq === "auto" ? null : FALANTE[c.falante] }); }); });
+    insp.querySelectorAll("[data-enq]").forEach(function (b) { b.addEventListener("click", function () { mudar({ enquadramento: b.dataset.enq === "auto" ? null : 0.5 }); }); });
     on("#i-enq", "input", function (ev) { c.ed.enquadramento = +ev.target.value; });
     on("#i-cortar", "change", function (ev) { mudar({ cortar: ev.target.checked }); });
     on("#i-zoom", "change", function (ev) { mudar({ zoom: ev.target.checked }); });
@@ -1825,84 +1772,82 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 
   function renderTudo2() {
     renderMeta(); renderFiltros(); renderCards(); renderMarcas(); renderInsp(); pintarOnda();
-    var c = atual();
+    var c = atual(), orig = $("a-orig");
+    if (orig && orig.dataset.id !== String(c.id)) { orig.dataset.id = c.id; orig.src = "demo/orig-" + c.id + ".mp4"; }
     $("a-selo-player").innerHTML = "Corte selecionado <b>" + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</b>";
     $("a-trecho").style.left = (c.inicio / TOTAL * 100) + "%";
     $("a-trecho").style.width = Math.max(1, c.dur / TOTAL * 100) + "%";
   }
 
-  $("a-play").addEventListener("click", function () { var c = atual(); if (!st.tocando && st.t >= c.dur - 0.1) st.t = 0; alternar(!st.tocando); });
+  $("a-play").addEventListener("click", function () { alternar(!st.tocando); });
   document.querySelectorAll("#app [data-pular]").forEach(function (b) {
-    b.addEventListener("click", function () { var c = atual(); st.t = Math.min(Math.max(0, st.t + +b.dataset.pular), c.dur); st.sujo = true; });
+    b.addEventListener("click", function () { var o = $("a-orig"); if (o) o.currentTime = Math.min(Math.max(0, o.currentTime + +b.dataset.pular), DUR - 0.1); st.sujo = true; });
   });
   document.querySelectorAll("#app [data-vizinho]").forEach(function (b) {
-    b.addEventListener("click", function () { var i = CORTES.indexOf(atual()); selecionar(CORTES[(i + +b.dataset.vizinho + 3) % 3].id); });
+    b.addEventListener("click", function () { var i = CORTES.indexOf(atual()); selecionar(CORTES[(i + +b.dataset.vizinho + CORTES.length) % CORTES.length].id); });
   });
   $("a-exportar").addEventListener("click", function () { exportar(); });
   $("a-seguir").addEventListener("change", function (ev) { st.seguir = ev.target.checked; renderInsp(); st.sujo = true; });
 
-  // ---------- quadro a quadro: prévia, legenda, boca de quem fala ----------
-  var legendaChave = "", blocoAnterior = "", ultimo = 0, relogioCena = 0;
+  // ---------- quadro a quadro: o vídeo original é o relógio; a prévia recorta o mesmo vídeo ----------
+  var DUR = 12;  // segundos de cada corte na demonstração (orig-<id>.mp4)
+  var legendaChave = "", blocoAnterior = "";
   function legenda(c, t) {
-    var e = c.ed, n = c.palavras.length, total = e.cortar ? c.final : c.dur;
-    var i = Math.min(n - 1, Math.floor((t / total) * n));
+    var e = c.ed, p = c.palavras, n = p.length;
+    var leg = $("v-leg");
+    if (!n || !leg) return;
+    var i = 0;
+    while (i + 1 < n && p[i + 1][0] <= t) i++;
     var tam = BLOCO[e.estilo], ini = i - (i % tam);
-    var k = e.estilo + e.posicao + i;
+    var antes = t < p[0][0] - 0.05;
+    var k = e.estilo + e.posicao + i + antes;
     if (k === legendaChave) return;
     var bloco = c.id + ":" + e.estilo + ":" + ini;
-    var novoBloco = bloco !== blocoAnterior;  // o bloco entra com fade; a troca de palavra, não
+    var novoBloco = bloco !== blocoAnterior;
     blocoAnterior = bloco;
     legendaChave = k;
-    var leg = $("v-leg");
-    if (!leg) return;
     leg.dataset.estilo = e.estilo;
-    var pos = e.posicao === "meio" ? "bottom:43%" : e.posicao === "superior" ? "top:12%" : "bottom:21%";
-    leg.setAttribute("style", pos);
-    var palavras = c.palavras.slice(ini, ini + tam).map(function (p, j) {
-      return '<span class="' + (ini + j === i ? "on" : "") + '">' + p + "</span>";
-    }).join(" ");
-    leg.innerHTML = '<span class="linha' + (novoBloco ? " entra" : "") + '">' + palavras + "</span>";
+    leg.setAttribute("style", e.posicao === "meio" ? "bottom:43%" : e.posicao === "superior" ? "top:12%" : "bottom:21%");
+    if (antes) { leg.innerHTML = ""; return; }
+    leg.innerHTML = '<span class="linha' + (novoBloco ? " entra" : "") + '">' + p.slice(ini, ini + tam).map(function (w, j) {
+      return '<span class="' + (ini + j === i ? "on" : "") + '">' + w[2] + "</span>";
+    }).join(" ") + "</span>";
   }
 
-  function quadro(agora) {
+  // Centro 0..1 do recorte 9:16 sobre o 16:9 vira object-position (o vídeo é 3,16 vezes mais largo que o recorte).
+  var RAZAO = (16 / 9) / (9 / 16);
+  function posicao(centro) {
+    var p = (centro * RAZAO - 0.5) / (RAZAO - 1);
+    return (Math.min(1, Math.max(0, p)) * 100).toFixed(1) + "% 50%";
+  }
+
+  function quadro() {
     requestAnimationFrame(quadro);
-    // Fora da tela, ou parado sem nada novo para mostrar: não mexe no DOM (antes reescrevia tudo 60 vezes por segundo).
-    if (!st.visivel || (!st.tocando && !st.sujo)) { ultimo = agora; return; }
+    if (!st.visivel || (!st.tocando && !st.sujo)) return;
     st.sujo = false;
-    var dt = Math.min(0.1, (agora - ultimo) / 1000 || 0);
-    ultimo = agora;
-    var c = atual(), e = c.ed, total = e.cortar ? c.final : c.dur;
-    if (st.tocando) {
-      st.t += dt;
-      if (st.t >= total) { st.t = 0; } // a demonstração repete o corte
-      relogioCena += dt;
+    var c = atual(), e = c.ed, orig = $("a-orig"), v = $("v-video");
+    if (orig) {
+      if (st.tocando && orig.paused) orig.play().catch(function () {});
+      if (!st.tocando && !orig.paused) orig.pause();
+      st.t = orig.currentTime;
     }
-    var tOrig = st.t * (c.dur / total);
-    var agoraVideo = c.inicio + tOrig;
-    $("a-tempo").innerHTML = "<b>" + relogio(agoraVideo) + "</b> / 58:40";
-    var pct = (agoraVideo / TOTAL * 100) + "%";
-    $("a-tocado").style.width = pct; $("a-cabeca").style.left = pct; $("a-agulha").style.left = pct;
-
-    // Boca: só quem fala mexe, e só tocando.
-    ["a", "b"].forEach(function (p) {
-      var falando = st.tocando && p === c.falante;
-      $("boca-" + p).setAttribute("ry", falando ? (0.45 + Math.abs(Math.sin(relogioCena * 13)) * 1.15).toFixed(2) : "0.45");
-    });
-
-    // Recorte 9:16 + zoom alternado depois de cada corte seco.
-    var svg = $("v-svg");
-    if (svg) {
-      var centro = e.enquadramento !== null ? e.enquadramento : st.seguir ? FALANTE[c.falante] : 0.5;
-      var trechos = e.cortar ? c.pausas + 1 : 1;
-      var trecho = Math.min(trechos - 1, Math.floor(st.t / (total / trechos)));
-      var fator = e.zoom && trecho % 2 === 1 ? 1.07 : 1;
-      var w = 50.6 / fator, h = 90 / fator;
-      var x = Math.min(Math.max(centro * 160 - w / 2, 0), 160 - w);
-      svg.setAttribute("viewBox", x.toFixed(2) + " " + ((90 - h) * 0.3).toFixed(2) + " " + w.toFixed(2) + " " + h.toFixed(2));
+    if (v) {
+      if (Math.abs(v.currentTime - st.t) > 0.25) v.currentTime = st.t;
+      if (st.tocando && v.paused) v.play().catch(function () {});
+      if (!st.tocando && !v.paused) v.pause();
+      var amostra = Math.min(c.trilha.length - 1, Math.floor(st.t * c.fps));
+      var centro = e.enquadramento !== null ? e.enquadramento : st.seguir ? c.trilha[amostra] : 0.5;
+      v.style.objectPosition = posicao(centro);
+      v.style.transform = e.zoom && Math.floor(st.t / 4) % 2 === 1 ? "scale(1.07)" : "scale(1)";
       legenda(c, st.t);
       var vt = $("v-t");
-      if (vt) { vt.textContent = relogio(st.t); $("v-barra").style.setProperty("--p", (st.t / total * 100) + "%"); }
+      if (vt) { vt.textContent = relogio(st.t); $("v-barra").style.setProperty("--p", (st.t / DUR * 100) + "%"); }
     }
+    var agoraVideo = c.inicio + st.t;
+    $("a-tempo").innerHTML = "<b>" + relogio(agoraVideo) + "</b> / 16:57";
+    var pct = (agoraVideo / TOTAL * 100) + "%";
+    $("a-tocado").style.width = pct; $("a-cabeca").style.left = pct; $("a-agulha").style.left = pct;
+    if (st.tocando) st.sujo = true;
   }
 
   renderTudo();
@@ -1913,60 +1858,57 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     if (!reduzido) alternar(st.visivel);
   }, { threshold: 0.25 }).observe($("app"));
 
-  // ---------- seção "o corte segue quem fala" ----------
-  var trocas = [
-    { x: "11.7%", t: "<strong>Apresentador</strong> “Essa é a pergunta que todo mundo faz.”" },
-    { x: "56.7%", t: "<strong>Convidada</strong> “E a resposta é mais simples do que parece.”" },
-    { x: "11.7%", t: "<strong>Apresentador</strong> “Então explica para quem está começando.”" },
-    { x: "56.7%", t: "<strong>Convidada</strong> “Uma ideia por vídeo. Só isso.”" },
-  ];
-  var jan = $("janela-916"), fala = $("falante-legenda"), passo = 0, visivelFalante = false;
-  if (jan && !reduzido) {
-    jan.style.transition = "left .6s cubic-bezier(.2,.8,.2,1)";
-    new IntersectionObserver(function (e) { visivelFalante = e[0].isIntersecting; }, { threshold: 0.3 }).observe(jan);
-    setInterval(function () {
-      if (!visivelFalante) return;
-      passo = (passo + 1) % trocas.length;
-      jan.style.left = trocas[passo].x;
-      fala.innerHTML = trocas[passo].t;
-    }, 2800);
+  // ---------- seção "o corte segue quem fala": vídeo real + a trilha que o ClipHook calculou ----------
+  var TRILHA_FALANTE = [0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.518, 0.54, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551];
+  var jan = $("janela-916"), vf = $("falante-video");
+  if (jan && vf) {
+    jan.style.transition = "left .35s cubic-bezier(.2,.8,.2,1)";
+    var largura = 31.6;
+    var mover = function () {
+      var c = TRILHA_FALANTE[Math.min(TRILHA_FALANTE.length - 1, Math.floor(vf.currentTime * 8))];
+      jan.style.left = Math.min(100 - largura, Math.max(0, c * 100 - largura / 2)).toFixed(1) + "%";
+    };
+    vf.addEventListener("timeupdate", mover);
+    mover();
+    new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) vf.play().catch(function () {}); else vf.pause();
+    }, { threshold: 0.3 }).observe(vf);
   }
 
-  // ---------- seção de estilos de legenda ----------
-  var frase = "Uma ideia por vídeo. Só isso.".split(" "), iFrase = 0, estiloAtual = "destaque";
-  var legEst = $("leg-estilos");
+  // ---------- seção de estilos de legenda: corte real, palavras no tempo delas ----------
+  var corteEstilos = CORTES.find(function (c) { return c.id === 8; }) || CORTES[0];
+  var estiloAtual = "destaque", chaveEstilo = "";
+  var legEst = $("leg-estilos"), ve = $("estilos-video");
   function mostrarEstilo() {
-    var tam = BLOCO[estiloAtual], ini = iFrase - (iFrase % tam);
+    if (!legEst || !ve) return;
+    var p = corteEstilos.palavras, t = ve.currentTime, i = 0;
+    while (i + 1 < p.length && p[i + 1][0] <= t) i++;
+    var tam = BLOCO[estiloAtual], ini = i - (i % tam), k = estiloAtual + i + (t < p[0][0]);
+    var amostra = Math.min(corteEstilos.trilha.length - 1, Math.floor(t * corteEstilos.fps));
+    ve.style.objectPosition = posicao(corteEstilos.trilha[amostra]);
+    if (k === chaveEstilo) return;
+    chaveEstilo = k;
     legEst.dataset.estilo = estiloAtual;
-    legEst.innerHTML = '<span class="linha">' + frase.slice(ini, ini + tam).map(function (p, j) {
-      return '<span class="' + (ini + j === iFrase ? "on" : "") + '">' + p + "</span>";
+    legEst.innerHTML = t < p[0][0] ? "" : '<span class="linha">' + p.slice(ini, ini + tam).map(function (w, j) {
+      return '<span class="' + (ini + j === i ? "on" : "") + '">' + w[2] + "</span>";
     }).join(" ") + "</span>";
   }
   document.querySelectorAll("#seg-estilos button").forEach(function (b) {
     b.addEventListener("click", function () {
       estiloAtual = b.dataset.estilo;
       document.querySelectorAll("#seg-estilos button").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+      chaveEstilo = "";
       mostrarEstilo();
     });
   });
-  mostrarEstilo();
-  // ---------- topo: o corte pronto no celular, com a legenda acendendo palavra a palavra ----------
-  var legTopo = $("leg-topo"), fraseTopo = "A gente postava todo dia e nada crescia".split(" "), iTopo = 0, topoNaTela = false;
-  function mostrarTopo() {
-    var tam = BLOCO.destaque, ini = iTopo - (iTopo % tam);
-    legTopo.innerHTML = '<span class="linha">' + fraseTopo.slice(ini, ini + tam).map(function (p, j) {
-      return '<span class="' + (ini + j === iTopo ? "on" : "") + '">' + p + "</span>";
-    }).join(" ") + "</span>";
+  if (ve) {
+    ve.addEventListener("timeupdate", mostrarEstilo);
+    (function laco() { if (!ve.paused) mostrarEstilo(); requestAnimationFrame(laco); })();
+    new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) ve.play().catch(function () {}); else ve.pause();
+    }, { threshold: 0.2 }).observe(ve);
+    mostrarEstilo();
   }
-  if (legTopo) {
-    mostrarTopo();
-    new IntersectionObserver(function (e) { topoNaTela = e[0].isIntersecting; }, { threshold: 0.2 }).observe(legTopo);
-    if (!reduzido) setInterval(function () { if (topoNaTela) { iTopo = (iTopo + 1) % fraseTopo.length; mostrarTopo(); } }, 420);
-  }
-
-  var estilosNaTela = false;
-  new IntersectionObserver(function (e) { estilosNaTela = e[0].isIntersecting; }, { threshold: 0.2 }).observe(legEst);
-  if (!reduzido) setInterval(function () { if (estilosNaTela) { iFrase = (iFrase + 1) % frase.length; mostrarEstilo(); } }, 420);
 })();
 </script>
 </body>
