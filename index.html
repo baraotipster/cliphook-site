@@ -610,7 +610,7 @@ main:focus { outline: none; }
   /* a assinatura da marca: horas de conversa, um trecho fisgado pelo gancho de canto */
   .isca { margin: 56px 0 0; width: 100%; align-self: stretch; }
   /* Topo: do episódio ao corte pronto (revisão de 04/11/2026, no lugar da faixa simples). */
-  .fluxo { margin: 56px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) 56px 200px; align-items: center; gap: 0 8px; }
+  .fluxo { margin: 56px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) 56px 230px; align-items: center; gap: 0 8px; }
   .fluxo-rot { font-size: 13px; color: var(--text-3); margin-bottom: 14px; }
   .fluxo-rot b { color: var(--text); font-weight: 600; }
   .fluxo-nota { margin-top: 18px; font-size: 14px; color: var(--text-2); }
@@ -623,7 +623,10 @@ main:focus { outline: none; }
   .fluxo-seta { height: 2px; background: linear-gradient(90deg, var(--s4), var(--lime)); position: relative; }
   .fluxo-seta::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--lime); border-right: 0; }
   .fluxo-saida { justify-self: end; }
-  .fluxo-celular { border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); }
+  .a-vertical.fluxo-celular { border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); width: 230px; }
+  .fluxo-original { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); margin-bottom: 14px; }
+  .fluxo-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fluxo-credito { margin-top: 10px; font-size: 12px; color: var(--text-3); max-width: 230px; }
   @media (max-width: 700px) {
     .fluxo { grid-template-columns: 1fr; gap: 0; }
     .fluxo-seta { width: 2px; height: 40px; margin: 16px auto; background: linear-gradient(180deg, var(--s4), var(--lime)); }
@@ -1058,18 +1061,23 @@ main:focus { outline: none; }
     </div>
     <figure class="fluxo" aria-label="Ilustração: de um episódio de duas horas a um corte vertical pronto">
       <div class="fluxo-entrada">
-        <p class="fluxo-rot"><b>Episódio</b> · YouTube · 2:04:30</p>
-        <div class="onda" aria-hidden="true"><i style="--a:0.42"></i><i style="--a:0.77"></i><i style="--a:0.81"></i><i style="--a:0.58"></i><i style="--a:0.47"></i><i style="--a:0.66"></i><i style="--a:0.73"></i><i style="--a:0.49"></i><i style="--a:0.73"></i><i style="--a:0.88"></i><i style="--a:0.68"></i><i style="--a:0.53"></i><i style="--a:0.61"></i><i style="--a:0.62"></i><i style="--a:0.55"></i><i style="--a:0.61"></i><i style="--a:0.83"></i><i style="--a:0.72"></i><i style="--a:0.65"></i><i style="--a:0.69"></i><i style="--a:0.68"></i><i style="--a:0.59"></i><i style="--a:0.55"></i><i style="--a:0.68"></i><i style="--a:0.69"></i><i style="--a:0.71"></i><i style="--a:0.73"></i><i style="--a:0.73"></i><i style="--a:0.61"></i><i class="pego" style="--a:0.98"></i><i class="pego" style="--a:0.85"></i><i class="pego" style="--a:1.00"></i><i style="--a:0.71"></i><i style="--a:0.78"></i><i style="--a:0.70"></i><i style="--a:0.61"></i><i style="--a:0.76"></i><i style="--a:0.59"></i><i style="--a:0.52"></i><i style="--a:0.64"></i><i style="--a:0.74"></i><i style="--a:0.61"></i><i style="--a:0.58"></i><i style="--a:0.85"></i><i style="--a:0.77"></i><i style="--a:0.51"></i><i style="--a:0.61"></i><i style="--a:0.63"></i><i style="--a:0.60"></i><i style="--a:0.52"></i><i style="--a:0.83"></i><i style="--a:0.86"></i><i style="--a:0.55"></i><i style="--a:0.64"></i><i style="--a:0.73"></i><i style="--a:0.57"></i><i style="--a:0.43"></i><i style="--a:0.71"></i><i style="--a:0.84"></i><i style="--a:0.61"></i><i style="--a:0.63"></i><i style="--a:0.83"></i><i style="--a:0.71"></i><i style="--a:0.50"></i><i style="--a:0.53"></i><i style="--a:0.72"></i><i style="--a:0.64"></i><i style="--a:0.61"></i><i style="--a:0.83"></i><i style="--a:0.78"></i><i style="--a:0.58"></i><i style="--a:0.54"></i><i style="--a:0.58"></i><i style="--a:0.62"></i><i style="--a:0.62"></i><i style="--a:0.73"></i><i style="--a:0.78"></i><i style="--a:0.64"></i><i style="--a:0.70"></i><i style="--a:0.67"></i><i style="--a:0.61"></i><i style="--a:0.59"></i><i style="--a:0.58"></i><i style="--a:0.69"></i><i style="--a:0.66"></i><i style="--a:0.81"></i><i style="--a:0.69"></i><i style="--a:0.62"></i><i style="--a:0.67"></i><i style="--a:0.52"></i><i style="--a:0.54"></i><i style="--a:0.63"></i><i style="--a:0.82"></i><i style="--a:0.74"></i><i style="--a:0.58"></i><i style="--a:0.75"></i><span class="onda-pego gancho gancho-encaixe"></span></div>
-        <div class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">38:12 → 38:51</span><span class="num">2:04:30</span></div>
-        <p class="fluxo-nota">Trecho fisgado · potencial de viralizar <b class="num">84</b>/100</p>
+        <p class="fluxo-rot"><b>Live original</b> · react · 50:07</p>
+        <!-- O vídeo como foi publicado, sem edição (como na demonstração do Cut.Pro, pedido do dono em 04/11/2026), no
+             mesmo trecho do corte ao lado: react da live do Mamãe Falei, corte do canal Cortes das Lives. -->
+        <div class="fluxo-original"><video class="fluxo-video" id="demo-original" src="demo/original.mp4" poster="demo/original.jpg"
+          autoplay muted loop playsinline preload="metadata" aria-label="O trecho na live original, deitada e sem edição, com a webcam de quem reage no canto e o chat"></video></div>
+        <div class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">2:33 → 3:34</span><span class="num">50:07</span></div>
+        <p class="fluxo-nota">A IA escolheu o trecho e montou o react: o vídeo reagido em cima, quem reage embaixo, sem o chat, com a legenda palavra a palavra.</p>
       </div>
       <div class="fluxo-seta" aria-hidden="true"></div>
       <div class="fluxo-saida">
-        <p class="fluxo-rot"><b>Corte pronto</b> · 9:16 · 39 s</p>
-        <div class="a-vertical fluxo-celular" aria-hidden="true">
-          <svg viewBox="18.7 0 50.6 90" preserveAspectRatio="xMidYMid slice"><use href="#cena" width="160" height="90"/></svg>
-          <p class="a-leg" id="leg-topo" data-estilo="destaque" style="bottom:22%"></p>
+        <p class="fluxo-rot"><b>Corte pronto</b> · 9:16</p>
+        <div class="a-vertical fluxo-celular">
+          <!-- O corte real exportado no ClipHook (canal Cortes das Lives, dono, 04/11/2026), sem som, em loop junto com o original. -->
+          <video class="fluxo-video" id="demo-corte" src="demo/corte.mp4" poster="demo/corte.jpg" autoplay muted loop playsinline preload="metadata"
+            aria-label="O mesmo trecho como corte vertical feito no ClipHook: o vídeo reagido em cima, quem reage embaixo e a legenda"></video>
         </div>
+        <p class="fluxo-credito">Corte real feito no ClipHook · Cortes das Lives</p>
       </div>
     </figure>
   </section>
@@ -1496,6 +1504,20 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     i = (i + 1) % frases.length;
     frases[i].classList.add("on");
   }, 3500);
+})();
+
+// Topo: o vídeo original e o corte tocam juntos (o mesmo trecho, sem pausas cortadas): o corte acompanha o original.
+// Quem pede menos movimento no sistema vê os dois parados no primeiro quadro.
+(function () {
+  var original = document.getElementById("demo-original"), corte = document.getElementById("demo-corte");
+  if (!original || !corte) return;
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    original.removeAttribute("autoplay"); corte.removeAttribute("autoplay"); original.pause(); corte.pause();
+    return;
+  }
+  original.addEventListener("timeupdate", function () {
+    if (Math.abs(corte.currentTime - original.currentTime) > 0.25) corte.currentTime = original.currentTime;
+  });
 })();
 </script>
 <script>
