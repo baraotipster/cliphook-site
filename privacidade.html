@@ -797,7 +797,11 @@ main:focus { outline: none; }
     if (!pedido) pedido = requestAnimationFrame(calcular);
   }, { passive: true });
   links.forEach(function (a, i) {
-    a.addEventListener("click", function () {
+    a.addEventListener("click", function (e) {
+      // Rola sempre: se o endereço já tem esse #trecho (clicado antes), o navegador sozinho não rola de novo.
+      e.preventDefault();
+      secoes[i].scrollIntoView({ block: "start" });
+      if (location.hash !== a.hash) history.pushState(null, "", a.hash);
       travado = i; acender(i);
       clearTimeout(espera); espera = setTimeout(function () { travado = null; }, 900);  // sem rolagem (já estava lá)
     });
