@@ -572,6 +572,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .pular { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: var(--r); background: var(--lime); color: var(--lime-ink); font-weight: 600; }
 .pular:focus { top: 12px; }
 main:focus { outline: none; }
+
+/* Régua de preço (revisão 04/11): o olho vai para o Pro. Os outros planos ficam em cinza e com o preço menor. */
+.plano:not(.rec) .barra i { background: repeating-linear-gradient(90deg, var(--text-3) 0 2px, transparent 2px 6px); opacity: .6; }
+.plano:not(.rec) .preco-col .valor { font-size: 44px; color: var(--text-2); }
+.plano.rec h3 { color: var(--text); }
+.plano:not(.rec) h3 { color: var(--text-2); }
+.plano .para .exemplo { color: var(--text-3); }
+.plano.rec .para .exemplo { color: var(--text-2); }
 </style>
 <style>
   .custo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: start; }
@@ -637,22 +645,22 @@ main:focus { outline: none; }
     <h2 class="sr">Planos</h2>
     <div class="regua" id="planos">
       <div class="plano">
-        <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador</p></div>
+        <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador<br><span class="exemplo">~6 episódios de 2 h por mês</span></p></div>
         <div class="barra" style="--h:5.1%"><i></i><span><b class="num">12</b>horas por mês</span></div>
         <div class="preco-col"><p class="valor num">R$ 29,90</p><small class="num">por mês, R$ 2,49 a hora de vídeo</small><a class="btn" href="assinar.html?plano=basico&amp;src=site-preco-basico">Assinar o Básico</a></div>
       </div>
       <div class="plano rec">
-        <div><h3>Pro</h3><p class="para">Recomendado para canais de cortes e podcasts<br>2 computadores</p></div>
+        <div><h3>Pro</h3><p class="para">Recomendado para canais de cortes e podcasts<br>2 computadores<br><span class="exemplo">~18 episódios de 2 h por mês</span></p></div>
         <div class="barra" style="--h:15.4%"><i class="gancho"></i><span><b class="num">36</b>horas por mês</span></div>
         <div class="preco-col"><p class="valor num">R$ 75</p><small class="num">por mês, R$ 2,08 a hora de vídeo</small><a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-preco-pro">Assinar o Pro</a></div>
       </div>
       <div class="plano">
-        <div><h3>Agência</h3><p class="para">Para editores e agências<br>4 computadores</p></div>
+        <div><h3>Agência</h3><p class="para">Para editores e agências<br>4 computadores<br><span class="exemplo">~75 episódios de 2 h por mês</span></p></div>
         <div class="barra" style="--h:64%"><i></i><span><b class="num">150</b>horas por mês</span></div>
         <div class="preco-col"><p class="valor num">R$ 200</p><small class="num">por mês, R$ 1,33 a hora de vídeo</small><a class="btn" href="assinar.html?plano=agencia&amp;src=site-preco-agencia">Assinar o Agência</a></div>
       </div>
     </div>
-    <p class="garantia-pagina">Todos os planos têm todos os recursos e atualizações. Cobrança mensal pelo Asaas, por Pix ou cartão, com reembolso em até 7 dias após a primeira cobrança. Na primeira semana de uma assinatura nova, a IA usa até 25% da cota do plano; o restante libera no 8º dia.</p>
+    <p class="garantia-pagina">Todos os planos têm todos os recursos e atualizações. Cobrança mensal pelo Asaas, por Pix ou cartão, com reembolso em até 7 dias após a primeira cobrança.</p>
   </section>
 
   <section class="bloco" id="extras">

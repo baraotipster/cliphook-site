@@ -573,17 +573,25 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .pular { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: var(--r); background: var(--lime); color: var(--lime-ink); font-weight: 600; }
 .pular:focus { top: 12px; }
 main:focus { outline: none; }
+
+/* Régua de preço (revisão 04/11): o olho vai para o Pro. Os outros planos ficam em cinza e com o preço menor. */
+.plano:not(.rec) .barra i { background: repeating-linear-gradient(90deg, var(--text-3) 0 2px, transparent 2px 6px); opacity: .6; }
+.plano:not(.rec) .preco-col .valor { font-size: 44px; color: var(--text-2); }
+.plano.rec h3 { color: var(--text); }
+.plano:not(.rec) h3 { color: var(--text-2); }
+.plano .para .exemplo { color: var(--text-3); }
+.plano.rec .para .exemplo { color: var(--text-2); }
 </style>
 <style>
   /* ---------- hero ---------- */
   .hero { padding-top: 104px; padding-bottom: 56px; }
   .hero h1 { font-size: clamp(56px, 7vw, 96px); line-height: .92; max-width: 13em; }
-  .hero .sub { margin-top: 24px; font-size: clamp(18px, 1.5vw, 21px); color: var(--text-2); max-width: 46ch; line-height: 1.55; }
+  .hero .sub { margin-top: 24px; font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; color: var(--text); max-width: 40ch; line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }
   .hero .acoes { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
   .hero .acoes .btn { min-height: 48px; padding: 0 22px; font-size: 16px; }
-  .provas { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px; color: var(--text-2); font-size: 14px; }
-  .provas span { display: inline-flex; align-items: center; gap: 8px; }
-  .provas svg { width: 16px; height: 16px; color: var(--text-3); }
+  .hero .acoes { align-items: center; }
+  .hero .acoes .link-seta { margin: 0 0 0 12px; }
+  .provas { margin-top: 28px; color: var(--text-2); font-size: 15px; }
   .hero h1 .marca-texto { white-space: nowrap; }
   /* a assinatura da marca: horas de conversa, um trecho fisgado pelo gancho de canto */
   .isca { margin: 56px 0 0; width: 100%; align-self: stretch; }
@@ -820,6 +828,7 @@ main:focus { outline: none; }
   @media (max-width: 560px) {
     .hero { padding-top: 64px; }
     .hero .acoes .btn { flex: 1 1 100%; }
+    .hero .acoes .link-seta { margin: 8px 0 0; }
     .a-palco { padding: 16px 14px; }
     .a-exp { width: 100%; }
     .a-exp .a-prim { flex: 1 1 100%; }
@@ -1001,17 +1010,13 @@ main:focus { outline: none; }
 <main id="conteudo" tabindex="-1">
   <section class="wrap hero" id="topo">
     <h1>Toda conversa longa esconde um <span class="marca-texto">gancho</span>.</h1>
-    <p class="sub">O ClipHook encontra os melhores trechos dos seus podcasts, debates e lives e entrega cortes editados, com legenda e seguindo quem fala. Você aprova cada um antes de exportar.</p>
+    <p class="sub">Solte o episódio. Saia com os cortes prontos.</p>
     <div class="acoes">
       <a class="btn btn-lime" href="#preco">Ver os planos</a>
-      <a class="btn" href="#produto">Ver o app</a>
       <a class="btn" href="#testador" data-testador>Seja um testador</a>
+      <a class="link-seta" href="#produto">Ver o app funcionando</a>
     </div>
-    <div class="provas">
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>Seu vídeo não sai do computador</span>
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>Você aprova cada corte</span>
-      <span><svg aria-hidden="true"><use href="#i-check"/></svg>A partir de R$ 29,90/mês</span>
-    </div>
+    <p class="provas">Para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
     <figure class="isca" aria-label="Ilustração: um episódio de duas horas com um trecho marcado">
       <div class="isca-trilho"><span class="isca-pego gancho gancho-encaixe"></span></div>
       <figcaption class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">38:12 → 38:51</span><span class="num">2:04:30</span></figcaption>
@@ -1202,17 +1207,17 @@ main:focus { outline: none; }
       <p class="lead">A IA vem incluída na assinatura, e todos os planos têm todos os recursos. Muda quantas horas de vídeo a IA analisa por mês e em quantos computadores.</p>
       <div class="regua">
         <div class="plano">
-          <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador</p></div>
+          <div><h3>Básico</h3><p class="para">Para quem está começando<br>1 computador<br><span class="exemplo">~6 episódios de 2 h por mês</span></p></div>
           <div class="barra" style="--h:5.1%"><i></i><span><b class="num">12</b>horas por mês</span></div>
           <div class="preco-col"><p class="valor num">R$ 29,90</p><small class="num">por mês, R$ 2,49 a hora de vídeo</small><a class="btn" href="assinar.html?plano=basico&amp;src=site-inicio-basico">Assinar o Básico</a></div>
         </div>
         <div class="plano rec">
-          <div><h3>Pro</h3><p class="para">Recomendado para canais de cortes e podcasts<br>2 computadores</p></div>
+          <div><h3>Pro</h3><p class="para">Recomendado para canais de cortes e podcasts<br>2 computadores<br><span class="exemplo">~18 episódios de 2 h por mês</span></p></div>
           <div class="barra" style="--h:15.4%"><i class="gancho"></i><span><b class="num">36</b>horas por mês</span></div>
           <div class="preco-col"><p class="valor num">R$ 75</p><small class="num">por mês, R$ 2,08 a hora de vídeo</small><a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-inicio-pro">Assinar o Pro</a></div>
         </div>
         <div class="plano">
-          <div><h3>Agência</h3><p class="para">Para editores e agências<br>4 computadores</p></div>
+          <div><h3>Agência</h3><p class="para">Para editores e agências<br>4 computadores<br><span class="exemplo">~75 episódios de 2 h por mês</span></p></div>
           <div class="barra" style="--h:64%"><i></i><span><b class="num">150</b>horas por mês</span></div>
           <div class="preco-col"><p class="valor num">R$ 200</p><small class="num">por mês, R$ 1,33 a hora de vídeo</small><a class="btn" href="assinar.html?plano=agencia&amp;src=site-inicio-agencia">Assinar o Agência</a></div>
         </div>

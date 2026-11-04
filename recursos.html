@@ -572,6 +572,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .pular { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: var(--r); background: var(--lime); color: var(--lime-ink); font-weight: 600; }
 .pular:focus { top: 12px; }
 main:focus { outline: none; }
+
+/* Régua de preço (revisão 04/11): o olho vai para o Pro. Os outros planos ficam em cinza e com o preço menor. */
+.plano:not(.rec) .barra i { background: repeating-linear-gradient(90deg, var(--text-3) 0 2px, transparent 2px 6px); opacity: .6; }
+.plano:not(.rec) .preco-col .valor { font-size: 44px; color: var(--text-2); }
+.plano.rec h3 { color: var(--text); }
+.plano:not(.rec) h3 { color: var(--text-2); }
+.plano .para .exemplo { color: var(--text-3); }
+.plano.rec .para .exemplo { color: var(--text-2); }
 </style>
 <style>
   .recurso-pagina { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; padding: 88px 0; border-top: 1px solid var(--line); align-items: start; }

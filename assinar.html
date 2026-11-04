@@ -573,6 +573,14 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .pular { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: var(--r); background: var(--lime); color: var(--lime-ink); font-weight: 600; }
 .pular:focus { top: 12px; }
 main:focus { outline: none; }
+
+/* Régua de preço (revisão 04/11): o olho vai para o Pro. Os outros planos ficam em cinza e com o preço menor. */
+.plano:not(.rec) .barra i { background: repeating-linear-gradient(90deg, var(--text-3) 0 2px, transparent 2px 6px); opacity: .6; }
+.plano:not(.rec) .preco-col .valor { font-size: 44px; color: var(--text-2); }
+.plano.rec h3 { color: var(--text); }
+.plano:not(.rec) h3 { color: var(--text-2); }
+.plano .para .exemplo { color: var(--text-3); }
+.plano.rec .para .exemplo { color: var(--text-2); }
 </style>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -763,7 +771,6 @@ main:focus { outline: none; }
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Cobrança mensal recorrente pelo Asaas, por Pix ou cartão.</span></li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Cancele quando quiser na tela Assinatura do app. O acesso vai até o fim do período pago.</span></li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Desistiu? Reembolso se pedir em até 7 dias após a primeira cobrança (Código de Defesa do Consumidor, art. 49).</span></li>
-        <li><svg aria-hidden="true"><use href="#i-info"/></svg><span>Na primeira semana, a IA usa até 25% da cota do plano; o restante libera no 8º dia.</span></li>
       </ul>
       <p class="resumo-ajuda">Dúvidas: <a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a> · <a href="preco.html#requisitos">Requisitos</a></p>
     </aside>
