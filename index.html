@@ -594,8 +594,13 @@ main:focus { outline: none; }
   .hero .acoes .btn { min-height: 48px; padding: 0 22px; font-size: 16px; }
   .hero .acoes { align-items: center; }
   .hero .acoes .link-seta { margin: 0 0 0 12px; }
-  .provas { margin-top: 28px; color: var(--text-2); font-size: 15px; }
-  .provas .prova-grupo { color: var(--text); font-weight: 600; }  /* número informado pelo dono (04/11/2026): atualizar quando o grupo crescer */
+  /* "98 criadores" num card próprio (dono, 04/11/2026): o número informado por ele; atualizar quando o grupo crescer. */
+  .provas { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .prova-grupo { display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px 10px 14px; border-radius: var(--r-lg, 12px);
+    background: var(--s2); border: 1px solid var(--line-2); margin: 0; }
+  .prova-grupo b { font-family: var(--display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--lime); }
+  .prova-grupo span { font-size: 14px; line-height: 1.25; color: var(--text); font-weight: 600; }
+  .prova-lista { margin: 0; color: var(--text-2); font-size: 15px; max-width: 46ch; }
   .hero h1 .marca-texto { white-space: nowrap; }
   /* Frase do topo que troca sozinha: todas ficam empilhadas na mesma célula (a altura não pula) e só uma aparece. */
   .giro { display: grid; }
@@ -1047,7 +1052,10 @@ main:focus { outline: none; }
       <a class="btn" href="#testador" data-testador>Seja um testador</a>
       <a class="link-seta" href="#produto">Ver o app funcionando</a>
     </div>
-    <p class="provas"><b class="prova-grupo">98 criadores no grupo de teste</b> · para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
+    <div class="provas">
+      <p class="prova-grupo"><b class="num">98</b><span>criadores no<br>grupo de teste</span></p>
+      <p class="prova-lista">para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
+    </div>
     <figure class="fluxo" aria-label="Ilustração: de um episódio de duas horas a um corte vertical pronto">
       <div class="fluxo-entrada">
         <p class="fluxo-rot"><b>Episódio</b> · YouTube · 2:04:30</p>
