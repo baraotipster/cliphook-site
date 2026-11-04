@@ -597,6 +597,11 @@ main:focus { outline: none; }
   .provas { margin-top: 28px; color: var(--text-2); font-size: 15px; }
   .provas .prova-grupo { color: var(--text); font-weight: 600; }  /* número informado pelo dono (04/11/2026): atualizar quando o grupo crescer */
   .hero h1 .marca-texto { white-space: nowrap; }
+  /* Frase do topo que troca sozinha: todas ficam empilhadas na mesma célula (a altura não pula) e só uma aparece. */
+  .giro { display: grid; }
+  .giro > span { grid-area: 1 / 1; opacity: 0; transform: translateY(.35em); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+  .giro > span.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .giro > span { transition: none; transform: none; } }
   /* a assinatura da marca: horas de conversa, um trecho fisgado pelo gancho de canto */
   .isca { margin: 56px 0 0; width: 100%; align-self: stretch; }
   .isca-trilho { position: relative; height: 36px; background: repeating-linear-gradient(90deg, var(--s4) 0 2px, transparent 2px 6px); }
@@ -1014,7 +1019,7 @@ main:focus { outline: none; }
 <main id="conteudo" tabindex="-1">
   <section class="wrap hero" id="topo">
     <h1>Toda conversa longa esconde um <span class="marca-texto">gancho</span>.</h1>
-    <p class="sub">Solte o episódio. Saia com os cortes prontos.</p>
+    <p class="sub"><span class="sr">Solte o episódio. Saia com os cortes prontos.</span><span class="giro" aria-hidden="true"><span class="on">Solte o episódio. Saia com os cortes prontos.</span><span>Cole o link do YouTube. Receba os cortes legendados.</span><span>Um debate de 2 horas. Uma semana de cortes.</span><span>A live acabou. Os cortes já estão saindo.</span></span></p>
     <div class="acoes">
       <a class="btn btn-lime" href="#preco">Ver os planos</a>
       <a class="btn" href="#testador" data-testador>Seja um testador</a>
@@ -1405,6 +1410,20 @@ main:focus { outline: none; }
       })
       .then(function () { enviar.disabled = false; enviar.textContent = "Quero testar"; });
   });
+})();
+
+// Topo: a frase de baixo do título troca a cada 3,5 s (parada com movimento reduzido ou com a aba escondida).
+(function () {
+  "use strict";
+  var giro = document.querySelector(".giro");
+  if (!giro || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var frases = giro.children, i = 0;
+  setInterval(function () {
+    if (document.hidden) return;
+    frases[i].classList.remove("on");
+    i = (i + 1) % frases.length;
+    frases[i].classList.add("on");
+  }, 3500);
 })();
 </script>
 <script>

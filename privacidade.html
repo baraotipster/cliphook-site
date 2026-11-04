@@ -851,6 +851,20 @@ main:focus { outline: none; }
       .then(function () { enviar.disabled = false; enviar.textContent = "Quero testar"; });
   });
 })();
+
+// Topo: a frase de baixo do título troca a cada 3,5 s (parada com movimento reduzido ou com a aba escondida).
+(function () {
+  "use strict";
+  var giro = document.querySelector(".giro");
+  if (!giro || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var frases = giro.children, i = 0;
+  setInterval(function () {
+    if (document.hidden) return;
+    frases[i].classList.remove("on");
+    i = (i + 1) % frases.length;
+    frases[i].classList.add("on");
+  }, 3500);
+})();
 </script>
 </body>
 </html>
