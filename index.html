@@ -1141,14 +1141,14 @@ main:focus { outline: none; }
           </ul>
         </div>
         <div class="painel">
-          <!-- Vídeo real ("Rodada extra do debate", Jones Manoel, 04/11/2026): a janela verde segue a trilha de quem fala que o
-               ClipHook calculou; as pessoas desfocadas atrás não roubam o quadro (speaker.in_focus). -->
+          <!-- Vídeo real ("Arthur do Val vs 20 esquerdistas", Zona de Fogo / Spectrum, escolhido pelo dono em 04/11/2026): a janela
+               verde segue a trilha de quem fala que o ClipHook calculou para este trecho. -->
           <div class="quadro">
             <video id="falante-video" src="demo/falante.mp4" poster="demo/falante.jpg" muted playsinline loop preload="metadata"
-              aria-label="Debate com pessoas ao fundo; a janela vertical do corte fica em quem está falando"></video>
+              aria-label="Debate com duas pessoas lado a lado; a janela vertical do corte vai em quem está falando"></video>
             <div class="janela-916" id="janela-916" aria-hidden="true"></div>
           </div>
-          <p class="falante-legenda" id="falante-legenda" aria-live="off">A janela verde é o corte vertical: ela fica em quem fala, não em quem está atrás.</p>
+          <p class="falante-legenda" id="falante-legenda" aria-live="off">A janela verde é o corte vertical: ela vai sozinha em quem está com a palavra.</p>
         </div>
       </div>
 
@@ -1666,7 +1666,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
       (c.exportado ? '<div class="a-seg" role="group" aria-label="O que mostrar"><button type="button" data-aba="previa" aria-pressed="' + (st.aba === "previa") + '">Prévia da edição</button><button type="button" data-aba="exportado" aria-pressed="' + (st.aba === "exportado") + '">Vídeo exportado</button></div>' : "") +
       '<div class="a-midia">' +
         '<div class="a-vertical" aria-label="Prévia vertical do corte editado" role="img">' +
-          '<video id="v-video" src="demo/orig-' + c.id + '.mp4" muted playsinline preload="auto" aria-hidden="true"></video>' +
+          '<video id="v-video" src="demo/orig-' + c.id + '.mp4" muted playsinline loop preload="auto" aria-hidden="true"></video>' +
           '<p class="a-leg" id="v-leg" data-estilo="' + e.estilo + '"></p>' +
           (st.aba === "exportado" ? '<div class="barra-mp4">' + icone(st.tocando ? "i-pausa" : "i-play") + '<span id="v-t">0:00</span><i id="v-barra"></i><span>' + relogio(c.dur) + "</span></div>" : "") +
         "</div>" +
@@ -1781,7 +1781,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 
   $("a-play").addEventListener("click", function () { alternar(!st.tocando); });
   document.querySelectorAll("#app [data-pular]").forEach(function (b) {
-    b.addEventListener("click", function () { var o = $("a-orig"); if (o) o.currentTime = Math.min(Math.max(0, o.currentTime + +b.dataset.pular), DUR - 0.1); st.sujo = true; });
+    b.addEventListener("click", function () { var o = $("v-video") || $("a-orig"); if (o) o.currentTime = Math.min(Math.max(0, o.currentTime + +b.dataset.pular), DUR - 0.1); st.sujo = true; });
   });
   document.querySelectorAll("#app [data-vizinho]").forEach(function (b) {
     b.addEventListener("click", function () { var i = CORTES.indexOf(atual()); selecionar(CORTES[(i + +b.dataset.vizinho + CORTES.length) % CORTES.length].id); });
@@ -1825,16 +1825,21 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     requestAnimationFrame(quadro);
     if (!st.visivel || (!st.tocando && !st.sujo)) return;
     st.sujo = false;
+    // O relógio é a prévia vertical (o vídeo que a pessoa está vendo): no celular, o navegador pausa sozinho o player
+    // quando ele sai da tela, e a legenda travava junto (dono, 04/11/2026). O player acompanha a prévia.
     var c = atual(), e = c.ed, orig = $("a-orig"), v = $("v-video");
-    if (orig) {
+    var relogioVideo = v || orig;
+    if (relogioVideo) {
+      if (st.tocando && relogioVideo.paused) relogioVideo.play().catch(function () {});
+      if (!st.tocando && !relogioVideo.paused) relogioVideo.pause();
+      st.t = relogioVideo.currentTime;
+    }
+    if (orig && orig !== relogioVideo) {
+      if (Math.abs(orig.currentTime - st.t) > 0.3) orig.currentTime = st.t;
       if (st.tocando && orig.paused) orig.play().catch(function () {});
       if (!st.tocando && !orig.paused) orig.pause();
-      st.t = orig.currentTime;
     }
     if (v) {
-      if (Math.abs(v.currentTime - st.t) > 0.25) v.currentTime = st.t;
-      if (st.tocando && v.paused) v.play().catch(function () {});
-      if (!st.tocando && !v.paused) v.pause();
       var amostra = Math.min(c.trilha.length - 1, Math.floor(st.t * c.fps));
       var centro = e.enquadramento !== null ? e.enquadramento : st.seguir ? c.trilha[amostra] : 0.5;
       v.style.objectPosition = posicao(centro);
@@ -1856,10 +1861,10 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   new IntersectionObserver(function (e) {
     st.visivel = e[0].isIntersecting;
     if (!reduzido) alternar(st.visivel);
-  }, { threshold: 0.25 }).observe($("app"));
+  }, { threshold: 0 }).observe($("app"));  // no celular a janela do app é alta demais para 25% dela aparecer de uma vez
 
   // ---------- seção "o corte segue quem fala": vídeo real + a trilha que o ClipHook calculou ----------
-  var TRILHA_FALANTE = [0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.468, 0.518, 0.54, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551, 0.551];
+  var TRILHA_FALANTE = [0.794, 0.794, 0.794, 0.794, 0.794, 0.794, 0.794, 0.314, 0.314, 0.314, 0.314, 0.314, 0.314, 0.314, 0.314, 0.314, 0.314, 0.744, 0.754, 0.771, 0.782, 0.799, 0.811, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.821, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.276, 0.662, 0.662, 0.662, 0.662, 0.662, 0.662, 0.662, 0.323, 0.323, 0.323, 0.323, 0.323, 0.323, 0.323, 0.323, 0.323, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.687, 0.259, 0.259, 0.259, 0.259, 0.259, 0.259, 0.259];
   var jan = $("janela-916"), vf = $("falante-video");
   if (jan && vf) {
     jan.style.transition = "left .35s cubic-bezier(.2,.8,.2,1)";
