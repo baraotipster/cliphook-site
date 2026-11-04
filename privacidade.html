@@ -646,7 +646,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   <section class="wrap pagina-topo">
     <h1>Política de privacidade</h1>
     <p class="lead">Resumo: o ClipHook roda no seu computador. Seus vídeos não são enviados a nós nem a ninguém. Nós só recebemos os dados da compra, informados na página de assinatura.</p>
-    <p class="vigencia">Versão 1.0 · em vigor a partir de 30 de outubro de 2026</p>
+    <p class="vigencia">Versão 1.1 · em vigor a partir de 4 de novembro de 2026</p>
   </section>
 
   <div class="wrap legal">
@@ -677,7 +677,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <p>Além da Anthropic, o programa se conecta à internet só para conferir a assinatura e baixar componentes:</p>
       <ul>
         <li><strong>Conferência da assinatura:</strong> na ativação, o programa envia ao nosso servidor de licenças o e-mail e o código de ativação da assinatura e um código do computador (um resumo criptográfico do identificador do Windows, que não revela quem você é nem o que há no computador). Depois, ao menos uma vez por semana, envia a licença atual para renová-la. Guardamos o código de cada computador ativado enquanto a assinatura existir, para respeitar o limite de computadores.</li>
-        <li><strong>Na instalação:</strong> o FFmpeg pelo winget da Microsoft ou pelo gyan.dev (se você aceitar) e as bibliotecas do programa pelo PyPI.</li>
+        <li><strong>Na instalação:</strong> o FFmpeg pelo gyan.dev (e, se esse download falhar, pelo winget da Microsoft), o Visual C++ da Microsoft, se faltar, e as bibliotecas do programa pelo PyPI. Em computadores com placa de vídeo AMD ou Intel, também o modelo de transcrição pela placa, baixado do Hugging Face.</li>
         <li><strong>Na primeira transcrição:</strong> o modelo de transcrição Whisper, baixado do Hugging Face.</li>
       </ul>
       <p>Nesses downloads, os serviços recebem os dados técnicos de qualquer download (como o seu endereço IP), conforme as políticas deles. Nenhum conteúdo seu é enviado.</p>
@@ -708,12 +708,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       <h2 id="compartilhamento">7. Com quem compartilhamos</h2>
       <ul>
         <li><strong>Asaas:</strong> processa os pagamentos da assinatura (Pix e cartão) e das horas extras, com o nome, o e-mail e o CPF ou CNPJ de quem paga.</li>
-        <li><strong>Google Cloud (Estados Unidos):</strong> hospeda o servidor de licenças do ClipHook, por onde passam a ativação, a renovação e os pedidos de IA da assinatura.</li>
         <li><strong>YouTube e TikTok:</strong> quando você cola um link e pede o download, o programa busca o vídeo direto nessas plataformas, do seu computador; nós não recebemos o link nem o vídeo.</li>
         <li><strong>Hugging Face:</strong> de onde o app baixa o modelo de transcrição na primeira vez (o seu vídeo e o áudio não vão para lá).</li>
         <li><strong>Anthropic:</strong> processa o texto das transcrições enviadas à IA incluída na assinatura (seção 3).</li>
         <li><strong>Provedor de hospedagem em nuvem do servidor do ClipHook:</strong> hospeda o servidor que confere a assinatura e repassa os pedidos de IA.</li>
-        <li><strong>Microsoft (Outlook/Hotmail):</strong> para enviar e receber e-mails.</li>
+        <li><strong>Brevo:</strong> envia os e-mails automáticos do ClipHook (o código de ativação depois do pagamento e as respostas a quem pede para testar), com o e-mail e o nome de quem vai recebê-los.</li>
+        <li><strong>ImprovMX:</strong> encaminha as mensagens que chegam em contato@cliphook.com.br para a nossa caixa de e-mail.</li>
+        <li><strong>Microsoft:</strong> caixa de e-mail onde lemos as mensagens.</li>
         <li><strong>Autoridades:</strong> quando a lei ou uma ordem judicial exigir.</li>
       </ul>
       <p>Alguns desses serviços podem processar dados fora do Brasil. Nesses casos, a transferência segue o que a LGPD exige (art. 33).</p>
