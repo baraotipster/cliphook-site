@@ -604,6 +604,28 @@ main:focus { outline: none; }
   @media (prefers-reduced-motion: reduce) { .giro > span { transition: none; transform: none; } }
   /* a assinatura da marca: horas de conversa, um trecho fisgado pelo gancho de canto */
   .isca { margin: 56px 0 0; width: 100%; align-self: stretch; }
+  /* Topo: do episódio ao corte pronto (revisão de 04/11/2026, no lugar da faixa simples). */
+  .fluxo { margin: 56px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) 56px 200px; align-items: center; gap: 0 8px; }
+  .fluxo-rot { font-size: 13px; color: var(--text-3); margin-bottom: 14px; }
+  .fluxo-rot b { color: var(--text); font-weight: 600; }
+  .fluxo-nota { margin-top: 18px; font-size: 14px; color: var(--text-2); }
+  .fluxo-nota b { color: var(--lime); font-weight: 700; }
+  .onda { position: relative; display: flex; align-items: center; gap: 2px; height: 64px; }
+  .onda i { flex: 1; height: calc(var(--a) * 100%); background: var(--s4); border-radius: 1px; }
+  .onda i.pego { background: var(--lime); }
+  .onda-pego { position: absolute; top: -6px; bottom: -6px; left: 29.5%; width: 4%; --gancho-folga: -2px; --gancho-braco: 10px; }
+  .onda-pego.gancho-encaixe::before, .onda-pego.gancho-encaixe::after { animation-delay: .5s; }
+  .fluxo-seta { height: 2px; background: linear-gradient(90deg, var(--s4), var(--lime)); position: relative; }
+  .fluxo-seta::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--lime); border-right: 0; }
+  .fluxo-saida { justify-self: end; }
+  .fluxo-celular { border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); }
+  @media (max-width: 700px) {
+    .fluxo { grid-template-columns: 1fr; gap: 0; }
+    .fluxo-seta { width: 2px; height: 40px; margin: 16px auto; background: linear-gradient(180deg, var(--s4), var(--lime)); }
+    .fluxo-seta::after { right: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 7px solid var(--lime); border-bottom: 0; }
+    .fluxo-saida { justify-self: center; text-align: center; }
+    .fluxo-saida .a-vertical { margin: 0 auto; }
+  }
   .isca-trilho { position: relative; height: 36px; background: repeating-linear-gradient(90deg, var(--s4) 0 2px, transparent 2px 6px); }
   .isca-pego { position: absolute; top: 0; bottom: 0; left: 30.7%; width: max(2.6%, 22px); background: repeating-linear-gradient(90deg, var(--lime) 0 2px, transparent 2px 6px); --gancho-folga: -7px; --gancho-braco: 10px; }
   .isca-pego.gancho-encaixe::before, .isca-pego.gancho-encaixe::after { animation-delay: .5s; }
@@ -1026,9 +1048,21 @@ main:focus { outline: none; }
       <a class="link-seta" href="#produto">Ver o app funcionando</a>
     </div>
     <p class="provas"><b class="prova-grupo">98 criadores no grupo de teste</b> · para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
-    <figure class="isca" aria-label="Ilustração: um episódio de duas horas com um trecho marcado">
-      <div class="isca-trilho"><span class="isca-pego gancho gancho-encaixe"></span></div>
-      <figcaption class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">38:12 → 38:51</span><span class="num">2:04:30</span></figcaption>
+    <figure class="fluxo" aria-label="Ilustração: de um episódio de duas horas a um corte vertical pronto">
+      <div class="fluxo-entrada">
+        <p class="fluxo-rot"><b>Episódio</b> · YouTube · 2:04:30</p>
+        <div class="onda" aria-hidden="true"><i style="--a:0.42"></i><i style="--a:0.77"></i><i style="--a:0.81"></i><i style="--a:0.58"></i><i style="--a:0.47"></i><i style="--a:0.66"></i><i style="--a:0.73"></i><i style="--a:0.49"></i><i style="--a:0.73"></i><i style="--a:0.88"></i><i style="--a:0.68"></i><i style="--a:0.53"></i><i style="--a:0.61"></i><i style="--a:0.62"></i><i style="--a:0.55"></i><i style="--a:0.61"></i><i style="--a:0.83"></i><i style="--a:0.72"></i><i style="--a:0.65"></i><i style="--a:0.69"></i><i style="--a:0.68"></i><i style="--a:0.59"></i><i style="--a:0.55"></i><i style="--a:0.68"></i><i style="--a:0.69"></i><i style="--a:0.71"></i><i style="--a:0.73"></i><i style="--a:0.73"></i><i style="--a:0.61"></i><i class="pego" style="--a:0.98"></i><i class="pego" style="--a:0.85"></i><i class="pego" style="--a:1.00"></i><i style="--a:0.71"></i><i style="--a:0.78"></i><i style="--a:0.70"></i><i style="--a:0.61"></i><i style="--a:0.76"></i><i style="--a:0.59"></i><i style="--a:0.52"></i><i style="--a:0.64"></i><i style="--a:0.74"></i><i style="--a:0.61"></i><i style="--a:0.58"></i><i style="--a:0.85"></i><i style="--a:0.77"></i><i style="--a:0.51"></i><i style="--a:0.61"></i><i style="--a:0.63"></i><i style="--a:0.60"></i><i style="--a:0.52"></i><i style="--a:0.83"></i><i style="--a:0.86"></i><i style="--a:0.55"></i><i style="--a:0.64"></i><i style="--a:0.73"></i><i style="--a:0.57"></i><i style="--a:0.43"></i><i style="--a:0.71"></i><i style="--a:0.84"></i><i style="--a:0.61"></i><i style="--a:0.63"></i><i style="--a:0.83"></i><i style="--a:0.71"></i><i style="--a:0.50"></i><i style="--a:0.53"></i><i style="--a:0.72"></i><i style="--a:0.64"></i><i style="--a:0.61"></i><i style="--a:0.83"></i><i style="--a:0.78"></i><i style="--a:0.58"></i><i style="--a:0.54"></i><i style="--a:0.58"></i><i style="--a:0.62"></i><i style="--a:0.62"></i><i style="--a:0.73"></i><i style="--a:0.78"></i><i style="--a:0.64"></i><i style="--a:0.70"></i><i style="--a:0.67"></i><i style="--a:0.61"></i><i style="--a:0.59"></i><i style="--a:0.58"></i><i style="--a:0.69"></i><i style="--a:0.66"></i><i style="--a:0.81"></i><i style="--a:0.69"></i><i style="--a:0.62"></i><i style="--a:0.67"></i><i style="--a:0.52"></i><i style="--a:0.54"></i><i style="--a:0.63"></i><i style="--a:0.82"></i><i style="--a:0.74"></i><i style="--a:0.58"></i><i style="--a:0.75"></i><span class="onda-pego gancho gancho-encaixe"></span></div>
+        <div class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">38:12 → 38:51</span><span class="num">2:04:30</span></div>
+        <p class="fluxo-nota">Trecho fisgado · potencial de viralizar <b class="num">84</b>/100</p>
+      </div>
+      <div class="fluxo-seta" aria-hidden="true"></div>
+      <div class="fluxo-saida">
+        <p class="fluxo-rot"><b>Corte pronto</b> · 9:16 · 39 s</p>
+        <div class="a-vertical fluxo-celular" aria-hidden="true">
+          <svg viewBox="18.7 0 50.6 90" preserveAspectRatio="xMidYMid slice"><use href="#cena" width="160" height="90"/></svg>
+          <p class="a-leg" id="leg-topo" data-estilo="destaque" style="bottom:22%"></p>
+        </div>
+      </div>
     </figure>
   </section>
 
@@ -1848,6 +1882,20 @@ main:focus { outline: none; }
     });
   });
   mostrarEstilo();
+  // ---------- topo: o corte pronto no celular, com a legenda acendendo palavra a palavra ----------
+  var legTopo = $("leg-topo"), fraseTopo = "A gente postava todo dia e nada crescia".split(" "), iTopo = 0, topoNaTela = false;
+  function mostrarTopo() {
+    var tam = BLOCO.destaque, ini = iTopo - (iTopo % tam);
+    legTopo.innerHTML = '<span class="linha">' + fraseTopo.slice(ini, ini + tam).map(function (p, j) {
+      return '<span class="' + (ini + j === iTopo ? "on" : "") + '">' + p + "</span>";
+    }).join(" ") + "</span>";
+  }
+  if (legTopo) {
+    mostrarTopo();
+    new IntersectionObserver(function (e) { topoNaTela = e[0].isIntersecting; }, { threshold: 0.2 }).observe(legTopo);
+    if (!reduzido) setInterval(function () { if (topoNaTela) { iTopo = (iTopo + 1) % fraseTopo.length; mostrarTopo(); } }, 420);
+  }
+
   var estilosNaTela = false;
   new IntersectionObserver(function (e) { estilosNaTela = e[0].isIntersecting; }, { threshold: 0.2 }).observe(legEst);
   if (!reduzido) setInterval(function () { if (estilosNaTela) { iFrase = (iFrase + 1) % frase.length; mostrarEstilo(); } }, 420);
