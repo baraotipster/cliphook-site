@@ -627,6 +627,8 @@ main:focus { outline: none; }
   .fluxo-original { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); margin-bottom: 14px; }
   .fluxo-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .fluxo-credito { margin-top: 10px; font-size: 12px; color: var(--text-3); max-width: 230px; }
+  .demo-pausa { margin-top: 8px; font: 600 12px var(--font, inherit); color: var(--text-2); background: var(--s2); border: 1px solid var(--line-2); border-radius: 99px; padding: 5px 12px; cursor: pointer; }
+  .demo-pausa:hover { color: var(--text); }
   @media (max-width: 700px) {
     .fluxo { grid-template-columns: 1fr; gap: 0; }
     .fluxo-seta { width: 2px; height: 40px; margin: 16px auto; background: linear-gradient(180deg, var(--s4), var(--lime)); }
@@ -1078,6 +1080,7 @@ main:focus { outline: none; }
             aria-label="O mesmo trecho como corte vertical feito no ClipHook: o vídeo reagido em cima, quem reage embaixo e a legenda"></video>
         </div>
         <p class="fluxo-credito">Corte real feito no ClipHook · Cortes das Lives</p>
+        <button class="demo-pausa" id="demo-pausa" type="button">❚❚ Pausar</button>
       </div>
     </figure>
   </section>
@@ -1507,17 +1510,22 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 })();
 
 // Topo: o vídeo original e o corte tocam juntos (o mesmo trecho, sem pausas cortadas): o corte acompanha o original.
-// Quem pede menos movimento no sistema vê os dois parados no primeiro quadro.
+// Rodam sempre (o dono quer o corte rodando, 04/11/2026); quem quiser para com o botão. Se o navegador barrar o play
+// automático (economia de bateria no celular), o botão vira "Assistir".
 (function () {
   var original = document.getElementById("demo-original"), corte = document.getElementById("demo-corte");
+  var botao = document.getElementById("demo-pausa");
   if (!original || !corte) return;
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    original.removeAttribute("autoplay"); corte.removeAttribute("autoplay"); original.pause(); corte.pause();
-    return;
-  }
+  var tocar = function () { return Promise.all([original.play(), corte.play()]); };
+  var mostrar = function () { if (botao) botao.textContent = original.paused ? "▶ Assistir" : "❚❚ Pausar"; };
   original.addEventListener("timeupdate", function () {
     if (Math.abs(corte.currentTime - original.currentTime) > 0.25) corte.currentTime = original.currentTime;
   });
+  ["play", "pause"].forEach(function (ev) { original.addEventListener(ev, mostrar); });
+  if (botao) botao.addEventListener("click", function () {
+    if (original.paused) tocar().catch(function () {}); else { original.pause(); corte.pause(); }
+  });
+  tocar().catch(mostrar);
 })();
 </script>
 <script>
