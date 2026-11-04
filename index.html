@@ -592,6 +592,7 @@ main:focus { outline: none; }
   .hero .acoes { align-items: center; }
   .hero .acoes .link-seta { margin: 0 0 0 12px; }
   .provas { margin-top: 28px; color: var(--text-2); font-size: 15px; }
+  .provas .prova-grupo { color: var(--text); font-weight: 600; }  /* número informado pelo dono (04/11/2026): atualizar quando o grupo crescer */
   .hero h1 .marca-texto { white-space: nowrap; }
   /* a assinatura da marca: horas de conversa, um trecho fisgado pelo gancho de canto */
   .isca { margin: 56px 0 0; width: 100%; align-self: stretch; }
@@ -1016,7 +1017,7 @@ main:focus { outline: none; }
       <a class="btn" href="#testador" data-testador>Seja um testador</a>
       <a class="link-seta" href="#produto">Ver o app funcionando</a>
     </div>
-    <p class="provas">Para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
+    <p class="provas"><b class="prova-grupo">98 criadores no grupo de teste</b> · para Windows · o vídeo não sai do seu PC · você aprova cada corte · a partir de R$ 29,90/mês</p>
     <figure class="isca" aria-label="Ilustração: um episódio de duas horas com um trecho marcado">
       <div class="isca-trilho"><span class="isca-pego gancho gancho-encaixe"></span></div>
       <figcaption class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">38:12 → 38:51</span><span class="num">2:04:30</span></figcaption>
@@ -1139,6 +1140,7 @@ main:focus { outline: none; }
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas longas e hesitações removidas</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Som no volume certo para as redes</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Música de fundo que abaixa quando alguém fala</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Efeitos sonoros e zoom com movimento, se você quiser</li>
           </ul>
         </div>
         <div class="painel linha-edicao" role="img" aria-label="Exemplo de corte antes e depois da edição">
@@ -1160,6 +1162,8 @@ main:focus { outline: none; }
           <p class="lead">A palavra falada acende no ritmo da fala, e a legenda sai do caminho do rosto. Cada corte vem com o vídeo, a capa e o texto do post.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Três estilos: Destaque, Caixa e Minimalista</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Chamada na tela nos primeiros segundos, para fazer parar quem está rolando o feed</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Palavras-chave em destaque e imagens suas no vídeo</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Legenda também em arquivo, para o seu editor</li>
           </ul>
         </div>
@@ -1196,6 +1200,9 @@ main:focus { outline: none; }
         <div><h3>Capa para cada corte</h3><p>O quadro mais nítido de quem fala, com uma chamada fiel ao que foi dito.</p></div>
         <div><h3>Busca em tudo o que foi dito</h3><p>Ache uma frase em todos os seus vídeos e crie um corte a partir dali.</p></div>
         <div><h3>Vários vídeos de uma vez</h3><p>Coloque vários vídeos na fila e exporte todos os cortes aprovados de uma vez.</p></div>
+        <div><h3>Cortes longos horizontais</h3><p>Nos episódios com mais de 20 minutos, um clique e a IA sugere cortes de 6 a 15 minutos em 16:9, para o YouTube, com os Shorts de cada bloco agrupados.</p></div>
+        <div><h3>Cortes sobre um assunto</h3><p>Escreva um tema e a IA procura no vídeo os trechos sobre ele.</p></div>
+        <div><h3>Texto pronto para cada rede</h3><p>Título, texto e hashtags no formato de TikTok, Reels, Shorts e LinkedIn. Um clique copia.</p></div>
       </div>
       <a class="link-seta" href="recursos.html">Todos os recursos</a>
     </div>
@@ -1287,7 +1294,7 @@ main:focus { outline: none; }
       <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
       <p>Cortes verticais editados a partir de vídeos longos, no seu computador.</p>
     </div>
-    <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a></nav>
+    <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a><a href="comparar.html">Comparar</a></nav>
     <nav aria-label="Ajuda"><b>Ajuda</b><a href="perguntas.html">Perguntas frequentes</a><a href="preco.html#requisitos">Requisitos</a><a href="termos.html">Termos de uso</a><a href="privacidade.html">Política de privacidade</a><a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a></nav>
     <div class="fino"><span>© 2026 ClipHook</span><span>Ricardo Chiarini Teixeira Gonçalves · MEI · CNPJ 69.912.713/0001-28 · Rafard/SP</span><span>As pessoas e os dados da demonstração são ilustrativos.</span></div>
   </div>
@@ -1538,7 +1545,7 @@ main:focus { outline: none; }
       li.innerHTML =
         '<button class="a-card-abrir" type="button" aria-label="Abrir o corte ' + c.titulo + '">' +
           '<div class="a-thumb">' + miniatura(c) + seloHtml(c) + '<span class="dur">' + relogio(c.dur) + "</span></div>" +
-          '<div class="a-card-corpo"><span class="a-h5">' + c.titulo + '</span><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Nota editorial " + c.relev + "</b></p></div>" +
+          '<div class="a-card-corpo"><span class="a-h5">' + c.titulo + '</span><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Potencial de viralizar " + c.relev + "</b></p></div>" +
         "</button>" +
         '<div class="a-card-acoes">' + (c.exportado
           ? '<span class="feito">Já exportado como clip_0' + c.id + ".mp4</span>"
@@ -1584,7 +1591,7 @@ main:focus { outline: none; }
           (c.decisao === "sim" ? '<button class="a-btn a-prim largo" type="button" id="i-exportar">' + icone("i-exportar") + "Exportar este corte</button>" : "") +
         "</div>";
     $("a-insp").innerHTML =
-      '<div class="a-insp-topo"><span>Corte ' + ordem + " de 3</span><span>Nota editorial <b>" + c.relev + "</b> / 100</span></div>" +
+      '<div class="a-insp-topo"><span>Corte ' + ordem + " de 3</span><span>Potencial de viralizar <b>" + c.relev + "</b> / 100</span></div>" +
       (c.exportado ? '<div class="a-seg" role="group" aria-label="O que mostrar"><button type="button" data-aba="previa" aria-pressed="' + (st.aba === "previa") + '">Prévia da edição</button><button type="button" data-aba="exportado" aria-pressed="' + (st.aba === "exportado") + '">Vídeo exportado</button></div>' : "") +
       '<div class="a-midia">' +
         '<div class="a-vertical" aria-label="Prévia vertical do corte editado" role="img">' +

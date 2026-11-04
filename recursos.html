@@ -641,7 +641,7 @@ main:focus { outline: none; }
     <h1>Tudo de que um corte precisa para ir ao ar.</h1>
     <p class="lead">Do recorte à legenda, da capa ao texto do post: o que o ClipHook faz em cada corte.</p>
     <nav class="indice" aria-label="Nesta página">
-      <a href="#falante">Quem fala</a><a href="#legenda">Legendas</a><a href="#edicao">Edição</a><a href="#versoes">Versões</a><a href="#audio">Áudio</a><a href="#revisao">Revisão</a><a href="#marca">Marca</a><a href="#capa">Capa</a><a href="#volume">Busca e fila</a><a href="#privacidade">Privacidade</a><a href="#editores">Editores</a>
+      <a href="#falante">Quem fala</a><a href="#legenda">Legendas</a><a href="#edicao">Edição</a><a href="#imagens">Imagens</a><a href="#versoes">Versões</a><a href="#audio">Áudio</a><a href="#revisao">Revisão</a><a href="#marca">Marca</a><a href="#longos">Cortes longos</a><a href="#capa">Capa</a><a href="#volume">Busca e fila</a><a href="#placa">Placa de vídeo</a><a href="#privacidade">Privacidade</a><a href="#editores">Editores</a>
     </nav>
   </section>
 
@@ -655,6 +655,7 @@ main:focus { outline: none; }
         <dt>Pensado para várias pessoas em cena</dt><dd>Podcast com dois microfones, debate, mesa-redonda. Rostos pequenos (plateia, plano aberto) nunca viram alvo.</dd>
         <dt>Câmera estável</dt><dd>O recorte só se move quando a troca de falante se confirma, e uma troca de câmera vira corte seco, sem balançar.</dd>
         <dt>Vídeos de react</dt><dd>No modo Reação, o vídeo reagido vai em cima e a webcam de quem reage embaixo, cada um em close. O ClipHook acha os dois sozinho; o chat da live e o fundo preto ficam de fora.</dd>
+        <dt>React que se ajusta sozinho</dt><dd>Quando quem reage ocupa a tela inteira, o corte passa sozinho para uma pessoa só, e volta para a tela dividida quando o vídeo reagido aparece de novo.</dd>
         <dt>Você no controle</dt><dd>Prefere outro enquadramento? Posicione o recorte à mão, corte a corte.</dd>
       </dl>
     </section>
@@ -667,6 +668,10 @@ main:focus { outline: none; }
       <dl class="detalhe">
         <dt>Destaque, Caixa e Minimalista</dt><dd>Caixa alta com contorno, faixa escura atrás do texto, ou texto limpo com sombra. Escolha por corte e veja na prévia antes de exportar.</dd>
         <dt>Blocos que respeitam a frase</dt><dd>O fim de uma frase não divide a tela com o começo da próxima, e uma pausa longa abre um bloco novo.</dd>
+        <dt>Nomes sempre certos</dt><dd>Cadastre na marca os nomes que a transcrição costuma errar (convidados, apelidos, marcas). O ClipHook corrige na legenda, no título, nas hashtags e na capa, e os vídeos novos já saem certos.</dd>
+        <dt>Palavras-chave em destaque</dt><dd>As palavras que carregam a ideia ganham destaque na legenda. A IA sugere, e só entram palavras que estão mesmo no trecho.</dd>
+        <dt>Palavrão censurado, se você quiser</dt><dd>Na legenda, o palavrão aparece com asteriscos; no vídeo exportado, o áudio dele é coberto.</dd>
+        <dt>Corrija qualquer palavra</dt><dd>Errou uma palavra? Corrija direto na legenda do corte, e a correção vale na prévia e no vídeo.</dd>
       </dl>
     </section>
 
@@ -677,9 +682,24 @@ main:focus { outline: none; }
       </div>
       <dl class="detalhe">
         <dt>Pausas longas cortadas</dt><dd>Silêncios longos saem. Pausas naturais ficam, para a fala continuar respirando.</dd>
+        <dt>Chamada no começo do vídeo</dt><dd>Se quiser, a chamada da capa aparece nos 3 primeiros segundos do corte, no alto da tela e nas cores da marca, para segurar quem está rolando o feed.</dd>
         <dt>Zoom sutil nos cortes secos</dt><dd>Depois de cada pausa cortada, o quadro alterna entre o plano normal e um pouco mais perto. É o jeito usual de esconder o pulo da imagem.</dd>
+        <dt>Zoom com movimento e efeitos sonoros</dt><dd>Se quiser, o quadro se aproxima devagar nas falas fortes, com um “whoosh” na aproximação e um “pop” nas palavras-chave. Tudo opcional, por corte.</dd>
         <dt>Imagem mais limpa, na medida do vídeo</dt><dd>O ClipHook mede cada trecho e corrige só o que precisa: ruído, luz fraca, ampliação mais limpa do recorte e nitidez na medida da ampliação. Vídeo que já está bom quase não muda. Dá para comparar antes e depois no app, e escolher Natural, Aprimorada ou Desligada.</dd>
-        <dt>Ajuste fino</dt><dd>Início e fim de meio em meio segundo, título editável e cada recurso liga e desliga por corte.</dd>
+        <dt>Ajuste fino</dt><dd>Início e fim de 0,1 em 0,1 segundo ou digitando o tempo, título editável, e cada recurso liga e desliga por corte. A prévia pausa e volta ao início com um clique.</dd>
+      </dl>
+    </section>
+
+    <section class="recurso-pagina" id="imagens">
+      <div>
+        <h2>Suas imagens dentro do corte.</h2>
+        <p class="lead">Ponha um logo, um print ou a foto de quem está sendo citado no meio do vídeo, na hora e no lugar certos.</p>
+      </div>
+      <dl class="detalhe">
+        <dt>Arraste para posicionar</dt><dd>A imagem aparece direto na prévia: arraste para onde quiser e ajuste o tamanho.</dd>
+        <dt>Quando entra e quanto dura</dt><dd>Numa linha do tempo do corte, escolha o momento de entrada (ou digite o tempo) e por quanto tempo ela fica na tela, até 1 minuto.</dd>
+        <dt>Fundo tirado sozinho</dt><dd>JPG, PNG, WebP e outros formatos comuns: o ClipHook tira o fundo e a imagem entra recortada, pronta para usar.</dd>
+        <dt>Som de entrada</dt><dd>Um “pop” curto quando a imagem aparece, para chamar o olhar. Dá para desligar.</dd>
       </dl>
     </section>
 
@@ -709,14 +729,19 @@ main:focus { outline: none; }
     <section class="recurso-pagina" id="revisao">
       <div>
         <h2>A IA sugere. Você decide.</h2>
-        <p class="lead">Cada corte chega com o motivo da escolha, um título, um texto para o post e uma nota de relevância. Nada é exportado sem o seu sim.</p>
+        <p class="lead">Cada corte chega com o motivo da escolha, um título, um texto para o post e uma nota de 0 a 100 do potencial de viralizar. Nada é exportado sem o seu sim.</p>
       </div>
       <dl class="detalhe">
+        <dt>Nota de 0 a 100 do potencial de viralizar</dt><dd>Cada corte chega com uma nota que resume os sete critérios abaixo e o motivo dela. É uma avaliação do trecho, não uma garantia de views.</dd>
         <dt>Análise em sete critérios</dt><dd>Gancho inicial, clareza, desenvolvimento, conclusão, curiosidade, relevância e autonomia (funcionar sem o resto do vídeo), cada um com a frase do vídeo que justifica a avaliação. A frase é conferida na transcrição; se não estiver lá, a avaliação é descartada.</dd>
+        <dt>Aprende o gosto do canal</dt><dd>A cada vídeo revisado, o ClipHook guarda o que você aprovou e recusou naquela marca e leva isso em conta na próxima análise. Cada cliente da agência tem o seu.</dd>
         <dt>Aviso de contexto</dt><dd>Se o trecho depende do que foi dito antes, o corte é marcado e um clique inclui o começo da ideia.</dd>
+        <dt>Procure cortes por assunto</dt><dd>Escreva o que você quer do vídeo (“dicas de investimento”, “momentos engraçados”) e a IA procura trechos sobre isso. Os cortes novos entram na lista, sem mexer nos que você já revisou.</dd>
         <dt>Prévia editada antes de exportar</dt><dd>Assista ao corte já com pausas cortadas, zoom, enquadramento e legenda, direto no app.</dd>
         <dt>Decisões guardadas</dt><dd>Analisou o vídeo de novo? As decisões dos cortes iguais continuam, e a versão anterior fica salva.</dd>
         <dt>Refazer só o que mudou</dt><dd>Mudou o estilo ou o enquadramento de um corte exportado? Ele é marcado para exportar de novo, sem refazer os outros.</dd>
+        <dt>Recusou, passou para o próximo</dt><dd>O corte recusado sai da lista e o próximo já abre. O ClipHook guarda o que você recusou para aprender o que não quer.</dd>
+        <dt>Usar sempre</dt><dd>Gostou de uma escolha feita num corte? Marque “usar sempre” e ela vira o padrão daquele formato (vertical ou horizontal) na marca.</dd>
       </dl>
     </section>
 
@@ -732,13 +757,26 @@ main:focus { outline: none; }
       </dl>
     </section>
 
+    <section class="recurso-pagina" id="longos">
+      <div>
+        <h2>Do mesmo episódio, Shorts e cortes longos horizontais.</h2>
+        <p class="lead">Em vídeos de mais de 20 minutos, um clique em “Criar cortes longos horizontais” e a IA sugere blocos de 6 a 15 minutos que se entendem sozinhos, para publicar no YouTube, e agrupa os Shorts que saem de dentro de cada um.</p>
+      </div>
+      <dl class="detalhe">
+        <dt>Blocos com começo, meio e fim</dt><dd>Mesmo critério dos cortes curtos: abertura que prende, um assunto desenvolvido e um fechamento.</dd>
+        <dt>Pronto para o YouTube</dt><dd>16:9, com legenda e capa no tamanho do YouTube, no ritmo de vídeo longo.</dd>
+        <dt>Só quando você quiser</dt><dd>Os blocos usam as horas de IA do seu plano. Gastam horas só quando você pede os blocos; a análise dos cortes curtos continua igual.</dd>
+      </dl>
+    </section>
     <section class="recurso-pagina" id="capa">
       <div>
         <h2>Uma capa para cada corte.</h2>
         <p class="lead">Junto com o vídeo sai uma capa 1080×1920, feita com um quadro real do corte: o mais nítido, com o rosto de quem fala de frente.</p>
       </div>
       <dl class="detalhe">
-        <dt>Três estilos</dt><dd>Retrato, Editorial (preto e branco) e Cinema, com letra condensada em caixa alta e a palavra-chave em destaque.</dd>
+        <dt>Quatro estilos</dt><dd>Retrato, Editorial (preto e branco) e Cinema, com letra condensada em caixa alta e a palavra-chave em destaque. E Citação: quem fala recortado sobre a cor da marca, com a frase em destaque.</dd>
+        <dt>Citação em debates</dt><dd>Num debate, a capa Citação põe os dois lados frente a frente, cada um recortado de um bom quadro do vídeo. No corte horizontal fica lado a lado; no vertical, empilhada.</dd>
+        <dt>Edite a capa</dt><dd>Mude a chamada e a palavra em destaque, e ponha imagens suas por cima, com o fundo já tirado. As cores da Citação vêm da marca.</dd>
         <dt>Chamada fiel ao vídeo</dt><dd>Escreva a sua ou peça sugestões à IA. Uma sugestão só aparece se o ClipHook achar no trecho a frase que a sustenta.</dd>
         <dt>Nada inventado</dt><dd>O tratamento ajusta cor e luz. O rosto e a cena não são alterados.</dd>
       </dl>
@@ -752,7 +790,21 @@ main:focus { outline: none; }
       <dl class="detalhe">
         <dt>Busca no que foi dito</dt><dd>Uma palavra ou frase em todos os vídeos, sem se importar com acentos. Abra o vídeo no segundo exato ou crie um corte a partir dali.</dd>
         <dt>Fila de análise</dt><dd>Escolha vários vídeos de uma vez; eles são analisados um depois do outro.</dd>
-        <dt>Exportar aprovados</dt><dd>Um clique exporta os cortes aprovados de todos os vídeos. Se um falhar, os outros seguem, e o aviso diz qual foi.</dd>
+        <dt>Exportar aprovados</dt><dd>Um clique exporta os cortes aprovados de todos os vídeos. Se um falhar, os outros seguem, e o aviso diz qual foi e oferece tentar de novo.</dd>
+        <dt>Acompanhe as exportações</dt><dd>A aba Exportados mostra o andamento de cada corte. Terminou? O corte fica marcado como exportado e um botão abre a pasta com o arquivo selecionado.</dd>
+        <dt>Vídeo por link</dt><dd>Cole o link de um vídeo do YouTube ou do TikTok e o ClipHook baixa e já analisa. Antes, você confirma que tem autorização de quem publicou.</dd>
+      </dl>
+    </section>
+
+    <section class="recurso-pagina" id="placa">
+      <div>
+        <h2>Transcrição rápida na sua placa de vídeo.</h2>
+        <p class="lead">A transcrição é a parte pesada, e roda no seu computador. Com placa de vídeo, ela anda muito mais rápido.</p>
+      </div>
+      <dl class="detalhe">
+        <dt>NVIDIA, AMD ou Intel</dt><dd>O instalador vê qual é a sua placa e prepara a transcrição para ela, com o mesmo modelo de transcrição nos três casos.</dd>
+        <dt>Sem placa também funciona</dt><dd>Sem placa de vídeo, a transcrição roda no processador. Leva mais tempo, e o resto do programa funciona igual.</dd>
+        <dt>Transcreveu uma vez, está feito</dt><dd>Analisou o vídeo de novo ou mudou a marca? A transcrição é reaproveitada, sem refazer.</dd>
       </dl>
     </section>
 
@@ -775,7 +827,8 @@ main:focus { outline: none; }
       <dl class="detalhe">
         <dt>clip_NN.mp4</dt><dd>1080×1920, editado e legendado.</dd>
         <dt>clip_NN.srt</dt><dd>Legenda no tempo do vídeo editado, para subir separada.</dd>
-        <dt>clip_NN.txt</dt><dd>Título, texto e hashtags sugeridos para o post.</dd>
+        <dt>clip_NN.xml</dt><dd>Projeto do corte para o Premiere Pro e o DaVinci Resolve, sem plugin: os mesmos trechos, o recorte e o zoom sobre o vídeo original, para terminar a edição no seu programa.</dd>
+        <dt>clip_NN.txt</dt><dd>Título, texto e hashtags sugeridos para o post. Com a versão pronta para TikTok e Reels, YouTube Shorts e LinkedIn; no app, um clique copia o texto de cada rede.</dd>
         <dt>clip_NN_capa.jpg</dt><dd>Capa 1080×1920 com a chamada.</dd>
         <dt>pacote.md (opcional)</dt><dd>Do episódio inteiro: textos de post para Instagram, LinkedIn e X, um roteiro de carrossel e ideias de pauta. Cada frase citada foi conferida na transcrição e vem com o horário; sugestão sem citação encontrada fica de fora. São sugestões para você revisar.</dd>
       </dl>
@@ -798,7 +851,7 @@ main:focus { outline: none; }
       <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
       <p>Cortes verticais editados a partir de vídeos longos, no seu computador.</p>
     </div>
-    <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a></nav>
+    <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a><a href="comparar.html">Comparar</a></nav>
     <nav aria-label="Ajuda"><b>Ajuda</b><a href="perguntas.html">Perguntas frequentes</a><a href="preco.html#requisitos">Requisitos</a><a href="termos.html">Termos de uso</a><a href="privacidade.html">Política de privacidade</a><a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a></nav>
     <div class="fino"><span>© 2026 ClipHook</span><span>Ricardo Chiarini Teixeira Gonçalves · MEI · CNPJ 69.912.713/0001-28 · Rafard/SP</span></div>
   </div>
