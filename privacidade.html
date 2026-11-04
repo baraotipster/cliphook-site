@@ -633,7 +633,7 @@ main:focus { outline: none; }
   <section class="wrap pagina-topo">
     <h1>Política de privacidade</h1>
     <p class="lead">Resumo: o ClipHook roda no seu computador. Seus vídeos não são enviados a nós nem a ninguém. Nós só recebemos os dados da compra, informados na página de assinatura.</p>
-    <p class="vigencia">Versão 1.1 · em vigor a partir de 4 de novembro de 2026</p>
+    <p class="vigencia">Versão 1.2 · em vigor a partir de 4 de novembro de 2026</p>
   </section>
 
   <div class="wrap legal">
@@ -689,7 +689,7 @@ main:focus { outline: none; }
       <p>Não vendemos dados, não os usamos para publicidade de terceiros e não enviamos marketing de outros produtos sem o seu consentimento.</p>
 
       <h2 id="site">6. Este site</h2>
-      <p>Este site não usa cookies, ferramentas de análise, pixels de anúncio nem scripts de terceiros. As fontes ficam no próprio site. O GitHub, que hospeda o site (GitHub Pages), pode registrar dados técnicos de acesso (como endereço IP, data e página), que guardamos por 6 meses, como exige o Marco Civil da Internet (Lei 12.965/2014, art. 15).</p>
+      <p>Este site não usa cookies, pixels de anúncio nem scripts de terceiros. As fontes ficam no próprio site. Para saber quais páginas são visitadas, contamos no nosso servidor, só em totais por dia, a página aberta, o site ou o link de onde a visita veio e os cliques em “Seja um testador”, “Assinar” e “Baixar”. Essa contagem não usa cookie, não guarda o endereço IP e não identifica quem visitou. O GitHub, que hospeda o site (GitHub Pages), pode registrar dados técnicos de acesso (como endereço IP, data e página), que guardamos por 6 meses, como exige o Marco Civil da Internet (Lei 12.965/2014, art. 15).</p>
       <p>Na página de assinatura, os dados do formulário vão para o nosso servidor de licenças (seção 5). No pagamento com cartão, você vai para a página do Asaas, que segue a política de privacidade dele.</p>
 
       <h2 id="compartilhamento">7. Com quem compartilhamos</h2>
@@ -809,6 +809,31 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+window.medir = function (evento) {
+  try {
+    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
+    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
+    var src = new URLSearchParams(location.search).get("src") || "";
+    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var url = "https://licencas.cliphook.com.br/visita";
+    if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
+      fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});
+    }
+  } catch (_) { /* medir nunca atrapalha a página */ }
+};
+if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "https:") {
+  window.medir("visita");
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a, button");
+    if (!a) return;
+    if (a.matches("[data-testador]")) window.medir("testador");
+    else if (/assinar\.html/.test(a.getAttribute("href") || "")) window.medir("assinar");
+    else if (/baixar|instalador/.test(a.getAttribute("href") || "")) window.medir("baixar");
+  });
+} else window.medir = function () {};
+
 // Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
 (function () {
   var dlg = document.getElementById("testador");
@@ -842,6 +867,7 @@ main:focus { outline: none; }
       })
       .then(function (j) {
         document.getElementById("testador-baixar").href = servidor + j.download;
+        window.medir("testador_enviado");
         form.hidden = true;
         var ok = document.getElementById("testador-ok");
         ok.hidden = false;

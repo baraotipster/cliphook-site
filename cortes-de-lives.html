@@ -756,6 +756,31 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+window.medir = function (evento) {
+  try {
+    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
+    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
+    var src = new URLSearchParams(location.search).get("src") || "";
+    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var url = "https://licencas.cliphook.com.br/visita";
+    if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
+      fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});
+    }
+  } catch (_) { /* medir nunca atrapalha a página */ }
+};
+if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "https:") {
+  window.medir("visita");
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a, button");
+    if (!a) return;
+    if (a.matches("[data-testador]")) window.medir("testador");
+    else if (/assinar\.html/.test(a.getAttribute("href") || "")) window.medir("assinar");
+    else if (/baixar|instalador/.test(a.getAttribute("href") || "")) window.medir("baixar");
+  });
+} else window.medir = function () {};
+
 // Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
 (function () {
   var dlg = document.getElementById("testador");
@@ -789,6 +814,7 @@ main:focus { outline: none; }
       })
       .then(function (j) {
         document.getElementById("testador-baixar").href = servidor + j.download;
+        window.medir("testador_enviado");
         form.hidden = true;
         var ok = document.getElementById("testador-ok");
         ok.hidden = false;
