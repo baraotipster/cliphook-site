@@ -12,6 +12,7 @@
 <meta property="og:image" content="https://cliphook.com.br/compartilhar.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ClipHook: cortes verticais editados a partir de vídeos longos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="google-site-verification" content="Q3j86Mugo9YYxF2Ay-y8UtQ1iHPeaCLZNZmU74NZMH0">
@@ -196,35 +197,9 @@ h2 { font-size: clamp(40px, 4.6vw, 64px); line-height: .95; max-width: 16em; }
 .painel { border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); padding: 20px; }
 .nota { margin-top: 40px; font-size: 13px; color: var(--text-2); }
 
-/* comparação */
-.tabela { margin-top: 56px; border: 1px solid var(--line-2); border-radius: var(--r-lg); overflow-x: auto; position: relative; }
-.tabela:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-/* Celular: os planos viram cartões empilhados (a tabela de 692 px escondia PCs e os botões do Agência e do Anual). */
-@media (max-width: 700px) {
-  .planos table { min-width: 0; }
-  .planos thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .planos tr { display: block; padding: 18px 20px; border-bottom: 1px solid var(--line); }
-  .planos tr:last-child { border-bottom: 0; }
-  .planos td { display: flex; gap: 12px; justify-content: space-between; padding: 6px 0; border: 0; width: auto; background: none; }
-  .planos td[data-rotulo]::before { content: attr(data-rotulo); color: var(--text-3); font-size: 14px; flex: none; }
-  .planos .celula { text-align: right; }
-  .planos td:first-child { display: block; font-size: 18px; color: var(--text); }
-  .planos td:first-child::before { content: none; }
-  .planos td:last-child { padding-top: 12px; }
-  .planos td:last-child .btn { width: 100%; justify-content: center; }
-}
-table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 640px; }
-th, td { text-align: left; padding: 18px 22px; border-bottom: 1px solid var(--line); vertical-align: top; }
-tr:last-child td { border-bottom: 0; }
-thead th { font-size: 14px; font-weight: 500; color: var(--text-2); background: var(--s1); }
-thead th:last-child { color: var(--lime); }
-tbody td:first-child { color: var(--text-2); width: 24%; }
-tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); }
-
 .requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
-.requisitos li { display: flex; gap: 10px; }
+.requisitos li { display: flex; gap: 10px; color: var(--text-2); }
 .requisitos h3 { font-size: 18px; }
-.requisitos li { color: var(--text-2); }
 .requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
 .requisitos + .requisitos { margin-top: 40px; }
 
@@ -267,11 +242,6 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 .arvore b { color: var(--text); font-weight: 500; }
 .arvore i { color: var(--text-3); font-style: normal; }
 
-.grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
-.cartao { background: var(--s1); border-radius: var(--r-lg); padding: 24px; }
-.cartao h3 { font-size: 18px; letter-spacing: -0.015em; }
-.cartao p { margin-top: 8px; color: var(--text-2); font-size: 15px; }
-.cartao svg.icone { width: 22px; height: 22px; color: var(--lime); margin-bottom: 16px; }
 
 /* recursos da landing: lista em duas colunas, sem cartões; os dois primeiros abrem maiores */
 .lista-recursos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; margin-top: 48px; }
@@ -299,7 +269,6 @@ details ul { margin: -12px 0 0; padding-left: 20px; }
 .legal-texto strong { color: var(--text); font-weight: 500; }
 .legal-texto a { color: var(--lime); text-underline-offset: 3px; }
 .preencher { background: var(--lime-soft); color: var(--lime); border-radius: 4px; padding: 0 4px; font-weight: 500; }
-.rascunho { margin-top: 28px; border-radius: var(--r); background: var(--danger-soft); color: #ffc3c7; padding: 14px 18px; font-size: 14px; max-width: 70ch; }
 .vigencia { margin-top: 16px; font-size: 14px; color: var(--text-3); }
 @media (max-width: 860px) {
   .legal { grid-template-columns: 1fr; gap: 32px; }
@@ -311,7 +280,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .rodape { display: grid; grid-template-columns: 1.2fr repeat(2, 1fr); gap: 32px; }
 .rodape nav { display: flex; flex-direction: column; gap: 8px; }
 .rodape nav b { color: var(--text); font-weight: 500; margin-bottom: 4px; }
-.rodape nav a { text-decoration: none; }
+.rodape nav a { display: inline-flex; align-items: center; min-height: 32px; text-decoration: none; }  /* alvo de toque de 32 px */
 .rodape nav a:hover { color: var(--text); }
 .rodape .fino { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; }
 .rodape p { margin-top: 12px; max-width: 34ch; }
@@ -331,7 +300,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   section.bloco { padding: 96px 0; }
   .etapa { grid-template-columns: 1fr; gap: 20px; padding: 56px 0; }
   .etapa::before { padding-top: 0; }
-  .grade, .lista-recursos { grid-template-columns: 1fr; }
+  .lista-recursos { grid-template-columns: 1fr; }
   .rodape { grid-template-columns: 1fr 1fr; }
   .rodape > div:first-child { grid-column: 1 / -1; }
   .pagina-topo { padding-top: 64px; padding-bottom: 48px; }
@@ -347,8 +316,6 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
-/* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
-.rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
 
 /* ---------- página de preço ---------- */
 .garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
@@ -442,7 +409,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .campos { display: grid; gap: 22px; }
 .campo label, .pix-dados > label { display: block; font-size: 15px; font-weight: 500; margin-bottom: 8px; }
 .campo input, .pix-dados textarea {
-  display: block; width: 100%; min-height: 48px; padding: 0 14px; border-radius: var(--r); border: 1px solid var(--line-2);
+  display: block; width: 100%; min-height: 48px; padding: 0 14px; border-radius: var(--r); border: 1px solid var(--line-campo);
   background: var(--s1); color: var(--text); font-size: 16px; caret-color: var(--lime);
   transition: border-color .16s var(--ease), background-color .16s var(--ease);
 }
@@ -591,6 +558,21 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .selos svg { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--lime); }
 .selos b { display: block; color: var(--text); font-size: 14px; font-weight: 600; margin-bottom: 2px; }
 @media (max-width: 640px) { .selos { grid-template-columns: 1fr; } }
+
+/* Celular pequeno (320 px): o botão do cabeçalho passava 32 px da tela */
+@media (max-width: 380px) {
+  .nav .wrap { gap: 12px; }
+  .nav .btn-sm { padding: 0 10px; }
+}
+.testador-ok h2:focus { outline: none; }
+
+/* Acessibilidade (revisão de 04/11/2026) */
+:root { --line-campo: rgba(245, 245, 240, .34); }  /* borda de campo: 3:1 sobre o fundo (WCAG 1.4.11); --line-2 dava 1,5:1 */
+.testador input, .testador select { border-color: var(--line-campo); }
+.testador .testador-dica { margin-top: -8px; color: var(--text-2); font-size: 13px; }
+.pular { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: var(--r); background: var(--lime); color: var(--lime-ink); font-weight: 600; }
+.pular:focus { top: 12px; }
+main:focus { outline: none; }
 </style>
 <style>
   /* ---------- hero ---------- */
@@ -634,7 +616,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .a-lib .a-prim { width: 100%; }
   .a-colar { display: flex; align-items: center; gap: 6px; color: var(--text-2); font-size: 13px; padding: 4px; }
   .a-colar svg { width: 14px; height: 14px; color: var(--text-3); }
-  .a-lib h4 { margin: 8px 4px 0; font-size: 12px; font-weight: 500; color: var(--text-3); }
+  .a-lib .a-h4 { margin: 8px 4px 0; font-size: 12px; font-weight: 500; color: var(--text-3); }
   .a-proj { border-radius: 7px; padding: 8px; }
   .a-proj[aria-current="true"] { background: var(--s3); position: relative; }
   .a-proj[aria-current="true"]::before, .a-proj[aria-current="true"]::after, .a-card[aria-current="true"]::before, .a-card[aria-current="true"]::after { content: ""; position: absolute; width: 10px; height: 10px; border: 0 solid var(--lime); pointer-events: none; }
@@ -647,7 +629,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
   .a-palco { padding: 20px 22px; overflow-y: auto; min-height: 0; scrollbar-width: thin; scrollbar-color: var(--s3) transparent; }
   .a-cab { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
-  .a-cab h3 { font-size: 21px; letter-spacing: -0.015em; }
+  .a-cab .a-h3 { font-weight: 700; font-size: 21px; letter-spacing: -0.015em; }
   .a-cab p { color: var(--text-2); font-size: 13px; margin-top: 2px; }
   .a-cab p b { color: var(--text); font-weight: 500; }
   .a-exp { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -673,7 +655,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .a-trilho .trecho { position: absolute; top: -2px; bottom: -2px; background: var(--lime); border-radius: 2px; opacity: .85; }
   .a-trilho .cabeca { position: absolute; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%; background: var(--text); }
 
-  .a-sec h4 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .a-sec .a-h4 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
   .a-sec-topo { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
   .a-sec-topo p { font-size: 12px; color: var(--text-3); }
   .a-legenda-estados { display: flex; gap: 12px; font-size: 12px; color: var(--text-2); }
@@ -712,7 +694,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .a-selo[data-estado="exportada"] { color: var(--lime); }
   .a-selo[data-estado="recusada"] { color: var(--danger); }
   .a-card-corpo { padding: 10px 12px 4px; }
-  .a-card-corpo h5 { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; min-height: 2.7em; }
+  .a-card-corpo .a-h5 { display: block; margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; min-height: 2.7em; }
   .a-card-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-size: 11px; color: var(--text-3); font-variant-numeric: tabular-nums; }
   .a-card-meta b { color: var(--text-2); font-weight: 500; }
   .a-card-acoes { display: flex; gap: 6px; padding: 8px 12px 12px; margin-top: auto; }
@@ -763,7 +745,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   .a-decisao .recusar[aria-pressed="true"] { background: var(--danger-soft); color: var(--danger); }
   .a-exportado { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 8px; background: var(--s2); font-size: 12px; color: var(--text-2); }
   .a-exportado b { color: var(--lime); }
-  .a-bloco h5 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
+  .a-bloco .a-h5 { display: block; margin: 0 0 8px; font-size: 13px; font-weight: 600; }
   .a-bloco p { font-size: 13px; color: var(--text-2); }
   .a-edicao { display: flex; flex-direction: column; gap: 10px; }
   .a-edicao .rot { font-size: 12px; color: var(--text-3); margin-bottom: 4px; }
@@ -846,12 +828,63 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   }
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ClipHook", "operatingSystem": "Windows 11",
- "applicationCategory": "MultimediaApplication", "url": "https://cliphook.com.br/",
- "description": "Transforma vídeos longos em cortes verticais editados e legendados, no seu computador. Assinatura mensal.",
- "offers": [{"@type": "Offer", "name": "Básico", "price": "29.90", "priceCurrency": "BRL"},
-            {"@type": "Offer", "name": "Pro", "price": "75.00", "priceCurrency": "BRL"},
-            {"@type": "Offer", "name": "Agência", "price": "200.00", "priceCurrency": "BRL"}]}
+[
+ {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ClipHook",
+  "operatingSystem": "Windows 10, Windows 11 (64 bits)",
+  "applicationCategory": "MultimediaApplication",
+  "url": "https://cliphook.com.br/",
+  "description": "Transforma vídeos longos em cortes verticais editados e legendados, no seu computador. Assinatura mensal.",
+  "offers": [
+   {
+    "@type": "Offer",
+    "name": "Básico",
+    "price": "29.90",
+    "priceCurrency": "BRL",
+    "priceSpecification": {
+     "@type": "UnitPriceSpecification",
+     "price": "29.90",
+     "priceCurrency": "BRL",
+     "billingDuration": "P1M"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "Pro",
+    "price": "75.00",
+    "priceCurrency": "BRL",
+    "priceSpecification": {
+     "@type": "UnitPriceSpecification",
+     "price": "75.00",
+     "priceCurrency": "BRL",
+     "billingDuration": "P1M"
+    }
+   },
+   {
+    "@type": "Offer",
+    "name": "Agência",
+    "price": "200.00",
+    "priceCurrency": "BRL",
+    "priceSpecification": {
+     "@type": "UnitPriceSpecification",
+     "price": "200.00",
+     "priceCurrency": "BRL",
+     "billingDuration": "P1M"
+    }
+   }
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ClipHook",
+  "url": "https://cliphook.com.br/",
+  "email": "contato@cliphook.com.br",
+  "taxID": "69.912.713/0001-28"
+ }
+]
 </script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -874,21 +907,15 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   <symbol id="i-anterior" viewBox="0 0 20 20"><path d="M6 5v10M15 5l-7 5 7 5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-proximo" viewBox="0 0 20 20"><path d="M14 5v10M5 5l7 5-7 5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-repetir" viewBox="0 0 20 20"><path d="M4 9a4 4 0 0 1 4-4h6m0 0-2.5-2.5M14 5l-2.5 2.5M16 11a4 4 0 0 1-4 4H6m0 0 2.5 2.5M6 15l2.5-2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-tela" viewBox="0 0 20 20"><path d="M4 8V4h4M12 4h4v4M16 12v4h-4M8 16H4v-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-exportar" viewBox="0 0 20 20"><path d="M10 3v9m0-9L6.5 6.5M10 3l3.5 3.5M4 12v3.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-link" viewBox="0 0 20 20"><path d="M8.5 11.5a3.3 3.3 0 0 0 4.7 0l2.5-2.5A3.3 3.3 0 0 0 11 4.3l-.8.8M11.5 8.5a3.3 3.3 0 0 0-4.7 0L4.3 11A3.3 3.3 0 0 0 9 15.7l.8-.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-  <symbol id="i-pasta" viewBox="0 0 20 20"><path d="M3 6.2A1.2 1.2 0 0 1 4.2 5H8l1.7 1.7h6.1A1.2 1.2 0 0 1 17 7.9v7A1.2 1.2 0 0 1 15.8 16H4.2A1.2 1.2 0 0 1 3 14.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-  <symbol id="i-pc" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 16h5M10 13v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
-  <symbol id="i-rosto" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="9" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.8 16a4.5 4.5 0 0 1 8.4 0" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-  <symbol id="i-legenda" viewBox="0 0 20 20"><rect x="2.5" y="4" width="15" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 12.5h4M11.5 12.5h3M5.5 9.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-  <symbol id="i-tesoura" viewBox="0 0 20 20"><circle cx="5.5" cy="14.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="5.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 7 17 14M7.5 13 17 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-  <symbol id="i-som" viewBox="0 0 20 20"><path d="M3 8v4h3l4 3.5v-11L6 8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 7.5a3.5 3.5 0 0 1 0 5M15 5.5a6.5 6.5 0 0 1 0 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-cadeado" viewBox="0 0 20 20"><rect x="4.5" y="9" width="11" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-escudo" viewBox="0 0 20 20"><path d="M10 2.5 4 5v4.5c0 3.8 2.6 6.7 6 8 3.4-1.3 6-4.2 6-8V5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 10 1.8 1.8 3.4-3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-arquivo" viewBox="0 0 20 20"><path d="M5 2.5h6.5L15 6v11.5H5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 2.5V6.5h4M7.5 10h5M7.5 13h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-baixar" viewBox="0 0 20 20"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 12v3.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-copiar" viewBox="0 0 20 20"><rect x="7" y="7" width="10" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V4.5A1.5 1.5 0 0 0 11.5 3h-7A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13H7" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
 </svg>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Ilustração do estúdio (não é vídeo de ninguém): usada no player, nas miniaturas e na prévia 9:16. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -971,7 +998,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   <p class="total num">2:04:30</p>
 </aside>
 
-<main>
+<main id="conteudo" tabindex="-1">
   <section class="wrap hero" id="topo">
     <h1>Toda conversa longa esconde um <span class="marca-texto">gancho</span>.</h1>
     <p class="sub">O ClipHook encontra os melhores trechos dos seus podcasts, debates e lives e entrega cortes editados, com legenda e seguindo quem fala. Você aprova cada um antes de exportar.</p>
@@ -999,7 +1026,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
           <div class="a-marca"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</div>
           <button class="a-btn a-prim" type="button" tabindex="-1"><svg aria-hidden="true"><use href="#i-mais"/></svg>Novo vídeo</button>
           <div class="a-colar"><svg aria-hidden="true"><use href="#i-link"/></svg>Colar o caminho do vídeo</div>
-          <h4 role="none">Seus vídeos</h4>
+          <div class="a-h4">Seus vídeos</div>
           <div class="a-proj" aria-current="true"><b>podcast-ep-42</b><small id="lib-meta">3 cortes · 0 aprov. · 0 export.</small></div>
           <div class="a-proj"><b>live-de-sexta</b><small>6 cortes · 4 aprov. · 4 export.</small></div>
           <div class="a-proj"><b>entrevista-maio</b><small>4 cortes · 2 aprov. · 2 export.</small></div>
@@ -1009,7 +1036,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         <div class="app-palco-wrap">
           <div class="a-palco">
             <div class="a-cab">
-              <div><h3 role="none">podcast-ep-42</h3><p id="a-meta"></p></div>
+              <div><div class="a-h3">podcast-ep-42</div><p id="a-meta"></p></div>
               <div class="a-exp">
                 <label class="a-opcao"><input type="checkbox" id="a-seguir" checked>Seguir quem fala</label>
                 <button class="a-btn a-prim" type="button" id="a-exportar"></button>
@@ -1037,7 +1064,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
                 <section class="a-sec a-sec-linha" aria-label="Linha do tempo">
                   <div class="a-sec-topo">
-                    <div><h4 role="none">Linha do tempo</h4><p>Áudio do vídeo inteiro e os trechos que a IA marcou.</p></div>
+                    <div><div class="a-h4">Linha do tempo</div><p>Áudio do vídeo inteiro e os trechos que a IA marcou.</p></div>
                     <div class="a-legenda-estados" aria-hidden="true">
                       <span><i style="background:rgba(245,245,240,.35)"></i>Pendente</span><span><i style="background:var(--lime)"></i>Aprovado</span><span><i style="background:var(--danger);opacity:.6"></i>Recusado</span>
                     </div>
@@ -1050,7 +1077,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
                 <section class="a-sec a-sec-cortes" aria-label="Cortes encontrados">
                   <div class="a-sec-topo">
-                    <div><h4 role="none">Cortes encontrados pela IA</h4><p>Cada corte traz o motivo da escolha.</p></div>
+                    <div><div class="a-h4">Cortes encontrados pela IA</div><p>Cada corte traz o motivo da escolha.</p></div>
                     <div class="a-filtros" id="a-filtros" role="group" aria-label="Filtrar cortes"></div>
                   </div>
                   <ul class="a-cards" id="a-cards"></ul>
@@ -1109,7 +1136,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Música de fundo que abaixa quando alguém fala</li>
           </ul>
         </div>
-        <div class="painel linha-edicao" aria-label="Exemplo de corte antes e depois da edição">
+        <div class="painel linha-edicao" role="img" aria-label="Exemplo de corte antes e depois da edição">
           <div>
             <p class="rot"><span>Trecho original</span><b>0:41,0</b></p>
             <div class="faixa" aria-hidden="true"><span class="fala" style="flex:9"></span><span class="pausa" style="flex:1.4"></span><span class="fala" style="flex:12"></span><span class="pausa" style="flex:1"></span><span class="fala" style="flex:15"></span><span class="pausa" style="flex:.9"></span><span class="fala" style="flex:2"></span></div>
@@ -1227,21 +1254,21 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     <h2 id="testador-titulo">Seja um testador</h2>
     <p class="testador-sub">10 horas de IA por 30 dias, sem pagar. Em troca, queremos sua opinião sincera sobre os cortes.</p>
     <label>Nome<input name="nome" required autocomplete="name"></label>
-    <label>E-mail<input name="email" type="email" required autocomplete="email"><small>O código de ativação chega neste e-mail.</small></label>
+    <label>E-mail<input name="email" type="email" required autocomplete="email" aria-describedby="dica-email"></label><small id="dica-email" class="testador-dica">O código de ativação chega neste e-mail.</small>
     <label>WhatsApp<input name="whatsapp" type="tel" required autocomplete="tel" placeholder="(11) 90000-0000"></label>
-    <label>Canal ou perfil onde você posta<input name="canal" placeholder="youtube.com/@seucanal"><small>Deixe vazio se não possuir.</small></label>
+    <label>Canal ou perfil onde você posta<input name="canal" placeholder="youtube.com/@seucanal" aria-describedby="dica-canal"></label><small id="dica-canal" class="testador-dica">Deixe vazio se não possuir.</small>
     <div class="testador-duplo">
       <label>Que vídeo você corta?<select name="tipo" required><option value="">Escolha</option><option>Podcast</option><option>Debate</option><option>Live</option><option>Entrevista</option><option>Aula ou palestra</option><option>Outro</option></select></label>
       <label>Vídeos longos por semana<select name="volume" required><option value="">Escolha</option><option>1 ou menos</option><option>2 a 4</option><option>5 a 10</option><option>Mais de 10</option></select></label>
     </div>
     <label>Como faz os cortes hoje?<select name="hoje" required><option value="">Escolha</option><option>Edito na mão</option><option>Uso outra ferramenta</option><option>Pago um editor</option><option>Ainda não faço</option></select></label>
     <label class="testador-aceite"><input type="checkbox" name="aceite" required>Aceito que o ClipHook entre em contato por e-mail e WhatsApp sobre o teste. <a href="privacidade.html">Privacidade</a></label>
-    <input class="testador-isca" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input class="testador-isca" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Não preencha">
     <p class="testador-erro" id="testador-erro" role="alert" hidden></p>
     <button class="btn btn-lime" type="submit">Quero testar</button>
   </form>
   <div class="testador-ok" id="testador-ok" hidden>
-    <h2>Pronto, você está na lista.</h2>
+    <h2 tabindex="-1">Pronto, você está na lista.</h2>
     <p>Baixe o instalador agora. O código de ativação chega no seu e-mail em até 24 horas: se não aparecer, olhe a caixa de spam e marque como "Não é spam".</p>
     <a class="btn btn-lime" id="testador-baixar" href="#">Baixar o ClipHook para Windows</a>
     <p class="testador-nota">Se o Windows mostrar "O Windows protegeu o computador", clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>.</p>
@@ -1279,7 +1306,12 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
   };
   botao.addEventListener("click", function () { alternar(nav.dataset.menu !== "aberto"); });
   nav.querySelectorAll(".nav-links a").forEach(function (a) { a.addEventListener("click", function () { alternar(false); }); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") alternar(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.dataset.menu === "aberto") { alternar(false); botao.focus(); }
+  });
+  document.addEventListener("click", function (e) {  // fecha ao clicar fora do menu
+    if (nav.dataset.menu === "aberto" && !nav.contains(e.target)) alternar(false);
+  });
 })();
 
 // Trilho da landing: acende o trecho (seção) que está no meio da tela.
@@ -1322,14 +1354,23 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     enviar.textContent = "Enviando...";
     // text/plain: o navegador manda direto, sem a consulta prévia de outro domínio
     fetch(servidor + "/testador", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(dados) })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.erro || "falha"); return j; }); })
+      // Só a mensagem do nosso servidor aparece; erro de rede ou resposta que não é JSON vira texto fixo em português
+      // (Firefox e Safari têm outras mensagens de rede, em inglês, e um 502 em HTML virava "Unexpected token").
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          if (!r.ok) { var f = new Error(j.erro || ""); f.doServidor = Boolean(j.erro); throw f; }
+          return j;
+        });
+      })
       .then(function (j) {
         document.getElementById("testador-baixar").href = servidor + j.download;
         form.hidden = true;
-        document.getElementById("testador-ok").hidden = false;
+        var ok = document.getElementById("testador-ok");
+        ok.hidden = false;
+        ok.querySelector("h2").focus();  // o botão que tinha o foco sumiu: o leitor de tela anuncia o "Pronto"
       })
       .catch(function (falha) {
-        var texto = falha && falha.message && falha.message !== "Failed to fetch" ? falha.message : "não deu para enviar agora";
+        var texto = falha && falha.doServidor ? falha.message : "não deu para enviar agora";
         erro.textContent = texto.charAt(0).toUpperCase() + texto.slice(1) + ". Tente de novo em instantes.";
         erro.hidden = false;
       })
@@ -1472,17 +1513,18 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     vis.forEach(function (c) {
       var li = document.createElement("li");
       li.className = "a-card";
+      li.dataset.id = c.id;
       li.dataset.estado = estado(c);
       if (c.id === st.sel) li.setAttribute("aria-current", "true");
       li.innerHTML =
         '<button class="a-card-abrir" type="button" aria-label="Abrir o corte ' + c.titulo + '">' +
           '<div class="a-thumb">' + miniatura(c) + seloHtml(c) + '<span class="dur">' + relogio(c.dur) + "</span></div>" +
-          '<div class="a-card-corpo"><h5 role="none">' + c.titulo + '</h5><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Nota editorial " + c.relev + "</b></p></div>" +
+          '<div class="a-card-corpo"><span class="a-h5">' + c.titulo + '</span><p class="a-card-meta"><span>' + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</span><b>Nota editorial " + c.relev + "</b></p></div>" +
         "</button>" +
         '<div class="a-card-acoes">' + (c.exportado
           ? '<span class="feito">Já exportado como clip_0' + c.id + ".mp4</span>"
-          : '<button class="a-btn aprovar" type="button" aria-pressed="' + (c.decisao === "sim") + '">' + icone("i-check") + (c.decisao === "sim" ? "Aprovado" : "Aprovar") + "</button>" +
-            '<button class="a-btn recusar" type="button" aria-pressed="' + (c.decisao === "não") + '">' + icone("i-x") + (c.decisao === "não" ? "Recusado" : "Recusar") + "</button>") +
+          : '<button class="a-btn aprovar" type="button" aria-label="Aprovar" aria-pressed="' + (c.decisao === "sim") + '">' + icone("i-check") + (c.decisao === "sim" ? "Aprovado" : "Aprovar") + "</button>" +
+            '<button class="a-btn recusar" type="button" aria-label="Recusar" aria-pressed="' + (c.decisao === "não") + '">' + icone("i-x") + (c.decisao === "não" ? "Recusado" : "Recusar") + "</button>") +
         "</div>";
       li.querySelector(".a-card-abrir").addEventListener("click", function () { selecionar(c.id); });
       var ap = li.querySelector(".aprovar"), re = li.querySelector(".recusar");
@@ -1518,8 +1560,8 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     var decisao = c.exportado
       ? '<div class="a-exportado"><span><b>Exportado</b> · clip_0' + c.id + '.mp4</span><button class="a-btn" type="button" id="i-refazer">' + icone("i-exportar") + "Refazer</button></div>"
       : '<div class="a-decisao">' +
-          '<button class="a-btn ' + (c.decisao === "sim" ? "" : "a-prim ") + 'aprovar" type="button" id="i-aprovar" aria-pressed="' + (c.decisao === "sim") + '">' + icone("i-check") + (c.decisao === "sim" ? "Aprovado" : "Aprovar corte") + "</button>" +
-          '<button class="a-btn recusar" type="button" id="i-recusar" aria-pressed="' + (c.decisao === "não") + '">' + icone("i-x") + (c.decisao === "não" ? "Recusado" : "Recusar") + "</button>" +
+          '<button class="a-btn ' + (c.decisao === "sim" ? "" : "a-prim ") + 'aprovar" type="button" id="i-aprovar" aria-label="Aprovar corte" aria-pressed="' + (c.decisao === "sim") + '">' + icone("i-check") + (c.decisao === "sim" ? "Aprovado" : "Aprovar corte") + "</button>" +
+          '<button class="a-btn recusar" type="button" id="i-recusar" aria-label="Recusar" aria-pressed="' + (c.decisao === "não") + '">' + icone("i-x") + (c.decisao === "não" ? "Recusado" : "Recusar") + "</button>" +
           (c.decisao === "sim" ? '<button class="a-btn a-prim largo" type="button" id="i-exportar">' + icone("i-exportar") + "Exportar este corte</button>" : "") +
         "</div>";
     $("a-insp").innerHTML =
@@ -1536,7 +1578,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
       "</div>" +
       '<div><p class="a-titulo">' + c.titulo + '</p><div class="a-linha-meta">' + seloHtml(c) + "<span>" + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + " · " + c.dur + " s</span></div></div>" +
       decisao +
-      '<div class="a-bloco a-edicao"><h5 role="none">Edição do vídeo</h5>' +
+      '<div class="a-bloco a-edicao"><span class="a-h5">Edição do vídeo</span>' +
         grupo("Legenda", "estilo", [["destaque", "Destaque"], ["caixa", "Caixa"], ["minimal", "Minimalista"]], e.estilo) +
         grupo("Posição da legenda", "posicao", [["auto", "Automática"], ["inferior", "Embaixo"], ["meio", "Meio"], ["superior", "Topo"]], e.posicao) +
         grupo("Enquadramento", "enq", [["auto", "Seguir quem fala"], ["manual", "Manual"]], e.enquadramento === null ? "auto" : "manual") +
@@ -1544,7 +1586,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
         chave("Cortar pausas longas", "Pausas acima de 0,6 s e “hum”, “ahn” saem.", "i-cortar", e.cortar) +
         chave("Zoom sutil nos cortes", "Aproxima 7% depois de cada corte seco.", "i-zoom", e.zoom) +
       "</div>" +
-      '<div class="a-bloco"><h5 role="none">Por que a IA escolheu</h5><p>' + c.motivo + "</p></div>";
+      '<div class="a-bloco"><span class="a-h5">Por que a IA escolheu</span><p>' + c.motivo + "</p></div>";
 
     var insp = $("a-insp");
     var on = function (sel, ev, fn) { var n = insp.querySelector(sel); if (n) n.addEventListener(ev, fn); };
@@ -1553,7 +1595,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     on("#i-exportar", "click", function () { exportar([c]); });
     on("#i-refazer", "click", function () { c.exportado = false; exportar([c]); });
     on("#i-assistir", "click", function () { if (!st.tocando && st.t >= c.dur - 0.1) st.t = 0; alternar(!st.tocando); });
-    insp.querySelectorAll("[data-aba]").forEach(function (b) { b.addEventListener("click", function () { st.aba = b.dataset.aba; renderInsp(); }); });
+    insp.querySelectorAll("[data-aba]").forEach(function (b) { b.addEventListener("click", function () { st.aba = b.dataset.aba; renderInsp(); st.sujo = true; }); });
     insp.querySelectorAll("[data-estilo]").forEach(function (b) { b.addEventListener("click", function () { mudar({ estilo: b.dataset.estilo }); }); });
     insp.querySelectorAll("[data-posicao]").forEach(function (b) { b.addEventListener("click", function () { mudar({ posicao: b.dataset.posicao }); }); });
     insp.querySelectorAll("[data-enq]").forEach(function (b) { b.addEventListener("click", function () { mudar({ enquadramento: b.dataset.enq === "auto" ? null : FALANTE[c.falante] }); }); });
@@ -1606,13 +1648,32 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
   function alternar(tocar) {
     st.tocando = tocar;
+    st.sujo = true;
     $("a-play").innerHTML = icone(tocar ? "i-pausa" : "i-play");
     $("a-play").setAttribute("aria-label", tocar ? "Pausar" : "Reproduzir");
     var b = $("i-assistir");
     if (b) b.innerHTML = icone(tocar ? "i-pausa" : "i-play") + (tocar ? "Pausar" : "Assistir prévia editada");
   }
 
+  // Redesenhar troca os botões: guarda onde estava o foco e devolve ao equivalente (quem usa Tab voltava ao topo).
+  function chaveFoco() {
+    var el = document.activeElement, app = $("app");
+    if (!el || !app || !app.contains(el)) return null;
+    var card = el.closest(".a-card");
+    if (card) return '.a-card[data-id="' + card.dataset.id + '"] .' + el.className.split(" ").filter(function (k) { return k !== "a-btn" && k !== "a-prim"; })[0];
+    if (el.id) return "#" + el.id;
+    var attr = Array.prototype.find.call(el.attributes, function (a) { return a.name.indexOf("data-") === 0; });
+    return attr ? "[" + attr.name + '="' + attr.value + '"]' : null;
+  }
+
   function renderTudo() {
+    var foco = chaveFoco();
+    renderTudo2();
+    st.sujo = true;
+    if (foco) { var el = document.querySelector(foco); if (el) el.focus(); }
+  }
+
+  function renderTudo2() {
     renderMeta(); renderFiltros(); renderCards(); renderMarcas(); renderInsp(); pintarOnda();
     var c = atual();
     $("a-selo-player").innerHTML = "Corte selecionado <b>" + relogio(c.inicio) + " → " + relogio(c.inicio + c.dur) + "</b>";
@@ -1622,13 +1683,13 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
   $("a-play").addEventListener("click", function () { var c = atual(); if (!st.tocando && st.t >= c.dur - 0.1) st.t = 0; alternar(!st.tocando); });
   document.querySelectorAll("#app [data-pular]").forEach(function (b) {
-    b.addEventListener("click", function () { var c = atual(); st.t = Math.min(Math.max(0, st.t + +b.dataset.pular), c.dur); });
+    b.addEventListener("click", function () { var c = atual(); st.t = Math.min(Math.max(0, st.t + +b.dataset.pular), c.dur); st.sujo = true; });
   });
   document.querySelectorAll("#app [data-vizinho]").forEach(function (b) {
     b.addEventListener("click", function () { var i = CORTES.indexOf(atual()); selecionar(CORTES[(i + +b.dataset.vizinho + 3) % 3].id); });
   });
   $("a-exportar").addEventListener("click", function () { exportar(); });
-  $("a-seguir").addEventListener("change", function (ev) { st.seguir = ev.target.checked; renderInsp(); });
+  $("a-seguir").addEventListener("change", function (ev) { st.seguir = ev.target.checked; renderInsp(); st.sujo = true; });
 
   // ---------- quadro a quadro: prévia, legenda, boca de quem fala ----------
   var legendaChave = "", blocoAnterior = "", ultimo = 0, relogioCena = 0;
@@ -1655,7 +1716,9 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 
   function quadro(agora) {
     requestAnimationFrame(quadro);
-    if (!st.visivel) { ultimo = agora; return; }
+    // Fora da tela, ou parado sem nada novo para mostrar: não mexe no DOM (antes reescrevia tudo 60 vezes por segundo).
+    if (!st.visivel || (!st.tocando && !st.sujo)) { ultimo = agora; return; }
+    st.sujo = false;
     var dt = Math.min(0.1, (agora - ultimo) / 1000 || 0);
     ultimo = agora;
     var c = atual(), e = c.ed, total = e.cortar ? c.final : c.dur;
@@ -1737,7 +1800,9 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
     });
   });
   mostrarEstilo();
-  if (!reduzido) setInterval(function () { iFrase = (iFrase + 1) % frase.length; mostrarEstilo(); }, 420);
+  var estilosNaTela = false;
+  new IntersectionObserver(function (e) { estilosNaTela = e[0].isIntersecting; }, { threshold: 0.2 }).observe(legEst);
+  if (!reduzido) setInterval(function () { if (estilosNaTela) { iFrase = (iFrase + 1) % frase.length; mostrarEstilo(); } }, 420);
 })();
 </script>
 </body>
