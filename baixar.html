@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baixar · ClipHook</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClipHook">
+<meta property="og:title" content="Baixar · ClipHook">
+<meta property="og:description" content="Instalador do ClipHook para Windows 10 e 11, 64 bits, e como ativar com o e-mail e o código de ativação da assinatura.">
+<meta property="og:url" content="https://cliphook.com.br/baixar.html">
+<meta property="og:image" content="https://cliphook.com.br/compartilhar.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Instalador do ClipHook para Windows 10 e 11, 64 bits, e como ativar com o e-mail e o código de ativação da assinatura.">
+<link rel="canonical" href="https://cliphook.com.br/baixar.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* ClipHook: sistema de design central. Única fonte dos tokens e dos elementos da marca.
+   O app carrega este arquivo direto (/ui/marca.css); o site o embute na montagem (clipforge-site/montar.py).
+   Símbolo: o anzol que termina em play (brand/logo-mark.svg). Sistema: o gancho de canto. O colchete que o editor marca no começo de um trecho é o gancho que prende a atenção.
+   Limão = o que foi fisgado (ação principal, selecionado, aprovado, a palavra falada). Laranja = marcas de corte (tempo, entrada e saída). */
+
+:root {
+  /* cor */
+  --ground: #111318;      /* grafite: chão do app e do site */
+  --s1: #171a20;          /* superfícies por degrau de tom, não por linha */
+  --s2: #1d2028;
+  --s3: #252933;
+  --s4: #2e333f;
+  --line: rgba(245, 245, 240, .08);
+  --line-2: rgba(245, 245, 240, .14);
+  --text: #f5f5f0;        /* off-white */
+  --text-2: #b3b9c4;      /* 9:1 sobre o grafite */
+  --text-3: #8f96a3;      /* 5,9:1: meta e rótulos */
+  --brand-gray: #747b8a;  /* só ícones e traços */
+  --lime: #b7f36b;        /* o gancho: ação principal, selecionado, aprovado, palavra falada */
+  --lime-hover: #c8f88b;
+  --lime-ink: #111318;
+  --lime-soft: rgba(183, 243, 107, .13);
+  --lime-line: rgba(183, 243, 107, .5);
+  --corte: #ff7a45;       /* marcas de corte: tempo, entrada e saída. 6,6:1 sobre o grafite */
+  --corte-soft: rgba(255, 122, 69, .14);
+  --danger: #f0848b;
+  --danger-soft: rgba(240, 132, 139, .12);
+
+  /* forma: cantos retos, como uma marcação de edição; só o ícone do app é arredondado */
+  --r-sm: 3px;
+  --r: 5px;
+  --r-lg: 8px;
+  --gancho-braco: 14px;   /* tamanho de cada braço do colchete */
+  --gancho-traco: 2px;
+
+  /* tipo */
+  --font: "Archivo", system-ui, "Segoe UI", sans-serif;
+
+  /* movimento */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-encaixe: cubic-bezier(.3, 1.4, .5, 1);  /* o colchete passa um pouco e volta: encaixe */
+}
+
+/* cursor de texto em limão em todo campo */
+input, textarea, [contenteditable] { caret-color: var(--lime); }
+
+/* ---------- gancho de canto: colchete no canto superior esquerdo e no inferior direito ----------
+   Marca o que foi fisgado: o item selecionado, o corte em foco, a prévia 9:16. Não é enfeite: só em estado real. */
+.gancho { position: relative; }
+.gancho::before, .gancho::after {
+  content: ""; position: absolute; width: var(--gancho-braco); height: var(--gancho-braco); pointer-events: none;
+  border: 0 solid var(--gancho-cor, var(--lime)); transition: inset .22s var(--ease-encaixe), opacity .18s var(--ease);
+}
+.gancho::before { top: var(--gancho-folga, -5px); left: var(--gancho-folga, -5px); border-top-width: var(--gancho-traco); border-left-width: var(--gancho-traco); }
+.gancho::after { bottom: var(--gancho-folga, -5px); right: var(--gancho-folga, -5px); border-bottom-width: var(--gancho-traco); border-right-width: var(--gancho-traco); }
+
+/* procurando o gancho: os colchetes se abrem e fecham sobre o conteúdo (carregamento) */
+.gancho-procura::before { animation: gancho-a 1.6s var(--ease) infinite; }
+.gancho-procura::after { animation: gancho-b 1.6s var(--ease) infinite; }
+@keyframes gancho-a { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-8px, -8px); } }
+@keyframes gancho-b { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, 8px); } }
+
+/* fisgou: encaixe único, quando algo passa a estar marcado */
+.gancho-encaixe::before { animation: encaixe-a .42s var(--ease-encaixe) both; }
+.gancho-encaixe::after { animation: encaixe-b .42s var(--ease-encaixe) both; }
+@keyframes encaixe-a { from { transform: translate(-12px, -12px); opacity: 0; } }
+@keyframes encaixe-b { from { transform: translate(12px, 12px); opacity: 0; } }
+
+/* ---------- marca-texto: a frase que prende, destacada como num roteiro impresso ---------- */
+.marca-texto {
+  background: linear-gradient(transparent 12%, var(--lime) 12%, var(--lime) 94%, transparent 94%);
+  color: var(--lime-ink); padding: 0 .08em; margin: 0 -.04em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+
+/* ---------- tempo de corte: números do relógio e das marcas de entrada e saída ---------- */
+.tempo-corte { color: var(--corte); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* ---------- linha de gancho: divisória que começa com o colchete ---------- */
+.linha-gancho { position: relative; height: 1px; background: var(--line); border: 0; margin: 0; overflow: visible; }
+.linha-gancho::before {
+  content: ""; position: absolute; left: 0; top: 0; width: var(--gancho-braco); height: var(--gancho-braco);
+  border-top: var(--gancho-traco) solid var(--lime); border-left: var(--gancho-traco) solid var(--lime);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gancho-procura::before, .gancho-procura::after, .gancho-encaixe::before, .gancho-encaixe::after { animation: none; }
+}
+
+/* ClipHook: estilos compartilhados do site (landing e páginas informativas). */
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latino.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+/* Títulos: Big Shoulders (OFL), a letra de letreiro e de tarja de TV. Reduzida ao latino, pesos 700 a 900. */
+@font-face {
+  font-family: "Big Shoulders";
+  src: url("fonts/BigShoulders-latino.woff2") format("woff2");
+  font-weight: 700 900;
+  font-display: swap;
+}
+:root {
+  /* Cor, forma e movimento vêm de marca.css (sistema central, em clipforge/src/clipforge/ui). Aqui só o que é do site. */
+  --bg: var(--ground);
+  --max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --display: "Big Shoulders", "Archivo", sans-serif;
+  --trilho: 156px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 var(--font); font-stretch: 100%; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--lime); color: var(--lime-ink); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ground); }
+::-webkit-scrollbar-thumb { background: var(--s3); border-radius: var(--r-lg); border: 2px solid var(--ground); }
+:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: 600; letter-spacing: -0.025em; }
+/* Títulos na letra de tarja, estreita e pesada; h3 e texto continuam na Archivo. */
+h1, h2 { font-family: var(--display); font-weight: 900; letter-spacing: .005em; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+.num { font-variant-numeric: tabular-nums; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+svg { flex: none; }
+
+/* ---------- botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: var(--r); border: 1px solid var(--line-2); background: transparent; color: var(--text);
+  font-weight: 500; font-size: 15px; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .16s var(--ease), border-color .16s var(--ease), transform .16s var(--ease);
+}
+.btn:hover { background: var(--s2); border-color: rgba(245, 245, 240, .22); }
+.btn:active { transform: translateY(1px); }
+.btn-lime { background: var(--lime); color: var(--lime-ink); border-color: var(--lime); font-weight: 600; }
+.btn-lime:hover { background: var(--lime-hover); border-color: var(--lime-hover); }
+.btn-sm { min-height: 36px; padding: 0 14px; font-size: 14px; }
+.btn svg { width: 16px; height: 16px; }
+.link-seta { display: inline-block; color: var(--text); font-weight: 500; font-size: 16px; margin-top: 28px; text-decoration: underline; text-decoration-color: var(--text-3); text-underline-offset: 5px; transition: text-decoration-color .16s var(--ease); }
+.link-seta:hover { text-decoration-color: var(--text); }
+
+/* ---------- navegação ---------- */
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(17, 19, 24, .92); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s var(--ease); }
+.nav[data-rolou="true"] { border-bottom-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 32px; height: 64px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.logo svg { width: 26px; height: 26px; }
+.nav-links { display: flex; gap: 4px; margin-right: auto; }
+.nav-links a { text-decoration: none; color: var(--text-2); font-size: 15px; padding: 8px 12px; border-radius: var(--r-sm); transition: color .16s var(--ease), background-color .16s var(--ease); }
+.nav-links a:hover { color: var(--text); background: var(--s1); }
+.nav-links a[aria-current="page"] { color: var(--text); background: var(--s2); }
+.nav-menu { display: none; margin-left: auto; min-height: 40px; padding: 0 12px; border-radius: var(--r); border: 1px solid var(--line-2); background: none; cursor: pointer; align-items: center; gap: 8px; font-size: 14px; }
+.nav-menu svg { width: 18px; height: 18px; }
+
+/* ---------- seções ---------- */
+section.bloco { padding: 128px 0; border-top: 1px solid var(--line); position: relative; }
+/* O verde marca só o que vai para o ar (trecho escolhido, palavra falada, corte aprovado) e a ação de assinar.
+   O gancho de canto fica onde há uma escolha: o trecho do topo e o plano recomendado, não no começo de cada seção. */
+h2 { font-size: clamp(40px, 4.6vw, 64px); line-height: .95; max-width: 16em; }
+.lead { font-size: 19px; color: var(--text-2); max-width: 54ch; margin-top: 16px; }
+
+.recurso { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 72px; align-items: center; }
+.recurso + .recurso { margin-top: 128px; }
+.recurso.inverte > :first-child { order: 2; }
+.recurso h2 { font-size: clamp(36px, 3.6vw, 50px); }
+.lista-check { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--text-2); font-size: 16px; }
+.lista-check li { display: flex; gap: 10px; }
+.lista-check li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
+.lista-check li b { color: var(--text); font-weight: 500; }
+.painel { border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); padding: 20px; }
+.nota { margin-top: 40px; font-size: 13px; color: var(--text-2); }
+
+/* comparação */
+.tabela { margin-top: 56px; border: 1px solid var(--line-2); border-radius: var(--r-lg); overflow-x: auto; position: relative; }
+.tabela:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+/* Celular: os planos viram cartões empilhados (a tabela de 692 px escondia PCs e os botões do Agência e do Anual). */
+@media (max-width: 700px) {
+  .planos table { min-width: 0; }
+  .planos thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .planos tr { display: block; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+  .planos tr:last-child { border-bottom: 0; }
+  .planos td { display: flex; gap: 12px; justify-content: space-between; padding: 6px 0; border: 0; width: auto; background: none; }
+  .planos td[data-rotulo]::before { content: attr(data-rotulo); color: var(--text-3); font-size: 14px; flex: none; }
+  .planos .celula { text-align: right; }
+  .planos td:first-child { display: block; font-size: 18px; color: var(--text); }
+  .planos td:first-child::before { content: none; }
+  .planos td:last-child { padding-top: 12px; }
+  .planos td:last-child .btn { width: 100%; justify-content: center; }
+}
+table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 640px; }
+th, td { text-align: left; padding: 18px 22px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+thead th { font-size: 14px; font-weight: 500; color: var(--text-2); background: var(--s1); }
+thead th:last-child { color: var(--lime); }
+tbody td:first-child { color: var(--text-2); width: 24%; }
+tbody td:last-child { background: rgba(183, 243, 107, .05); color: var(--text); }
+
+.requisitos ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
+.requisitos li { display: flex; gap: 10px; }
+.requisitos h3 { font-size: 18px; }
+.requisitos li { color: var(--text-2); }
+.requisitos li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--text-3); }
+.requisitos + .requisitos { margin-top: 40px; }
+
+/* perguntas */
+.perguntas { margin-top: 48px; border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0; font-size: 18px; font-weight: 500; }
+summary::-webkit-details-marker { display: none; }
+summary svg { flex: none; width: 18px; height: 18px; color: var(--text-3); transition: transform .2s var(--ease); }
+details[open] summary svg { transform: rotate(45deg); color: var(--lime); }
+details p, details ul { padding: 0 0 24px; color: var(--text-2); max-width: 68ch; }
+details ul { margin: -12px 0 0; padding-left: 20px; }
+
+/* final */
+.final { padding: 144px 0; border-top: 1px solid var(--line); text-align: center; position: relative; }
+.final h2 { margin: 0 auto; max-width: 12em; font-size: clamp(48px, 6vw, 88px); }
+.final p { margin: 16px auto 0; color: var(--text-2); max-width: 44ch; font-size: 18px; }
+.final .btn { margin-top: 32px; min-height: 52px; padding: 0 26px; font-size: 16px; }
+.final-acoes { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.final .final-nota { margin-top: 16px; font-size: 14px; color: var(--text-2); }
+
+/* ---------- páginas informativas ---------- */
+.pagina-topo { padding-top: 96px; padding-bottom: 72px; } /* só vertical: a margem lateral é do .wrap */
+.pagina-topo h1 { font-size: clamp(52px, 6.4vw, 96px); line-height: .92; max-width: 13em; }
+.pagina-topo .lead { font-size: clamp(18px, 1.5vw, 21px); }
+.indice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
+.indice a { text-decoration: none; font-size: 14px; color: var(--text-2); padding: 8px 14px; border-radius: var(--r-sm); background: var(--s1); transition: color .16s var(--ease), background-color .16s var(--ease); }
+.indice a:hover { color: var(--text); background: var(--s2); }
+
+.etapas-pagina { list-style: none; margin: 0 auto; counter-reset: etapa; } /* a margem lateral vem do .wrap */
+.etapa { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 40px; padding: 72px 0; border-top: 1px solid var(--line); align-items: start; }
+.etapa::before { counter-increment: etapa; content: counter(etapa, decimal-leading-zero); font-size: 15px; font-weight: 600; color: var(--lime); padding-top: 8px; font-variant-numeric: tabular-nums; }
+.etapa h2 { font-size: clamp(34px, 3.2vw, 44px); }
+.etapa .lead { font-size: 17px; }
+.etapa .lista-check { font-size: 15px; }
+.fato { display: flex; align-items: baseline; gap: 10px; margin-top: 24px; padding: 14px 16px; border-radius: var(--r); background: var(--s1); font-size: 14px; color: var(--text-2); }
+.fato b { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; white-space: nowrap; }
+
+.arvore { font: 400 14px/1.9 ui-monospace, "Cascadia Mono", Consolas, monospace; color: var(--text-2); background: var(--bg); border-radius: var(--r); padding: 16px 18px; overflow-x: auto; white-space: pre; }
+.arvore b { color: var(--text); font-weight: 500; }
+.arvore i { color: var(--text-3); font-style: normal; }
+
+.grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.cartao { background: var(--s1); border-radius: var(--r-lg); padding: 24px; }
+.cartao h3 { font-size: 18px; letter-spacing: -0.015em; }
+.cartao p { margin-top: 8px; color: var(--text-2); font-size: 15px; }
+.cartao svg.icone { width: 22px; height: 22px; color: var(--lime); margin-bottom: 16px; }
+
+/* recursos da landing: lista em duas colunas, sem cartões; os dois primeiros abrem maiores */
+.lista-recursos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; margin-top: 48px; }
+.lista-recursos > div { padding: 24px 0 28px; border-top: 1px solid var(--line); }
+.lista-recursos h3 { font-size: 18px; letter-spacing: -0.015em; }
+.lista-recursos p { margin-top: 6px; color: var(--text-2); font-size: 16px; max-width: 46ch; }
+.lista-recursos > div:nth-child(-n+2) { padding: 32px 0 40px; }
+.lista-recursos > div:nth-child(-n+2) h3 { font-size: clamp(22px, 2vw, 26px); }
+.lista-recursos > div:nth-child(-n+2) p { font-size: 17px; margin-top: 10px; }
+
+
+.grupo-perguntas + .grupo-perguntas { margin-top: 72px; }
+.grupo-perguntas h2 { font-size: clamp(32px, 3vw, 40px); }
+
+/* ---------- documentos legais ---------- */
+.legal { display: grid; grid-template-columns: 220px minmax(0, 68ch); gap: 64px; padding-bottom: 128px; align-items: start; }
+.legal-indice { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+.legal-indice a { text-decoration: none; color: var(--text-2); padding: 6px 10px; border-radius: var(--r-sm); }
+.legal-indice a:hover { color: var(--text); background: var(--s1); }
+.legal-texto { font-size: 16px; color: var(--text-2); }
+.legal-texto h2 { font-family: var(--font); font-weight: 600; font-size: 22px; letter-spacing: -0.015em; color: var(--text); margin: 56px 0 14px; scroll-margin-top: 88px; }
+.legal-texto h2:first-child { margin-top: 0; }
+.legal-texto p + p, .legal-texto p + ul, .legal-texto ul + p { margin-top: 12px; }
+.legal-texto ul { padding-left: 20px; margin: 12px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.legal-texto strong { color: var(--text); font-weight: 500; }
+.legal-texto a { color: var(--lime); text-underline-offset: 3px; }
+.preencher { background: var(--lime-soft); color: var(--lime); border-radius: 4px; padding: 0 4px; font-weight: 500; }
+.rascunho { margin-top: 28px; border-radius: var(--r); background: var(--danger-soft); color: #ffc3c7; padding: 14px 18px; font-size: 14px; max-width: 70ch; }
+.vigencia { margin-top: 16px; font-size: 14px; color: var(--text-3); }
+@media (max-width: 860px) {
+  .legal { grid-template-columns: 1fr; gap: 32px; }
+  .legal-indice { position: static; flex-direction: row; flex-wrap: wrap; }
+}
+
+/* ---------- rodapé ---------- */
+footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14px; color: var(--text-2); }
+.rodape { display: grid; grid-template-columns: 1.2fr repeat(2, 1fr); gap: 32px; }
+.rodape nav { display: flex; flex-direction: column; gap: 8px; }
+.rodape nav b { color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.rodape nav a { text-decoration: none; }
+.rodape nav a:hover { color: var(--text); }
+.rodape .fino { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; }
+.rodape p { margin-top: 12px; max-width: 34ch; }
+
+/* ---------- responsivo ---------- */
+@media (max-width: 860px) {
+  .nav-menu { display: inline-flex; }
+  .nav .btn-lime { min-height: 36px; padding: 0 12px; font-size: 14px; margin-left: 8px; }  /* o botão de assinar fica no celular, menor */
+  .nav-menu-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }  /* só o ícone; o nome fica para leitor de tela */
+  .nav .btn-lime svg { display: none; }
+  .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 2px; padding: 8px var(--gutter) 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .nav[data-menu="aberto"] .nav-links { display: flex; }
+  .nav-links a { padding: 12px; font-size: 16px; }
+  .recurso { grid-template-columns: 1fr; gap: 40px; }
+  .recurso.inverte > :first-child { order: 0; }
+  .recurso + .recurso { margin-top: 96px; }
+  section.bloco { padding: 96px 0; }
+  .etapa { grid-template-columns: 1fr; gap: 20px; padding: 56px 0; }
+  .etapa::before { padding-top: 0; }
+  .grade, .lista-recursos { grid-template-columns: 1fr; }
+  .rodape { grid-template-columns: 1fr 1fr; }
+  .rodape > div:first-child { grid-column: 1 / -1; }
+  .pagina-topo { padding-top: 64px; padding-bottom: 48px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .final { padding: 104px 0; }
+  h2, .recurso h2 { font-size: 36px; }
+  .final h2 { font-size: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Rodapé: alvos de toque com pelo menos 32 px de altura (eram 22 px). */
+.rodape nav a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* ---------- página de preço ---------- */
+.garantia-pagina { margin-top: 20px; font-size: 14px; color: var(--text-2); max-width: 72ch; }
+.faixas-preco { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.faixas-preco li { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--s1); padding: 24px; display: flex; flex-direction: column; gap: 4px; }
+.faixas-preco b { font-family: var(--display); font-size: 40px; font-weight: 900; line-height: 1; }
+.faixas-preco span { color: var(--text-2); font-size: 15px; }
+@media (max-width: 900px) { .faixas-preco { grid-template-columns: 1fr; } }
+
+/* ---------- landing: a página é um episódio ----------
+   O trilho à esquerda é a linha do tempo da página; cada seção é um trecho, e o trecho em leitura acende. */
+.trilho { display: none; }
+@media (min-width: 1100px) {
+  .episodio { display: grid; grid-template-columns: var(--trilho) minmax(0, 1fr); }
+  .trilho { display: flex; flex-direction: column; position: sticky; top: 64px; height: calc(100vh - 64px); padding: 40px 0 40px var(--gutter); }
+}
+.trilho ol { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; position: relative; }
+.trilho ol::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 22px; background: repeating-linear-gradient(180deg, var(--s4) 0 2px, transparent 2px 6px); }
+.trilho li { flex: var(--peso, 1); position: relative; }
+.trilho a { position: absolute; inset: 0; padding: 0 0 0 34px; text-decoration: none; font-size: 12px; line-height: 1.35; color: var(--text-3); }
+.trilho a b { display: block; font-weight: 600; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.trilho a::before { content: ""; position: absolute; left: 0; top: 0; bottom: 6px; width: 22px; background: repeating-linear-gradient(180deg, var(--lime) 0 2px, transparent 2px 6px); opacity: 0; transition: opacity .25s var(--ease); }
+.trilho a:hover { color: var(--text-2); }
+.trilho a[aria-current="true"] { color: var(--text); }
+.trilho a[aria-current="true"] b { color: var(--corte); }
+.trilho a[aria-current="true"]::before { opacity: 1; }
+.trilho a:focus-visible { outline-offset: 0; }
+.trilho .total { font-size: 12px; color: var(--text-3); padding-top: 12px; }
+
+/* ---------- landing: planos numa régua de horas, em vez de três cartões iguais ---------- */
+.regua { margin-top: 56px; }
+.plano { display: grid; grid-template-columns: 200px minmax(0, 1fr) 200px; gap: 32px; align-items: center; padding: 32px 0; border-top: 1px solid var(--line); }
+.plano:last-child { border-bottom: 1px solid var(--line); }
+.plano h3 { font-family: var(--display); font-weight: 900; font-size: 44px; line-height: 1; letter-spacing: .005em; }
+.plano .para { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.barra { position: relative; height: 32px; }
+.barra i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--h); background: repeating-linear-gradient(90deg, var(--lime) 0 2px, transparent 2px 6px); }
+.plano.rec .barra i { --gancho-folga: -7px; --gancho-braco: 10px; }
+.barra span { position: absolute; left: calc(var(--h) + 14px); top: 50%; transform: translateY(-50%); font-size: 15px; color: var(--text-2); white-space: nowrap; }
+.barra span b { font-family: var(--display); font-weight: 900; font-size: 32px; color: var(--text); margin-right: 6px; vertical-align: -2px; }
+.preco-col { text-align: right; }
+.preco-col .valor { font-family: var(--display); font-weight: 900; font-size: 52px; line-height: 1; }
+.preco-col small { display: block; margin: 6px 0 14px; font-size: 13px; color: var(--text-2); }
+.preco-col .btn { min-width: 168px; }
+@media (max-width: 860px) {
+  .plano { grid-template-columns: 1fr; gap: 16px; }
+  .barra { margin-bottom: 36px; }
+  .barra span { left: 0; top: auto; bottom: -40px; transform: none; }
+  .preco-col { text-align: left; }
+  .preco-col .btn { width: 100%; }
+}
+
+/* ---------- assinar: checkout próprio (Asaas) ----------
+   Página de tarefa: a régua de horas vira a escolha do plano, o resto é formulário claro. Limão só no selecionado e no botão. */
+.topo-checkout { padding-bottom: 48px; }
+.topo-checkout h1 { font-size: clamp(48px, 5.6vw, 80px); }
+.checkout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 72px; align-items: start; padding-bottom: 128px; }
+.passo { min-width: 0; }
+.passo[hidden] { display: none; }
+.passo fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.passo fieldset + fieldset { margin-top: 48px; }
+.passo legend { padding: 0; margin-bottom: 16px; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; color: var(--text); }
+
+/* plano: linhas da régua de horas, compactas e clicáveis */
+.escolha-plano { display: flex; flex-direction: column; gap: 8px; }
+.opcao-plano {
+  display: grid; grid-template-columns: 22px 150px minmax(0, 1fr) auto; grid-template-areas: "radio nome regua preco" "radio nome detalhe preco";
+  column-gap: 20px; row-gap: 6px; align-items: center; padding: 18px 20px; border-radius: var(--r-lg); background: var(--s1);
+  border: 1px solid transparent; cursor: pointer; transition: background-color .16s var(--ease), border-color .16s var(--ease);
+}
+.opcao-plano:hover { background: var(--s2); }
+.opcao-plano::before {
+  content: ""; grid-area: radio; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--text-3);
+  transition: border-color .16s var(--ease), box-shadow .16s var(--ease);
+}
+.opcao-plano:has(input:checked) { background: var(--s2); border-color: var(--lime-line); }
+.opcao-plano:has(input:checked)::before { border-color: var(--lime); box-shadow: inset 0 0 0 4px var(--s2), inset 0 0 0 10px var(--lime); }
+.opcao-plano:has(input:focus-visible) { outline: 2px solid var(--lime); outline-offset: 3px; }
+.op-nome { grid-area: nome; font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1; letter-spacing: .005em; }
+.op-nome em { display: block; margin-top: 6px; font: 500 12px/1.2 var(--font); font-style: normal; color: var(--text-2); letter-spacing: 0; }
+.op-regua { grid-area: regua; position: relative; height: 14px; }
+.op-regua i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--h); background: repeating-linear-gradient(90deg, var(--lime) 0 2px, transparent 2px 6px); opacity: .55; transition: opacity .16s var(--ease); }
+.opcao-plano:has(input:checked) .op-regua i { opacity: 1; }
+.op-regua i.gancho { --gancho-folga: -5px; --gancho-braco: 8px; }
+.op-detalhe { grid-area: detalhe; font-size: 14px; color: var(--text-2); }
+.op-detalhe b { color: var(--text); font-weight: 600; }
+.op-preco { grid-area: preco; font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1; text-align: right; white-space: nowrap; }
+.op-preco small { font: 400 13px var(--font); color: var(--text-2); margin-left: 2px; }
+
+/* campos */
+.campos { display: grid; gap: 22px; }
+.campo label, .pix-dados > label { display: block; font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.campo input, .pix-dados textarea {
+  display: block; width: 100%; min-height: 48px; padding: 0 14px; border-radius: var(--r); border: 1px solid var(--line-2);
+  background: var(--s1); color: var(--text); font-size: 16px; caret-color: var(--lime);
+  transition: border-color .16s var(--ease), background-color .16s var(--ease);
+}
+.campo input::placeholder { color: var(--text-3); }
+.campo input:hover { border-color: rgba(245, 245, 240, .22); }
+.campo input:focus { outline: none; border-color: var(--lime); background: var(--s2); box-shadow: 0 0 0 3px var(--lime-soft); }
+.campo input[aria-invalid="true"] { border-color: var(--danger); }
+.campo input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px var(--danger-soft); }
+#documento { max-width: 280px; font-variant-numeric: tabular-nums; }
+.campo-dica { margin-top: 8px; font-size: 13px; color: var(--text-3); }
+.campo-erro { font-size: 14px; color: var(--danger); }
+.campo-erro:not(:empty) { margin-top: 8px; }
+
+/* forma de pagamento: duas opções lado a lado */
+.formas-opcoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: 480px; }
+.opcao-plano, .opcao-forma { position: relative; }
+.opcao-forma { display: block; }
+.opcao-forma span {
+  display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 16px; border-radius: var(--r);
+  background: var(--s1); border: 1px solid var(--line-2); font-weight: 500; cursor: pointer; text-align: center;
+  transition: background-color .16s var(--ease), border-color .16s var(--ease), color .16s var(--ease);
+}
+.opcao-forma span:hover { background: var(--s2); }
+.opcao-forma input:checked + span { border-color: var(--lime); background: var(--lime-soft); color: var(--text); }
+.opcao-forma input:focus-visible + span { outline: 2px solid var(--lime); outline-offset: 3px; }
+.nota-segura { display: flex; gap: 10px; margin-top: 16px; font-size: 14px; color: var(--text-2); max-width: 60ch; }
+.nota-segura svg { width: 18px; height: 18px; margin-top: 2px; color: var(--text-3); }
+
+.erro-geral { margin-top: 32px; padding: 14px 18px; border-radius: var(--r); background: var(--danger-soft); color: #ffc3c7; font-size: 15px; max-width: 64ch; }
+.erro-geral:focus { outline: none; }
+.btn-enviar { margin-top: 40px; min-height: 56px; padding: 0 28px; font-size: 17px; }
+.btn-enviar[aria-busy="true"] { cursor: progress; }
+.btn-enviar[aria-busy="true"]::before {
+  content: ""; width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent;
+  animation: girar .7s linear infinite;
+}
+.btn:disabled { opacity: .75; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.aceite { margin-top: 14px; font-size: 13px; color: var(--text-2); }
+.aceite a, .resumo a, .codigo-nota a { text-underline-offset: 3px; }
+
+/* pagamento */
+.passo h2 { font-size: clamp(40px, 4.2vw, 56px); line-height: .95; }
+.passo h2:focus { outline: none; }
+.passo-lead { margin-top: 14px; font-size: 18px; color: var(--text-2); max-width: 52ch; }
+.passo-lead + .btn { margin-top: 28px; }
+.pix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 32px; margin-top: 36px; align-items: start; }
+.pix-qr { background: #fff; border-radius: var(--r-lg); padding: 12px; line-height: 0; }
+.pix-qr img { width: 220px; height: 220px; image-rendering: pixelated; }
+.pix-valores { display: flex; flex-wrap: wrap; gap: 16px 40px; margin: 0 0 24px; }
+.pix-valores dt { font-size: 13px; color: var(--text-2); }
+.pix-valores dd { white-space: nowrap; margin: 4px 0 0; font-family: var(--display); font-weight: 900; font-size: 32px; line-height: 1; }
+.pix-dados textarea { padding: 12px 14px; font: 400 13px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; color: var(--text-2); resize: none; word-break: break-all; }
+.pix-dados textarea:focus { outline: none; border-color: var(--lime); }
+.pix-dados .btn { margin-top: 12px; }
+.cartao-valor { margin-top: 28px; font-size: 15px; color: var(--text-2); }
+.cartao-valor span { font-family: var(--display); font-weight: 900; font-size: 40px; color: var(--text); margin-right: 6px; }
+#pagar-cartao { margin-top: 20px; }
+.situacao { display: flex; align-items: center; gap: 12px; margin-top: 36px; padding: 16px 18px; border-radius: var(--r); background: var(--s1); font-size: 15px; color: var(--text-2); max-width: 64ch; }
+.pulso { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--lime); animation: pulso 1.6s var(--ease) infinite; }
+.situacao[data-estado="falha"] .pulso { background: var(--corte); animation: none; }
+@keyframes pulso { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+.link-voltar { display: block; margin-top: 20px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--text-2); font-size: 15px; cursor: pointer; text-decoration: underline; text-decoration-color: var(--text-3); text-underline-offset: 5px; }
+.link-voltar:hover { color: var(--text); }
+
+/* pago: o código é o centro da tela */
+.pago-icone { width: .8em; height: .8em; color: var(--lime); margin-right: 10px; vertical-align: -0.06em; }
+.codigo { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; padding: 24px 28px; border-radius: var(--r-lg); background: var(--s2); border: 1px solid var(--lime-line); }
+.codigo-valor { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6vw, 64px); line-height: 1; letter-spacing: .04em; color: var(--lime); margin-right: auto; user-select: all; overflow-wrap: anywhere; }
+.codigo-nota { margin-top: 16px; font-size: 15px; color: var(--text-2); max-width: 64ch; }
+.codigo-nota b { color: var(--text); font-weight: 500; overflow-wrap: anywhere; }
+.passos { list-style: none; margin: 48px 0 0; padding: 0; counter-reset: passo; }
+.passos li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding: 24px 0; border-top: 1px solid var(--line); }
+.passos li::before { counter-increment: passo; content: counter(passo); font-family: var(--display); font-weight: 900; font-size: 40px; line-height: .9; color: var(--text-3); }
+.passos h3 { font-size: 19px; letter-spacing: -0.015em; }
+.passos p { margin-top: 6px; color: var(--text-2); font-size: 16px; max-width: 58ch; }
+.passos .btn { margin-top: 16px; }
+
+/* resumo ao lado */
+.resumo { position: sticky; top: 88px; padding: 28px; border-radius: var(--r-lg); background: var(--s1); }
+.resumo-nome { font-size: 15px; font-weight: 600; }
+.resumo-preco { margin-top: 6px; font-family: var(--display); font-weight: 900; font-size: 64px; line-height: 1; }
+.resumo-preco small { font: 400 15px var(--font); color: var(--text-2); margin-left: 8px; }
+.resumo-detalhe { margin-top: 10px; font-size: 14px; color: var(--text-2); }
+.resumo-lista { list-style: none; margin: 24px 0 0; padding: 24px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: var(--text-2); }
+.resumo-lista li { display: flex; gap: 10px; }
+.resumo-lista svg { width: 16px; height: 16px; margin-top: 3px; color: var(--text-3); }
+.resumo-ajuda { margin-top: 24px; font-size: 13px; color: var(--text-2); }
+
+@media (max-width: 960px) {
+  .checkout { grid-template-columns: 1fr; gap: 56px; }
+  .resumo { position: static; }
+}
+@media (max-width: 640px) {
+  .opcao-plano { grid-template-columns: 22px minmax(0, 1fr) auto; grid-template-areas: "radio nome preco" "radio regua regua" "radio detalhe detalhe"; padding: 16px; column-gap: 14px; row-gap: 10px; }
+  .op-nome, .op-preco { font-size: 30px; }
+  .op-nome em { display: inline; margin: 0 0 0 8px; vertical-align: 4px; }
+  .pix { grid-template-columns: 1fr; gap: 24px; }
+  .pix-qr { justify-self: start; }
+  .pix-valores dd { font-size: 26px; }
+  .btn-enviar { width: 100%; white-space: normal; text-align: center; padding: 10px 20px; }
+  .codigo { padding: 20px; }
+  .codigo .btn { width: 100%; }
+}
+
+/* ---------- baixar ---------- */
+.baixar-acao { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 36px; }
+.baixar-acao .btn { min-height: 56px; padding: 0 28px; font-size: 17px; }
+.baixar-acao .btn svg { width: 18px; height: 18px; }
+.baixar-acao p { font-size: 14px; color: var(--text-2); }
+.baixar-corpo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 72px; padding-bottom: 128px; align-items: start; }
+.baixar-corpo h2 { font-size: clamp(36px, 3.4vw, 48px); }
+.baixar-corpo .passos { margin-top: 28px; }
+.aviso-windows { padding: 28px; border-radius: var(--r-lg); background: var(--s1); }
+.aviso-windows h2 { font-size: clamp(30px, 2.6vw, 36px); }
+.aviso-windows p { margin-top: 12px; font-size: 16px; color: var(--text-2); }
+.aviso-windows p b { color: var(--text); font-weight: 500; }
+@media (max-width: 860px) { .baixar-corpo { grid-template-columns: 1fr; gap: 56px; } }
+
+/* Seja um testador */
+.testador { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--s1); color: var(--text); }
+.testador::backdrop { background: rgba(5, 6, 8, .72); }
+.testador-form, .testador-ok { position: relative; display: grid; gap: 14px; padding: 28px; }
+.testador h2 { margin: 0; font-size: 40px; line-height: 1; }
+.testador-sub, .testador-ok p { margin: 0; color: var(--text-2); font-size: 15px; }
+.testador label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; }
+.testador input, .testador select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; font-size: 15px; }
+.testador input:focus, .testador select:focus { outline: 2px solid var(--lime); outline-offset: 1px; }
+.testador small { color: var(--text-2); font-weight: 400; font-size: 13px; }
+.testador-duplo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.testador .testador-aceite { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--text-2); }
+.testador-aceite input { min-height: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--lime); flex: none; }
+.testador-aceite a { color: var(--text); }
+.testador-fechar { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; color: var(--text-2); cursor: pointer; }
+.testador-fechar svg { width: 18px; height: 18px; transform: rotate(45deg); }
+.testador-fechar:hover { background: var(--s2); color: var(--text); }
+.testador .testador-nota { font-size: 13px; }
+@media (max-width: 560px) { .testador-duplo { grid-template-columns: 1fr; } .testador-form, .testador-ok { padding: 22px; } }
+.testador [hidden] { display: none; }
+.testador-isca { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.testador .testador-erro { margin: 0; color: #ff8a7a; font-size: 14px; }
+</style>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="marca" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#b7f36b"/><circle cx="18" cy="7.4" r="2.5" fill="none" stroke="#111318" stroke-width="2.5"/><path d="M18 9.9 V18.2 a5.8 5.8 0 0 1 -11.6 0 L6.4 15.6 L10.2 18.6" fill="none" stroke="#111318" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.2 12.4 L26.4 15 L22.2 17.6 Z" fill="#111318"/></symbol>
+  <symbol id="i-check" viewBox="0 0 20 20"><path d="M5 10.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 20 20"><path d="m6 6 8 8M14 6l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-mais" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 20 20"><path d="M4 10h11M11 6l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.5v9l7-4.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 20 20"><rect x="6" y="5" width="3" height="10" rx=".8" fill="currentColor"/><rect x="11" y="5" width="3" height="10" rx=".8" fill="currentColor"/></symbol>
+  <symbol id="i-volta" viewBox="0 0 20 20"><path d="M9 6 5 10l4 4M15 6l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-avanca" viewBox="0 0 20 20"><path d="m11 6 4 4-4 4M5 6l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-anterior" viewBox="0 0 20 20"><path d="M6 5v10M15 5l-7 5 7 5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-proximo" viewBox="0 0 20 20"><path d="M14 5v10M5 5l7 5-7 5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-repetir" viewBox="0 0 20 20"><path d="M4 9a4 4 0 0 1 4-4h6m0 0-2.5-2.5M14 5l-2.5 2.5M16 11a4 4 0 0 1-4 4H6m0 0 2.5 2.5M6 15l2.5-2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tela" viewBox="0 0 20 20"><path d="M4 8V4h4M12 4h4v4M16 12v4h-4M8 16H4v-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-exportar" viewBox="0 0 20 20"><path d="M10 3v9m0-9L6.5 6.5M10 3l3.5 3.5M4 12v3.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-link" viewBox="0 0 20 20"><path d="M8.5 11.5a3.3 3.3 0 0 0 4.7 0l2.5-2.5A3.3 3.3 0 0 0 11 4.3l-.8.8M11.5 8.5a3.3 3.3 0 0 0-4.7 0L4.3 11A3.3 3.3 0 0 0 9 15.7l.8-.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-pasta" viewBox="0 0 20 20"><path d="M3 6.2A1.2 1.2 0 0 1 4.2 5H8l1.7 1.7h6.1A1.2 1.2 0 0 1 17 7.9v7A1.2 1.2 0 0 1 15.8 16H4.2A1.2 1.2 0 0 1 3 14.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pc" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 16h5M10 13v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-rosto" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="9" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.8 16a4.5 4.5 0 0 1 8.4 0" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-legenda" viewBox="0 0 20 20"><rect x="2.5" y="4" width="15" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 12.5h4M11.5 12.5h3M5.5 9.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-tesoura" viewBox="0 0 20 20"><circle cx="5.5" cy="14.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="5.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 7 17 14M7.5 13 17 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-som" viewBox="0 0 20 20"><path d="M3 8v4h3l4 3.5v-11L6 8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 7.5a3.5 3.5 0 0 1 0 5M15 5.5a6.5 6.5 0 0 1 0 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 20 20"><path d="M10 2.5 4 5v4.5c0 3.8 2.6 6.7 6 8 3.4-1.3 6-4.2 6-8V5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 10 1.8 1.8 3.4-3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arquivo" viewBox="0 0 20 20"><path d="M5 2.5h6.5L15 6v11.5H5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 2.5V6.5h4M7.5 10h5M7.5 13h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 20 20"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 12v3.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 20 20"><rect x="7" y="7" width="10" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V4.5A1.5 1.5 0 0 0 11.5 3h-7A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13H7" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+    <nav class="nav-links" id="nav-links" aria-label="Páginas">
+      <a href="como-funciona.html">Como funciona</a>
+      <a href="recursos.html">Recursos</a>
+      <a href="preco.html">Preço</a>
+      <a href="perguntas.html">Perguntas</a>
+    </nav>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true"><use href="#i-menu"/></svg><span class="nav-menu-texto">Menu</span></button>
+    <a class="btn btn-lime btn-sm" href="preco.html">Ver os planos</a>
+  </div>
+</header>
+
+<main>
+  <section class="wrap pagina-topo">
+    <h1>Baixe o ClipHook.</h1>
+    <p class="lead">O instalador é para Windows 10 e 11, 64 bits. Ele já traz tudo o que o programa precisa e cria o atalho “ClipHook”.</p>
+    <div class="baixar-acao">
+      <a class="btn btn-lime" href="https://licencas.cliphook.com.br/instalador"><svg aria-hidden="true"><use href="#i-baixar"/></svg>Baixar o instalador</a>
+      <p>Arquivo ClipHook-Setup.exe, sempre a versão mais recente.</p>
+    </div>
+  </section>
+
+  <div class="wrap baixar-corpo">
+    <section aria-labelledby="t-instalar">
+      <h2 id="t-instalar">Instale e ative.</h2>
+      <ol class="passos">
+        <li><div><h3>Abra o instalador</h3><p>Abra o ClipHook-Setup.exe que você baixou e clique em Avançar até o fim.</p></div></li>
+        <li><div><h3>Abra o ClipHook</h3><p>Pelo atalho “ClipHook” na área de trabalho ou no menu Iniciar. Ele abre numa janela própria, como qualquer aplicativo do Windows.</p></div></li>
+        <li><div><h3>Ative com o e-mail e o código</h3><p>Na primeira vez, o app pede o e-mail da assinatura e o código de ativação (começa com CH-). O código aparece na página logo depois do pagamento e vem em todo e-mail de cobrança. Ative uma vez em cada computador do seu plano.</p></div></li>
+      </ol>
+      <p class="nota">Ainda não assinou? <a href="preco.html">Veja os planos</a>. Confira também os <a href="preco.html#requisitos">requisitos do computador</a>.</p>
+    </section>
+
+    <aside class="aviso-windows" aria-labelledby="t-aviso">
+      <h2 id="t-aviso">O Windows avisou que o editor é desconhecido?</h2>
+      <p>É seguro, se o instalador veio desta página. O Windows mostra esse aviso para programas novos, que ainda não foram baixados por muita gente.</p>
+      <p>Clique em <b>“Mais informações”</b> e depois em <b>“Executar assim mesmo”</b>.</p>
+      <p>Na dúvida, não instale um arquivo do ClipHook recebido por outro caminho e escreva para <a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a>.</p>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap rodape">
+    <div>
+      <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+      <p>Cortes verticais editados a partir de vídeos longos, no seu computador.</p>
+    </div>
+    <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a></nav>
+    <nav aria-label="Ajuda"><b>Ajuda</b><a href="perguntas.html">Perguntas frequentes</a><a href="preco.html#requisitos">Requisitos</a><a href="termos.html">Termos de uso</a><a href="privacidade.html">Política de privacidade</a><a href="mailto:contato@cliphook.com.br">contato@cliphook.com.br</a></nav>
+    <div class="fino"><span>© 2026 ClipHook</span><span>Ricardo Chiarini Teixeira Gonçalves · MEI · CNPJ 69.912.713/0001-28 · Rafard/SP</span></div>
+  </div>
+</footer>
+<script>
+// Navegação compartilhada: borda ao rolar e menu no celular.
+(function () {
+  "use strict";
+  var nav = document.getElementById("nav");
+  if (!nav) return;
+  var marcar = function () { nav.dataset.rolou = String(window.scrollY > 8); };
+  window.addEventListener("scroll", marcar, { passive: true });
+  marcar();
+
+  var botao = nav.querySelector(".nav-menu");
+  if (!botao) return;
+  var alternar = function (abrir) {
+    nav.dataset.menu = abrir ? "aberto" : "";
+    botao.setAttribute("aria-expanded", String(abrir));
+  };
+  botao.addEventListener("click", function () { alternar(nav.dataset.menu !== "aberto"); });
+  nav.querySelectorAll(".nav-links a").forEach(function (a) { a.addEventListener("click", function () { alternar(false); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") alternar(false); });
+})();
+
+// Trilho da landing: acende o trecho (seção) que está no meio da tela.
+(function () {
+  "use strict";
+  var links = Array.prototype.slice.call(document.querySelectorAll(".trilho a"));
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.setAttribute("aria-current", String(a.hash === "#" + e.target.id)); });
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  links.forEach(function (a) {
+    var alvo = document.getElementById(a.hash.slice(1));
+    if (alvo) obs.observe(alvo);
+  });
+})();
+
+// Seja um testador: o formulário abre por cima da página; depois de enviado, mostra o link do instalador.
+(function () {
+  var dlg = document.getElementById("testador");
+  if (!dlg) return;
+  var form = document.getElementById("testador-form");
+  document.querySelectorAll("[data-testador]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); dlg.showModal(); });
+  });
+  dlg.querySelector(".testador-fechar").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  var servidor = "https://licencas.cliphook.com.br";
+  var erro = document.getElementById("testador-erro");
+  var enviar = form.querySelector("[type=submit]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var dados = {};
+    new FormData(form).forEach(function (valor, campo) { dados[campo] = valor; });
+    dados.aceite = form.elements.aceite.checked;
+    erro.hidden = true;
+    enviar.disabled = true;
+    enviar.textContent = "Enviando...";
+    // text/plain: o navegador manda direto, sem a consulta prévia de outro domínio
+    fetch(servidor + "/testador", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(dados) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.erro || "falha"); return j; }); })
+      .then(function (j) {
+        document.getElementById("testador-baixar").href = servidor + j.download;
+        form.hidden = true;
+        document.getElementById("testador-ok").hidden = false;
+      })
+      .catch(function (falha) {
+        var texto = falha && falha.message && falha.message !== "Failed to fetch" ? falha.message : "não deu para enviar agora";
+        erro.textContent = texto.charAt(0).toUpperCase() + texto.slice(1) + ". Tente de novo em instantes.";
+        erro.hidden = false;
+      })
+      .then(function () { enviar.disabled = false; enviar.textContent = "Quero testar"; });
+  });
+})();
+</script>
+</body>
+</html>
