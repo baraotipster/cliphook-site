@@ -626,7 +626,7 @@ main:focus { outline: none; }
 <main id="conteudo" tabindex="-1">
   <section class="wrap pagina-topo topo-checkout">
     <h1>Assine o ClipHook.</h1>
-    <p class="lead">Escolha o plano e pague por Pix ou cartão. O código de ativação aparece nesta página assim que o pagamento é confirmado.</p>
+    <p class="lead">Escolha o plano e pague por Pix ou cartão. O código de ativação aparece nesta página assim que o pagamento é confirmado. O ClipHook é um programa para Windows 10 e 11 (64 bits).</p>
   </section>
 
   <div class="wrap checkout">
@@ -1197,6 +1197,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
       var d = r.dados;
       if (r.status === 200 && d.pago) return pago(d, true);
       if (r.status === 200 && d.situacao === "abandonada") return expirado();
+      if (r.status === 200 && d.mensagem) return situacao(d.mensagem, "falha");  // ex.: pedido duplicado (o servidor explica)
       if (r.status === 200) {
         if (falhas) situacao(pedido.forma === "pix" ? "Esperando o pagamento. Esta página atualiza sozinha." : "Esperando a confirmação do pagamento. Depois de pagar, volte para esta aba: ela atualiza sozinha.");
         falhas = 0;
