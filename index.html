@@ -1067,7 +1067,7 @@ main:focus { outline: none; }
 <main id="conteudo" tabindex="-1">
   <section class="wrap hero" id="topo">
     <h1>Toda conversa longa esconde um <span class="marca-texto">gancho</span>.</h1>
-    <p class="sub"><span class="sr">Solte o episódio. Saia com os cortes prontos.</span><span class="giro" aria-hidden="true"><span class="on">Solte o episódio. Saia com os cortes prontos.</span><span>Cole o link do YouTube. Receba os cortes legendados.</span><span>Um debate de 2 horas. Uma semana de cortes.</span><span>A live acabou. Os cortes já estão saindo.</span></span></p>
+    <p class="sub"><span class="sr">Cortes de lives e podcasts com IA: solte o episódio e saia com os cortes prontos.</span><span class="giro" aria-hidden="true"><span class="on">Cortes de lives e podcasts com IA, prontos para postar.</span><span>Solte o episódio. Saia com os cortes prontos.</span><span>Cole o link do YouTube. Receba os cortes legendados.</span><span>Um debate de 2 horas. Uma semana de cortes.</span><span>A live acabou. Os cortes já estão saindo.</span></span></p>
     <div class="acoes">
       <a class="btn btn-lime" href="#preco">Ver os planos</a>
       <a class="btn" href="#testador" data-testador>Seja um testador</a>
@@ -1083,7 +1083,7 @@ main:focus { outline: none; }
         <!-- O vídeo como foi publicado, sem edição (como na demonstração do Cut.Pro, pedido do dono em 04/11/2026), no
              mesmo trecho do corte ao lado: react da live do Mamãe Falei, corte do canal Cortes das Lives. -->
         <div class="fluxo-original"><video class="fluxo-video" id="demo-original" src="demo/original.mp4" poster="demo/original.jpg"
-          autoplay muted loop playsinline preload="metadata" aria-label="O trecho na live original, deitada e sem edição, com a webcam de quem reage no canto e o chat"></video></div>
+          muted loop playsinline preload="none" aria-label="O trecho na live original, deitada e sem edição, com a webcam de quem reage no canto e o chat"></video></div>
         <div class="isca-legenda"><span class="num">0:00</span><span class="tempo-corte">2:33 → 3:34</span><span class="num">50:07</span></div>
         <p class="fluxo-nota">A IA escolheu o trecho e montou o react: o vídeo reagido em cima, quem reage embaixo, sem o chat, com a legenda palavra a palavra.</p>
       </div>
@@ -1092,7 +1092,7 @@ main:focus { outline: none; }
         <p class="fluxo-rot"><b>Corte pronto</b> · 9:16</p>
         <div class="a-vertical fluxo-celular">
           <!-- O corte real exportado no ClipHook (canal Cortes das Lives, dono, 04/11/2026), sem som, em loop junto com o original. -->
-          <video class="fluxo-video" id="demo-corte" src="demo/corte.mp4" poster="demo/corte.jpg" autoplay muted loop playsinline preload="metadata"
+          <video class="fluxo-video" id="demo-corte" src="demo/corte.mp4" poster="demo/corte.jpg" muted loop playsinline preload="none"
             aria-label="O mesmo trecho como corte vertical feito no ClipHook: o vídeo reagido em cima, quem reage embaixo e a legenda"></video>
         </div>
         <p class="fluxo-credito">Corte real feito no ClipHook</p>
@@ -1313,7 +1313,7 @@ main:focus { outline: none; }
       <h2>Seu último episódio tem cortes escondidos. Ache todos.</h2>
       <p>Escolha o vídeo, aprove os cortes, exporte. O ClipHook faz o resto no seu computador.</p>
       <div class="final-acoes">
-        <a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-inicio-final">Assinar a partir de R$ 29,90</a>
+        <a class="btn btn-lime" href="assinar.html?plano=basico&amp;src=site-inicio-final">Assinar a partir de R$ 29,90</a>
         <a class="btn" href="#testador" data-testador>Seja um testador</a>
       </div>
       <p class="final-nota">Testadores ganham 10 horas de IA por 30 dias, sem pagar, em troca da opinião sincera.</p>
@@ -1475,6 +1475,8 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     a.addEventListener("click", function (e) { e.preventDefault(); dlg.showModal(); });
   });
   dlg.querySelector(".testador-fechar").addEventListener("click", function () { dlg.close(); });
+  // Vindo das páginas de busca (index.html#testador): o formulário já abre.
+  if (location.hash === "#testador") { dlg.showModal(); window.medir("testador"); }
   dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   var servidor = "https://licencas.cliphook.com.br";
   var erro = document.getElementById("testador-erro");
@@ -1529,8 +1531,8 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 })();
 
 // Topo: o vídeo original e o corte tocam juntos (o mesmo trecho, sem pausas cortadas): o corte acompanha o original.
-// Rodam sempre (o dono quer o corte rodando, 04/11/2026); quem quiser para com o botão. Se o navegador barrar o play
-// automático (economia de bateria no celular), o botão vira "Assistir".
+// Rodam sozinhos quando chegam perto da tela e pausam fora dela (dono, 05/11/2026: cerca de 840 KB a menos no celular,
+// sem mudar o que se vê); quem quiser para com o botão. Se o navegador barrar o play automático, o botão vira "Assistir".
 (function () {
   var original = document.getElementById("demo-original"), corte = document.getElementById("demo-corte");
   var botao = document.getElementById("demo-pausa");
@@ -1544,7 +1546,13 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   if (botao) botao.addEventListener("click", function () {
     if (original.paused) tocar().catch(function () {}); else { original.pause(); corte.pause(); }
   });
-  tocar().catch(mostrar);
+  var parado = false;  // quem clicou em Pausar não volta a tocar sozinho ao rolar
+  if (botao) botao.addEventListener("click", function () { parado = original.paused; });  // roda depois do clique de cima
+  if (!("IntersectionObserver" in window)) { tocar().catch(mostrar); return; }
+  new IntersectionObserver(function (itens) {
+    if (itens[0].isIntersecting) { if (!parado) tocar().catch(mostrar); }
+    else if (!original.paused) { original.pause(); corte.pause(); }
+  }, { rootMargin: "200px 0px" }).observe(original);
 })();
 </script>
 <script>

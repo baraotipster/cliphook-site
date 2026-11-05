@@ -721,7 +721,7 @@ main:focus { outline: none; }
     <div class="wrap">
       <h2>Pronto para o primeiro corte?</h2>
       <p>Instale, escolha o vídeo e aprove os cortes. O resto o ClipHook faz no seu computador.</p>
-      <a class="btn btn-lime" href="assinar.html?plano=pro&amp;src=site-perguntas-final">Assinar a partir de R$ 29,90</a>
+      <a class="btn btn-lime" href="assinar.html?plano=basico&amp;src=site-perguntas-final">Assinar a partir de R$ 29,90</a>
     </div>
   </section>
 </main>
@@ -850,6 +850,8 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     a.addEventListener("click", function (e) { e.preventDefault(); dlg.showModal(); });
   });
   dlg.querySelector(".testador-fechar").addEventListener("click", function () { dlg.close(); });
+  // Vindo das páginas de busca (index.html#testador): o formulário já abre.
+  if (location.hash === "#testador") { dlg.showModal(); window.medir("testador"); }
   dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   var servidor = "https://licencas.cliphook.com.br";
   var erro = document.getElementById("testador-erro");
@@ -904,8 +906,8 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
 })();
 
 // Topo: o vídeo original e o corte tocam juntos (o mesmo trecho, sem pausas cortadas): o corte acompanha o original.
-// Rodam sempre (o dono quer o corte rodando, 04/11/2026); quem quiser para com o botão. Se o navegador barrar o play
-// automático (economia de bateria no celular), o botão vira "Assistir".
+// Rodam sozinhos quando chegam perto da tela e pausam fora dela (dono, 05/11/2026: cerca de 840 KB a menos no celular,
+// sem mudar o que se vê); quem quiser para com o botão. Se o navegador barrar o play automático, o botão vira "Assistir".
 (function () {
   var original = document.getElementById("demo-original"), corte = document.getElementById("demo-corte");
   var botao = document.getElementById("demo-pausa");
@@ -919,7 +921,13 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   if (botao) botao.addEventListener("click", function () {
     if (original.paused) tocar().catch(function () {}); else { original.pause(); corte.pause(); }
   });
-  tocar().catch(mostrar);
+  var parado = false;  // quem clicou em Pausar não volta a tocar sozinho ao rolar
+  if (botao) botao.addEventListener("click", function () { parado = original.paused; });  // roda depois do clique de cima
+  if (!("IntersectionObserver" in window)) { tocar().catch(mostrar); return; }
+  new IntersectionObserver(function (itens) {
+    if (itens[0].isIntersecting) { if (!parado) tocar().catch(mostrar); }
+    else if (!original.paused) { original.pause(); corte.pause(); }
+  }, { rootMargin: "200px 0px" }).observe(original);
 })();
 </script>
 </body>
