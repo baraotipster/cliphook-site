@@ -846,14 +846,32 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Origem da visita: o canal de fora que trouxe a pessoa (o ?src= de um link nosso nas redes ou o site de onde veio).
+// A primeira origem externa da aba fica em sessionStorage e vale para as páginas seguintes; antes, a 2ª página já
+// contava como "direto". Os botões internos (?src=site-...) não são canal: o checkout manda o botão à parte.
+// Sem cookie e sem dado pessoal: só o nome do canal, apagado quando a aba fecha.
+window.origemDaVisita = (function () {
+  var CHAVE = "cliphook-origem";
+  try {
+    var guardada = sessionStorage.getItem(CHAVE);
+    if (guardada) return guardada;
+  } catch (_) { /* sem armazenamento: vale a origem desta página */ }
+  var ref = "";
+  try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (_) { ref = ""; }
+  // navegação dentro do site não é origem
+  if (/(^|\.)cliphook\.com\.br$/.test(ref) || ref === location.hostname.replace(/^www\./, "")) ref = "";
+  var src = new URLSearchParams(location.search).get("src") || "";
+  if (/^site-/.test(src)) src = "";
+  var origem = (src || ref).toLowerCase().replace(/[^a-z0-9.-]/g, "").slice(0, 40);  // o mesmo formato que o servidor aceita
+  if (origem) try { sessionStorage.setItem(CHAVE, origem); } catch (_) { /* idem */ }
+  return origem;
+})();
+
 // Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
-// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: a da visita (acima).
 window.medir = function (evento) {
   try {
-    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
-    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
-    var src = new URLSearchParams(location.search).get("src") || "";
-    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var dados = JSON.stringify({ p: location.pathname, r: "", s: window.origemDaVisita || "", e: evento || "visita" });
     var url = "https://licencas.cliphook.com.br/visita";
     if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
       fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});
@@ -988,8 +1006,15 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     tirar: function (k) { try { sessionStorage.removeItem(k); } catch (e) { /* idem */ } }
   };
 
-  // Origem do clique (src=site-preco-pro etc.), para saber de onde vêm as assinaturas.
-  if (params.get("src")) guardar.por("cliphook-src", params.get("src").slice(0, 60));
+  // Botão do site que trouxe ao checkout (src=site-preco-pro etc.). O canal de fora vem de site.js (origemDaVisita).
+  if (/^site-/.test(params.get("src") || "")) guardar.por("cliphook-src", params.get("src").slice(0, 60));
+
+  // O que vai em "origem" no pedido: o canal e o botão, juntos por "_" (o servidor guarda um campo só, até 60 letras;
+  // canal e botão nunca têm "_"). Ex.: "instagram-bio_site-preco-pro", "direto_site-comparar", "google.com".
+  function origemDoPedido() {
+    var canal = String(window.origemDaVisita || "").slice(0, 30), botao = String(guardar.ler("cliphook-src") || "").slice(0, 29);
+    return botao ? (canal || "direto") + "_" + botao : canal;
+  }
 
   // ---------- validação (a mesma regra do servidor) ----------
   function digitos(t) { return String(t || "").replace(/\D/g, ""); }
@@ -1147,7 +1172,8 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
       plano: planoAtual(), forma: formaAtual(),
       nome: form.elements.nome.value.trim(), email: form.elements.email.value.trim(), documento: digitos(doc.value),
       segredo: anterior.segredo || "",  // só quem tem o segredo do pedido em aberto o retoma
-      origem: guardar.ler("cliphook-src") || ""  // de qual botão do site veio (?src=), para saber o que traz assinaturas
+      origem: origemDoPedido(),  // canal de fora + botão do site, para saber o que traz assinaturas
+      canal: String(window.origemDaVisita || ""), botao: guardar.ler("cliphook-src") || ""  // separados, para quando o servidor ler
     }).then(function (r) {
       enviando(false);
       if (r.status === 200 && r.dados.checkout) {

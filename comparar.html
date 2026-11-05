@@ -601,6 +601,23 @@ main:focus { outline: none; }
   .rolar { overflow-x: auto; }
   .rolar:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
   .rolar .tabela-comp { min-width: 720px; }
+  /* Celular e tablet estreito: cada linha da tabela vira um bloco, com o nome da coluna ao lado de cada valor, para
+     horas e preço por hora aparecerem sem rolar de lado (antes, 2 de 4 colunas ficavam fora da tela). */
+  @media (max-width: 800px) {
+    .rolar { overflow-x: visible; }
+    .rolar .tabela-comp { min-width: 0; }
+    .tabela-comp, .tabela-comp caption, .tabela-comp tbody, .tabela-comp tr, .tabela-comp th, .tabela-comp td { display: block; }
+    .tabela-comp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .tabela-comp caption { padding-bottom: 4px; }
+    .tabela-comp tr { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .tabela-comp th, .tabela-comp td { padding: 4px 0; border-bottom: 0; }
+    .tabela-comp tbody th { width: auto; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .tabela-comp td { position: relative; padding-left: 172px; }
+    .tabela-comp td::before { content: attr(data-rotulo); position: absolute; left: 0; top: 5px; width: 160px; color: var(--text-3); font-size: 13px; }
+    .tabela-comp thead th.nosso, .tabela-comp td.nosso, .tabela-comp tbody th.nosso { background: none; }
+    .tabela-comp tbody tr:has(th.nosso) { background: var(--s1); padding-left: 14px; padding-right: 14px; }
+    .tabela-comp td.nosso::before { color: var(--text-2); }
+  }
   .fontes { margin-top: 20px; font-size: 13px; color: var(--text-3); max-width: 80ch; }
   .fontes a { color: var(--text-2); }
   @media (max-width: 860px) { .placar { grid-template-columns: 1fr; gap: 28px; } }
@@ -668,14 +685,14 @@ main:focus { outline: none; }
         <caption>Preço mensal, horas de vídeo analisadas por mês e preço por hora. Conta: 1 crédito do OpusClip e do Cut.Pro é 1 minuto de vídeo.</caption>
         <thead><tr><th scope="col">Plano</th><th scope="col">Preço por mês</th><th scope="col">Horas de vídeo por mês</th><th scope="col">Preço por hora</th></tr></thead>
         <tbody>
-          <tr><th scope="row" class="nosso">ClipHook Básico</th><td class="nosso"><b>R$ 29,90</b></td><td class="nosso"><b>12 h</b></td><td class="nosso"><b>R$ 2,49</b></td></tr>
-          <tr><th scope="row" class="nosso">ClipHook Pro</th><td class="nosso"><b>R$ 75</b></td><td class="nosso"><b>36 h</b></td><td class="nosso"><b>R$ 2,08</b></td></tr>
-          <tr><th scope="row" class="nosso">ClipHook Agência</th><td class="nosso"><b>R$ 200</b></td><td class="nosso"><b>150 h</b></td><td class="nosso"><b>R$ 1,33</b></td></tr>
-          <tr><th scope="row">OpusClip Starter</th><td>US$ 15</td><td>2,5 h</td><td>US$ 6,00</td></tr>
-          <tr><th scope="row">OpusClip Pro</th><td>US$ 29</td><td>5 h</td><td>US$ 5,80</td></tr>
-          <tr><th scope="row">Cut.Pro Básico</th><td>R$ 19,90</td><td>1,7 h</td><td>R$ 11,94</td></tr>
-          <tr><th scope="row">Cut.Pro Plus</th><td>R$ 69,90</td><td>16,7 h</td><td>R$ 4,19</td></tr>
-          <tr><th scope="row">Cut.Pro Pro</th><td>R$ 119,90</td><td>41,7 h</td><td>R$ 2,88</td></tr>
+          <tr><th scope="row" class="nosso">ClipHook Básico</th><td data-rotulo="Preço por mês" class="nosso"><b>R$ 29,90</b></td><td data-rotulo="Horas de vídeo por mês" class="nosso"><b>12 h</b></td><td data-rotulo="Preço por hora" class="nosso"><b>R$ 2,49</b></td></tr>
+          <tr><th scope="row" class="nosso">ClipHook Pro</th><td data-rotulo="Preço por mês" class="nosso"><b>R$ 75</b></td><td data-rotulo="Horas de vídeo por mês" class="nosso"><b>36 h</b></td><td data-rotulo="Preço por hora" class="nosso"><b>R$ 2,08</b></td></tr>
+          <tr><th scope="row" class="nosso">ClipHook Agência</th><td data-rotulo="Preço por mês" class="nosso"><b>R$ 200</b></td><td data-rotulo="Horas de vídeo por mês" class="nosso"><b>150 h</b></td><td data-rotulo="Preço por hora" class="nosso"><b>R$ 1,33</b></td></tr>
+          <tr><th scope="row">OpusClip Starter</th><td data-rotulo="Preço por mês">US$ 15</td><td data-rotulo="Horas de vídeo por mês">2,5 h</td><td data-rotulo="Preço por hora">US$ 6,00</td></tr>
+          <tr><th scope="row">OpusClip Pro</th><td data-rotulo="Preço por mês">US$ 29</td><td data-rotulo="Horas de vídeo por mês">5 h</td><td data-rotulo="Preço por hora">US$ 5,80</td></tr>
+          <tr><th scope="row">Cut.Pro Básico</th><td data-rotulo="Preço por mês">R$ 19,90</td><td data-rotulo="Horas de vídeo por mês">1,7 h</td><td data-rotulo="Preço por hora">R$ 11,94</td></tr>
+          <tr><th scope="row">Cut.Pro Plus</th><td data-rotulo="Preço por mês">R$ 69,90</td><td data-rotulo="Horas de vídeo por mês">16,7 h</td><td data-rotulo="Preço por hora">R$ 4,19</td></tr>
+          <tr><th scope="row">Cut.Pro Pro</th><td data-rotulo="Preço por mês">R$ 119,90</td><td data-rotulo="Horas de vídeo por mês">41,7 h</td><td data-rotulo="Preço por hora">R$ 2,88</td></tr>
         </tbody>
       </table>
     </div>
@@ -688,15 +705,15 @@ main:focus { outline: none; }
       <table class="tabela-comp">
         <thead><tr><th scope="col">Recurso</th><th scope="col" class="nosso">ClipHook</th><th scope="col">OpusClip</th><th scope="col">Cut.Pro</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Onde o vídeo é processado</th><td class="nosso"><b>No seu computador.</b> O vídeo não é enviado a ninguém.</td><td>Na nuvem: você envia o vídeo</td><td>Na nuvem: você envia o vídeo</td></tr>
-          <tr><th scope="row">O que você precisa</th><td class="nosso">PC com Windows 10 ou 11 (64 bits)</td><td>Navegador</td><td>Navegador ou celular</td></tr>
-          <tr><th scope="row">Nota de 0 a 100 para o potencial de viralizar</th><td class="nosso"><b>Em todos os planos</b>, com o motivo de cada nota</td><td>A partir do Starter</td><td>Sim</td></tr>
-          <tr><th scope="row">Legenda palavra a palavra e câmera em quem fala</th><td class="nosso"><b>Sim</b></td><td>Sim</td><td>Sim</td></tr>
-          <tr><th scope="row">Projeto para Premiere e DaVinci</th><td class="nosso"><b>Em todos os planos</b></td><td>Só no Pro</td><td>Não informado</td></tr>
-          <tr><th scope="row">Capa de cada corte</th><td class="nosso"><b>Sim</b>, em 4 estilos, com a Citação para debates</td><td>Não informado</td><td>Não informado</td></tr>
-          <tr><th scope="row">Marca d'água</th><td class="nosso"><b>Nunca</b></td><td>No plano grátis</td><td>No plano grátis</td></tr>
-          <tr><th scope="row">Publicar direto nas redes</th><td class="nosso">Não: você posta onde quiser</td><td>Sim</td><td>Sim</td></tr>
-          <tr><th scope="row">Plano grátis</th><td class="nosso">Não</td><td>Sim</td><td>Sim</td></tr>
+          <tr><th scope="row">Onde o vídeo é processado</th><td data-rotulo="ClipHook" class="nosso"><b>No seu computador.</b> O vídeo não é enviado a ninguém.</td><td data-rotulo="OpusClip">Na nuvem: você envia o vídeo</td><td data-rotulo="Cut.Pro">Na nuvem: você envia o vídeo</td></tr>
+          <tr><th scope="row">O que você precisa</th><td data-rotulo="ClipHook" class="nosso">PC com Windows 10 ou 11 (64 bits)</td><td data-rotulo="OpusClip">Navegador</td><td data-rotulo="Cut.Pro">Navegador ou celular</td></tr>
+          <tr><th scope="row">Nota de 0 a 100 para o potencial de viralizar</th><td data-rotulo="ClipHook" class="nosso"><b>Em todos os planos</b>, com o motivo de cada nota</td><td data-rotulo="OpusClip">A partir do Starter</td><td data-rotulo="Cut.Pro">Sim</td></tr>
+          <tr><th scope="row">Legenda palavra a palavra e câmera em quem fala</th><td data-rotulo="ClipHook" class="nosso"><b>Sim</b></td><td data-rotulo="OpusClip">Sim</td><td data-rotulo="Cut.Pro">Sim</td></tr>
+          <tr><th scope="row">Projeto para Premiere e DaVinci</th><td data-rotulo="ClipHook" class="nosso"><b>Em todos os planos</b></td><td data-rotulo="OpusClip">Só no Pro</td><td data-rotulo="Cut.Pro">Não informado</td></tr>
+          <tr><th scope="row">Capa de cada corte</th><td data-rotulo="ClipHook" class="nosso"><b>Sim</b>, em 4 estilos, com a Citação para debates</td><td data-rotulo="OpusClip">Não informado</td><td data-rotulo="Cut.Pro">Não informado</td></tr>
+          <tr><th scope="row">Marca d'água</th><td data-rotulo="ClipHook" class="nosso"><b>Nunca</b></td><td data-rotulo="OpusClip">No plano grátis</td><td data-rotulo="Cut.Pro">No plano grátis</td></tr>
+          <tr><th scope="row">Publicar direto nas redes</th><td data-rotulo="ClipHook" class="nosso">Não: você posta onde quiser</td><td data-rotulo="OpusClip">Sim</td><td data-rotulo="Cut.Pro">Sim</td></tr>
+          <tr><th scope="row">Plano grátis</th><td data-rotulo="ClipHook" class="nosso">Não</td><td data-rotulo="OpusClip">Sim</td><td data-rotulo="Cut.Pro">Sim</td></tr>
         </tbody>
       </table>
     </div>
@@ -787,14 +804,32 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Origem da visita: o canal de fora que trouxe a pessoa (o ?src= de um link nosso nas redes ou o site de onde veio).
+// A primeira origem externa da aba fica em sessionStorage e vale para as páginas seguintes; antes, a 2ª página já
+// contava como "direto". Os botões internos (?src=site-...) não são canal: o checkout manda o botão à parte.
+// Sem cookie e sem dado pessoal: só o nome do canal, apagado quando a aba fecha.
+window.origemDaVisita = (function () {
+  var CHAVE = "cliphook-origem";
+  try {
+    var guardada = sessionStorage.getItem(CHAVE);
+    if (guardada) return guardada;
+  } catch (_) { /* sem armazenamento: vale a origem desta página */ }
+  var ref = "";
+  try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (_) { ref = ""; }
+  // navegação dentro do site não é origem
+  if (/(^|\.)cliphook\.com\.br$/.test(ref) || ref === location.hostname.replace(/^www\./, "")) ref = "";
+  var src = new URLSearchParams(location.search).get("src") || "";
+  if (/^site-/.test(src)) src = "";
+  var origem = (src || ref).toLowerCase().replace(/[^a-z0-9.-]/g, "").slice(0, 40);  // o mesmo formato que o servidor aceita
+  if (origem) try { sessionStorage.setItem(CHAVE, origem); } catch (_) { /* idem */ }
+  return origem;
+})();
+
 // Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
-// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: a da visita (acima).
 window.medir = function (evento) {
   try {
-    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
-    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
-    var src = new URLSearchParams(location.search).get("src") || "";
-    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var dados = JSON.stringify({ p: location.pathname, r: "", s: window.origemDaVisita || "", e: evento || "visita" });
     var url = "https://licencas.cliphook.com.br/visita";
     if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
       fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});

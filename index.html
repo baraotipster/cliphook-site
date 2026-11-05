@@ -746,7 +746,8 @@ main:focus { outline: none; }
   .a-card-corpo .a-h5 { display: block; margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; min-height: 2.7em; }
   .a-card-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-size: 11px; color: var(--text-3); font-variant-numeric: tabular-nums; }
   .a-card-meta b { color: var(--text-2); font-weight: 500; }
-  .a-card-acoes { display: flex; gap: 6px; padding: 8px 12px 12px; margin-top: auto; }
+  /* Os botões quebram linha quando o cartão é estreito (1024–1440 px, três por linha): o Recusar não some cortado. */
+  .a-card-acoes { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px 12px; margin-top: auto; }
   .a-card-acoes .a-btn { flex: 1; min-height: 30px; font-size: 12px; }
   .a-card-acoes .a-btn[aria-pressed="true"].aprovar { background: var(--lime-soft); color: var(--lime); }
   .a-card-acoes .a-btn[aria-pressed="true"].recusar { background: var(--danger-soft); color: var(--danger); }
@@ -1149,6 +1150,7 @@ main:focus { outline: none; }
             <div class="janela-916" id="janela-916" aria-hidden="true"></div>
           </div>
           <p class="falante-legenda" id="falante-legenda" aria-live="off">A janela verde é o corte vertical: ela vai sozinha em quem está com a palavra.</p>
+          <button class="demo-pausa" id="falante-pausa" type="button" aria-controls="falante-video">Pausar</button>
         </div>
       </div>
 
@@ -1362,14 +1364,32 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Origem da visita: o canal de fora que trouxe a pessoa (o ?src= de um link nosso nas redes ou o site de onde veio).
+// A primeira origem externa da aba fica em sessionStorage e vale para as páginas seguintes; antes, a 2ª página já
+// contava como "direto". Os botões internos (?src=site-...) não são canal: o checkout manda o botão à parte.
+// Sem cookie e sem dado pessoal: só o nome do canal, apagado quando a aba fecha.
+window.origemDaVisita = (function () {
+  var CHAVE = "cliphook-origem";
+  try {
+    var guardada = sessionStorage.getItem(CHAVE);
+    if (guardada) return guardada;
+  } catch (_) { /* sem armazenamento: vale a origem desta página */ }
+  var ref = "";
+  try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (_) { ref = ""; }
+  // navegação dentro do site não é origem
+  if (/(^|\.)cliphook\.com\.br$/.test(ref) || ref === location.hostname.replace(/^www\./, "")) ref = "";
+  var src = new URLSearchParams(location.search).get("src") || "";
+  if (/^site-/.test(src)) src = "";
+  var origem = (src || ref).toLowerCase().replace(/[^a-z0-9.-]/g, "").slice(0, 40);  // o mesmo formato que o servidor aceita
+  if (origem) try { sessionStorage.setItem(CHAVE, origem); } catch (_) { /* idem */ }
+  return origem;
+})();
+
 // Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
-// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: a da visita (acima).
 window.medir = function (evento) {
   try {
-    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
-    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
-    var src = new URLSearchParams(location.search).get("src") || "";
-    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var dados = JSON.stringify({ p: location.pathname, r: "", s: window.origemDaVisita || "", e: evento || "visita" });
     var url = "https://licencas.cliphook.com.br/visita";
     if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
       fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});
@@ -1855,8 +1875,20 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     };
     vf.addEventListener("timeupdate", mover);
     mover();
+    // Toca sozinho ao aparecer, em loop; o botão para e volta (WCAG 2.2.2). Quem pausou fica parado até clicar de
+    // novo, e com movimento reduzido o vídeo só toca pelo botão.
+    var bf = $("falante-pausa"), parado = reduzido;
+    var rotulo = function () {
+      if (bf) bf.innerHTML = vf.paused ? '<span aria-hidden="true">▶</span> Assistir' : '<span aria-hidden="true">❚❚</span> Pausar';
+    };
+    ["play", "pause"].forEach(function (ev) { vf.addEventListener(ev, rotulo); });
+    rotulo();
+    if (bf) bf.addEventListener("click", function () {
+      parado = !vf.paused;
+      if (parado) vf.pause(); else vf.play().catch(rotulo);
+    });
     new IntersectionObserver(function (e) {
-      if (e[0].isIntersecting) vf.play().catch(function () {}); else vf.pause();
+      if (!e[0].isIntersecting) vf.pause(); else if (!parado) vf.play().catch(rotulo);
     }, { threshold: 0.3 }).observe(vf);
   }
 

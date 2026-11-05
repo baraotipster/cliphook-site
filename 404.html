@@ -702,14 +702,32 @@ main:focus { outline: none; }
   calcular();
 })();
 
+// Origem da visita: o canal de fora que trouxe a pessoa (o ?src= de um link nosso nas redes ou o site de onde veio).
+// A primeira origem externa da aba fica em sessionStorage e vale para as páginas seguintes; antes, a 2ª página já
+// contava como "direto". Os botões internos (?src=site-...) não são canal: o checkout manda o botão à parte.
+// Sem cookie e sem dado pessoal: só o nome do canal, apagado quando a aba fecha.
+window.origemDaVisita = (function () {
+  var CHAVE = "cliphook-origem";
+  try {
+    var guardada = sessionStorage.getItem(CHAVE);
+    if (guardada) return guardada;
+  } catch (_) { /* sem armazenamento: vale a origem desta página */ }
+  var ref = "";
+  try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (_) { ref = ""; }
+  // navegação dentro do site não é origem
+  if (/(^|\.)cliphook\.com\.br$/.test(ref) || ref === location.hostname.replace(/^www\./, "")) ref = "";
+  var src = new URLSearchParams(location.search).get("src") || "";
+  if (/^site-/.test(src)) src = "";
+  var origem = (src || ref).toLowerCase().replace(/[^a-z0-9.-]/g, "").slice(0, 40);  // o mesmo formato que o servidor aceita
+  if (origem) try { sessionStorage.setItem(CHAVE, origem); } catch (_) { /* idem */ }
+  return origem;
+})();
+
 // Medição do site (04/11/2026): conta a visita e os cliques que importam no nosso servidor, só totais. Sem cookie, sem
-// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: o ?src= do link ou o site de onde veio.
+// IP guardado, sem serviço de terceiros (política de privacidade 1.2). Origem: a da visita (acima).
 window.medir = function (evento) {
   try {
-    var ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
-    if (/(^|\.)cliphook\.com\.br$/.test(ref)) ref = "";  // navegação dentro do site não é origem
-    var src = new URLSearchParams(location.search).get("src") || "";
-    var dados = JSON.stringify({ p: location.pathname, r: ref, s: src, e: evento || "visita" });
+    var dados = JSON.stringify({ p: location.pathname, r: "", s: window.origemDaVisita || "", e: evento || "visita" });
     var url = "https://licencas.cliphook.com.br/visita";
     if (!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([dados], { type: "text/plain" })))) {
       fetch(url, { method: "POST", headers: { "Content-Type": "text/plain" }, body: dados, keepalive: true }).catch(function () {});
