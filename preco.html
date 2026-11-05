@@ -2,12 +2,16 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Preço do ClipHook: planos a partir de R$ 29,90/mês</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ClipHook">
 <meta property="og:title" content="Preço do ClipHook: planos a partir de R$ 29,90/mês">
-<meta property="og:description" content="Assinatura mensal do ClipHook com a IA incluída e horas de vídeo por mês conforme o plano. Requisitos do computador e quanto custa a IA por vídeo.">
+<meta property="og:description" content="Assinatura mensal do ClipHook com a IA incluída: 12, 36 ou 150 horas de vídeo por mês, horas extras por Pix e reembolso em 7 dias. Requisitos do PC.">
 <meta property="og:url" content="https://cliphook.com.br/preco.html">
 <meta property="og:image" content="https://cliphook.com.br/compartilhar.png">
 <meta property="og:image:width" content="1200">
@@ -15,7 +19,7 @@
 <meta property="og:image:alt" content="ClipHook: cortes verticais editados a partir de vídeos longos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Assinatura mensal do ClipHook com a IA incluída e horas de vídeo por mês conforme o plano. Requisitos do computador e quanto custa a IA por vídeo.">
+<meta name="description" content="Assinatura mensal do ClipHook com a IA incluída: 12, 36 ou 150 horas de vídeo por mês, horas extras por Pix e reembolso em 7 dias. Requisitos do PC.">
 <link rel="canonical" href="https://cliphook.com.br/preco.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
@@ -111,8 +115,8 @@ input, textarea, [contenteditable] { caret-color: var(--lime); }
 @font-face {
   font-family: "Archivo";
   src: url("fonts/archivo-latino.woff2") format("woff2");
-  font-weight: 100 900;
-  font-stretch: 62% 125%;
+  font-weight: 400 900;
+  font-stretch: 100% 112%;
   font-display: swap;
 }
 /* Títulos: Big Shoulders (OFL), a letra de letreiro e de tarja de TV. Reduzida ao latino, pesos 700 a 900. */
@@ -122,12 +126,20 @@ input, textarea, [contenteditable] { caret-color: var(--lime); }
   font-weight: 700 900;
   font-display: swap;
 }
+/* Reserva da Big Shoulders enquanto ela não chega (1ª visita): uma letra do sistema na mesma largura média, para os
+   títulos quebrarem nas mesmas linhas e a página não pular quando a fonte troca. Com a Archivo de reserva, o H1 da
+   home ia de 3 para 6 linhas a 375 px. size-adjust calibrado em 05/11/2026 no Chrome do Windows (posição dos h1, h2 e
+   botões das 12 páginas a 375, 414, 768 e 1366 px): Arial Narrow Bold 99%, Arial Bold 81%. Roboto (Android) usa o
+   valor da Arial, sem medição no aparelho. */
+@font-face { font-family: "Big Shoulders Reserva"; src: local("Arial Narrow Bold"), local("ArialNarrow-Bold"); font-weight: 700 900; size-adjust: 99%; }
+@font-face { font-family: "Big Shoulders Reserva Arial"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 700 900; size-adjust: 81%; }
+@font-face { font-family: "Big Shoulders Reserva Roboto"; src: local("Roboto Bold"), local("Roboto-Bold"); font-weight: 700 900; size-adjust: 81%; }
 :root {
   /* Cor, forma e movimento vêm de marca.css (sistema central, em clipforge/src/clipforge/ui). Aqui só o que é do site. */
   --bg: var(--ground);
   --max: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
-  --display: "Big Shoulders", "Archivo", sans-serif;
+  --display: "Big Shoulders", "Big Shoulders Reserva", "Big Shoulders Reserva Arial", "Big Shoulders Reserva Roboto", "Archivo", sans-serif;
   --trilho: 156px;
 }
 * { box-sizing: border-box; }
@@ -612,10 +624,7 @@ main:focus { outline: none; }
   .conta p { margin-top: 16px; font-size: 13px; }
   @media (max-width: 860px) { .custo { grid-template-columns: 1fr; gap: 32px; } }
 </style>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://cliphook.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Preço", "item": "https://cliphook.com.br/preco.html"}]}</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -645,7 +654,7 @@ main:focus { outline: none; }
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+    <a class="logo" href="/" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
     <nav class="nav-links" id="nav-links" aria-label="Páginas">
       <a href="como-funciona.html">Como funciona</a>
       <a href="recursos.html">Recursos</a>
@@ -715,7 +724,7 @@ main:focus { outline: none; }
 <footer>
   <div class="wrap rodape">
     <div>
-      <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+      <a class="logo" href="/" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
       <p>Cortes verticais editados a partir de vídeos longos, no seu computador.</p>
     </div>
     <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a><a href="comparar.html">Comparar</a><a href="cortes-de-lives.html">Cortes de lives</a><a href="cortes-de-podcast.html">Cortes de podcast</a></nav>

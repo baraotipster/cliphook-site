@@ -2,12 +2,16 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ClipHook: cortes prontos para publicar a partir de vídeos longos</title>
+<title>ClipHook: cortes com IA de lives, podcasts e vídeos longos</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ClipHook">
-<meta property="og:title" content="ClipHook: cortes prontos para publicar a partir de vídeos longos">
-<meta property="og:description" content="O ClipHook transforma podcasts, livestreams e vídeos longos em cortes verticais editados e legendados, prontos para publicar. Roda no seu PC, por assinatura mensal.">
+<meta property="og:title" content="ClipHook: cortes com IA de lives, podcasts e vídeos longos">
+<meta property="og:description" content="Programa para Windows que usa IA para transformar lives, podcasts e vídeos longos em cortes verticais legendados, prontos para publicar. Assinatura mensal.">
 <meta property="og:url" content="https://cliphook.com.br/">
 <meta property="og:image" content="https://cliphook.com.br/compartilhar.png">
 <meta property="og:image:width" content="1200">
@@ -16,7 +20,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="google-site-verification" content="Q3j86Mugo9YYxF2Ay-y8UtQ1iHPeaCLZNZmU74NZMH0">
-<meta name="description" content="O ClipHook transforma podcasts, livestreams e vídeos longos em cortes verticais editados e legendados, prontos para publicar. Roda no seu PC, por assinatura mensal.">
+<meta name="description" content="Programa para Windows que usa IA para transformar lives, podcasts e vídeos longos em cortes verticais legendados, prontos para publicar. Assinatura mensal.">
 <link rel="canonical" href="https://cliphook.com.br/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
@@ -112,8 +116,8 @@ input, textarea, [contenteditable] { caret-color: var(--lime); }
 @font-face {
   font-family: "Archivo";
   src: url("fonts/archivo-latino.woff2") format("woff2");
-  font-weight: 100 900;
-  font-stretch: 62% 125%;
+  font-weight: 400 900;
+  font-stretch: 100% 112%;
   font-display: swap;
 }
 /* Títulos: Big Shoulders (OFL), a letra de letreiro e de tarja de TV. Reduzida ao latino, pesos 700 a 900. */
@@ -123,12 +127,20 @@ input, textarea, [contenteditable] { caret-color: var(--lime); }
   font-weight: 700 900;
   font-display: swap;
 }
+/* Reserva da Big Shoulders enquanto ela não chega (1ª visita): uma letra do sistema na mesma largura média, para os
+   títulos quebrarem nas mesmas linhas e a página não pular quando a fonte troca. Com a Archivo de reserva, o H1 da
+   home ia de 3 para 6 linhas a 375 px. size-adjust calibrado em 05/11/2026 no Chrome do Windows (posição dos h1, h2 e
+   botões das 12 páginas a 375, 414, 768 e 1366 px): Arial Narrow Bold 99%, Arial Bold 81%. Roboto (Android) usa o
+   valor da Arial, sem medição no aparelho. */
+@font-face { font-family: "Big Shoulders Reserva"; src: local("Arial Narrow Bold"), local("ArialNarrow-Bold"); font-weight: 700 900; size-adjust: 99%; }
+@font-face { font-family: "Big Shoulders Reserva Arial"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 700 900; size-adjust: 81%; }
+@font-face { font-family: "Big Shoulders Reserva Roboto"; src: local("Roboto Bold"), local("Roboto-Bold"); font-weight: 700 900; size-adjust: 81%; }
 :root {
   /* Cor, forma e movimento vêm de marca.css (sistema central, em clipforge/src/clipforge/ui). Aqui só o que é do site. */
   --bg: var(--ground);
   --max: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
-  --display: "Big Shoulders", "Archivo", sans-serif;
+  --display: "Big Shoulders", "Big Shoulders Reserva", "Big Shoulders Reserva Arial", "Big Shoulders Reserva Roboto", "Archivo", sans-serif;
   --trilho: 156px;
 }
 * { box-sizing: border-box; }
@@ -904,68 +916,96 @@ main:focus { outline: none; }
   }
 </style>
 <script type="application/ld+json">
-[
- {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ClipHook",
-  "operatingSystem": "Windows 10, Windows 11 (64 bits)",
-  "applicationCategory": "MultimediaApplication",
-  "url": "https://cliphook.com.br/",
-  "description": "Transforma vídeos longos em cortes verticais editados e legendados, no seu computador. Assinatura mensal.",
-  "offers": [
-   {
-    "@type": "Offer",
-    "name": "Básico",
-    "price": "29.90",
-    "priceCurrency": "BRL",
-    "priceSpecification": {
-     "@type": "UnitPriceSpecification",
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://cliphook.com.br/#site",
+   "name": "ClipHook",
+   "url": "https://cliphook.com.br/",
+   "inLanguage": "pt-BR",
+   "publisher": {
+    "@id": "https://cliphook.com.br/#org"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://cliphook.com.br/#org",
+   "name": "ClipHook",
+   "url": "https://cliphook.com.br/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://cliphook.com.br/logo.png",
+    "width": 512,
+    "height": 512
+   },
+   "email": "contato@cliphook.com.br",
+   "taxID": "69.912.713/0001-28",
+   "founder": {
+    "@type": "Person",
+    "name": "Ricardo Chiarini Teixeira Gonçalves"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Rafard",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+   }
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://cliphook.com.br/#app",
+   "name": "ClipHook",
+   "operatingSystem": "Windows 10, Windows 11 (64 bits)",
+   "applicationCategory": "MultimediaApplication",
+   "url": "https://cliphook.com.br/",
+   "description": "Transforma vídeos longos em cortes verticais editados e legendados, no seu computador. Assinatura mensal.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Básico",
      "price": "29.90",
      "priceCurrency": "BRL",
-     "billingDuration": "P1M"
-    }
-   },
-   {
-    "@type": "Offer",
-    "name": "Pro",
-    "price": "75.00",
-    "priceCurrency": "BRL",
-    "priceSpecification": {
-     "@type": "UnitPriceSpecification",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "29.90",
+      "priceCurrency": "BRL",
+      "billingDuration": "P1M"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Pro",
      "price": "75.00",
      "priceCurrency": "BRL",
-     "billingDuration": "P1M"
-    }
-   },
-   {
-    "@type": "Offer",
-    "name": "Agência",
-    "price": "200.00",
-    "priceCurrency": "BRL",
-    "priceSpecification": {
-     "@type": "UnitPriceSpecification",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "75.00",
+      "priceCurrency": "BRL",
+      "billingDuration": "P1M"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Agência",
      "price": "200.00",
      "priceCurrency": "BRL",
-     "billingDuration": "P1M"
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "200.00",
+      "priceCurrency": "BRL",
+      "billingDuration": "P1M"
+     }
     }
+   ],
+   "publisher": {
+    "@id": "https://cliphook.com.br/#org"
    }
-  ]
- },
- {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "ClipHook",
-  "url": "https://cliphook.com.br/",
-  "email": "contato@cliphook.com.br",
-  "taxID": "69.912.713/0001-28"
- }
-]
+  }
+ ]
+}
 </script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self'; connect-src 'self' https://licencas.cliphook.com.br; base-uri 'self'; form-action 'self'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="preload" href="fonts/archivo-latino.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/BigShoulders-latino.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -997,7 +1037,7 @@ main:focus { outline: none; }
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+    <a class="logo" href="/" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
     <nav class="nav-links" id="nav-links" aria-label="Páginas">
       <a href="como-funciona.html">Como funciona</a>
       <a href="recursos.html">Recursos</a>
@@ -1153,7 +1193,7 @@ main:focus { outline: none; }
       <div class="recurso">
         <div>
           <h2>O corte segue quem fala.</h2>
-          <p class="lead">Debate com quatro pessoas? A câmera vai sozinha em quem está com a palavra.</p>
+          <p class="lead"><a href="cortes-de-podcast.html">Debate com quatro pessoas</a>? A câmera vai sozinha em quem está com a palavra.</p>
           <ul class="lista-check">
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Quem só escuta não rouba o quadro</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Troca de câmera vira corte seco, sem tremer</li>
@@ -1164,7 +1204,7 @@ main:focus { outline: none; }
           <!-- Vídeo real ("Arthur do Val vs 20 esquerdistas", Zona de Fogo / Spectrum, escolhido pelo dono em 04/11/2026): a janela
                verde segue a trilha de quem fala que o ClipHook calculou para este trecho. -->
           <div class="quadro">
-            <video id="falante-video" src="demo/falante.mp4" poster="demo/falante.jpg" muted playsinline loop preload="metadata"
+            <video id="falante-video" src="demo/falante.mp4" poster="demo/falante.jpg" muted playsinline loop preload="none"
               aria-label="Debate com duas pessoas lado a lado; a janela vertical do corte vai em quem está falando"></video>
             <div class="janela-916" id="janela-916" aria-hidden="true"></div>
           </div>
@@ -1313,7 +1353,7 @@ main:focus { outline: none; }
 <footer>
   <div class="wrap rodape">
     <div>
-      <a class="logo" href="index.html" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
+      <a class="logo" href="/" aria-label="ClipHook, início"><svg aria-hidden="true"><use href="#marca"/></svg>ClipHook</a>
       <p>Cortes verticais editados a partir de vídeos longos, no seu computador.</p>
     </div>
     <nav aria-label="Produto"><b>Produto</b><a href="como-funciona.html">Como funciona</a><a href="recursos.html">Recursos</a><a href="preco.html">Preço</a><a href="comparar.html">Comparar</a><a href="cortes-de-lives.html">Cortes de lives</a><a href="cortes-de-podcast.html">Cortes de podcast</a></nav>
@@ -1685,7 +1725,7 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
       (c.exportado ? '<div class="a-seg" role="group" aria-label="O que mostrar"><button type="button" data-aba="previa" aria-pressed="' + (st.aba === "previa") + '">Prévia da edição</button><button type="button" data-aba="exportado" aria-pressed="' + (st.aba === "exportado") + '">Vídeo exportado</button></div>' : "") +
       '<div class="a-midia">' +
         '<div class="a-vertical" aria-label="Prévia vertical do corte editado" role="img">' +
-          '<video id="v-video" src="demo/orig-' + c.id + '.mp4" muted playsinline loop preload="auto" aria-hidden="true"></video>' +
+          '<video id="v-video" src="demo/orig-' + c.id + '.mp4" muted playsinline loop preload="metadata" aria-hidden="true"></video>' +
           '<p class="a-leg" id="v-leg" data-estilo="' + e.estilo + '"></p>' +
           (st.aba === "exportado" ? '<div class="barra-mp4">' + icone(st.tocando ? "i-pausa" : "i-play") + '<span id="v-t">0:00</span><i id="v-barra"></i><span>' + relogio(c.dur) + "</span></div>" : "") +
         "</div>" +
@@ -1840,9 +1880,15 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     return (Math.min(1, Math.max(0, p)) * 100).toFixed(1) + "% 50%";
   }
 
+  var laco = false;  // o requestAnimationFrame só gira com a demonstração na tela
   function quadro() {
+    if (!st.visivel) {  // fora da tela: o laço para e os vídeos da demonstração também (voltam quando ela aparece)
+      laco = false;
+      ["a-orig", "v-video"].forEach(function (id) { var o = $(id); if (o && !o.paused) o.pause(); });
+      return;
+    }
     requestAnimationFrame(quadro);
-    if (!st.visivel || (!st.tocando && !st.sujo)) return;
+    if (!st.tocando && !st.sujo) return;
     st.sujo = false;
     // O relógio é a prévia vertical (o vídeo que a pessoa está vendo): no celular, o navegador pausa sozinho o player
     // quando ele sai da tela, e a legenda travava junto (dono, 04/11/2026). O player acompanha a prévia.
@@ -1875,11 +1921,12 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
   }
 
   renderTudo();
-  requestAnimationFrame(quadro);
+  function girar() { if (!laco) { laco = true; requestAnimationFrame(quadro); } }
   // O momento animado da página: o corte toca sozinho enquanto a demonstração está na tela.
   new IntersectionObserver(function (e) {
     st.visivel = e[0].isIntersecting;
     if (!reduzido) alternar(st.visivel);
+    if (st.visivel) { st.sujo = true; girar(); }
   }, { threshold: 0 }).observe($("app"));  // no celular a janela do app é alta demais para 25% dela aparecer de uma vez
 
   // ---------- seção "o corte segue quem fala": vídeo real + a trilha que o ClipHook calculou ----------
@@ -1911,40 +1958,6 @@ if (!/^(localhost|127\.)/.test(location.hostname) && location.protocol === "http
     }, { threshold: 0.3 }).observe(vf);
   }
 
-  // ---------- seção de estilos de legenda: corte real, palavras no tempo delas ----------
-  var corteEstilos = CORTES.find(function (c) { return c.id === 8; }) || CORTES[0];
-  var estiloAtual = "destaque", chaveEstilo = "";
-  var legEst = $("leg-estilos"), ve = $("estilos-video");
-  function mostrarEstilo() {
-    if (!legEst || !ve) return;
-    var p = corteEstilos.palavras, t = ve.currentTime, i = 0;
-    while (i + 1 < p.length && p[i + 1][0] <= t) i++;
-    var tam = BLOCO[estiloAtual], ini = i - (i % tam), k = estiloAtual + i + (t < p[0][0]);
-    var amostra = Math.min(corteEstilos.trilha.length - 1, Math.floor(t * corteEstilos.fps));
-    ve.style.objectPosition = posicao(corteEstilos.trilha[amostra]);
-    if (k === chaveEstilo) return;
-    chaveEstilo = k;
-    legEst.dataset.estilo = estiloAtual;
-    legEst.innerHTML = t < p[0][0] ? "" : '<span class="linha">' + p.slice(ini, ini + tam).map(function (w, j) {
-      return '<span class="' + (ini + j === i ? "on" : "") + '">' + w[2] + "</span>";
-    }).join(" ") + "</span>";
-  }
-  document.querySelectorAll("#seg-estilos button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      estiloAtual = b.dataset.estilo;
-      document.querySelectorAll("#seg-estilos button").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
-      chaveEstilo = "";
-      mostrarEstilo();
-    });
-  });
-  if (ve) {
-    ve.addEventListener("timeupdate", mostrarEstilo);
-    (function laco() { if (!ve.paused) mostrarEstilo(); requestAnimationFrame(laco); })();
-    new IntersectionObserver(function (e) {
-      if (e[0].isIntersecting) ve.play().catch(function () {}); else ve.pause();
-    }, { threshold: 0.2 }).observe(ve);
-    mostrarEstilo();
-  }
 })();
 </script>
 </body>
