@@ -552,6 +552,25 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 56px; font-size: 14p
 .testador .testador-erro { margin: 0; color: #ff8a7a; font-size: 14px; }
 
 /* compra segura: só fatos conferíveis (sem selos genéricos de "site seguro") */
+/* página de pagamento: marcas, selo de compra segura e confiança no resumo */
+.bandeiras { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 14px; color: var(--text-3); }
+.bandeiras-rotulo { font-size: 13px; margin-right: 2px; }
+.marca-pag { width: 26px; height: 26px; color: var(--text-2); }
+.opcao-forma .marca-pag { width: 18px; height: 18px; margin-right: 8px; vertical-align: -3px; color: currentColor; }
+.bandeira-texto { font: 800 15px/1 var(--font); letter-spacing: -.02em; color: var(--text-2); }
+.selo-compra { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; }
+.selo { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid var(--lime); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--lime); }
+.selo svg { width: 15px; height: 15px; }
+.selo-texto { font-size: 13px; color: var(--text-2); }
+.cobranca-hoje { margin: 20px 0 0; padding: 12px 14px; background: var(--s2); border-radius: var(--r); font-size: 13px; line-height: 1.5; color: var(--text-2); }
+.cobranca-hoje b { color: var(--text); }
+.confia { margin-top: 20px; display: grid; gap: 16px; }
+.garantia { display: flex; gap: 12px; padding: 14px; border: 1px solid var(--lime); border-radius: var(--r); background: var(--lime-soft); }
+.garantia svg, .confia-item svg { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--lime); }
+.garantia span, .confia-item span, .quem span { font-size: 13px; line-height: 1.45; color: var(--text-2); }
+.garantia b, .confia-item b, .quem b { display: block; color: var(--text); font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.confia-item, .quem { display: flex; gap: 12px; align-items: flex-start; }
+.quem .avatar { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--s2); display: grid; place-items: center; font-weight: 700; color: var(--lime); }
 .selos { list-style: none; margin: 28px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; max-width: 640px; }
 .selos li { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: var(--text-2); }
 .selos svg { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--lime); }
