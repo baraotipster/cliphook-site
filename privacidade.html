@@ -7,7 +7,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ClipHook">
 <meta property="og:title" content="Política de privacidade · ClipHook">
-<meta property="og:description" content="Como o ClipHook trata dados pessoais: o programa roda no seu computador, o vídeo não é enviado, e só o texto da transcrição vai à IA da Anthropic, passando pelo nosso servidor sem ser guardado.">
+<meta property="og:description" content="Como o ClipHook trata dados pessoais: o programa roda no seu computador, o vídeo não é enviado, e só o texto da transcrição vai à IA, passando pelo nosso servidor sem ser guardado.">
 <meta property="og:url" content="https://cliphook.com.br/privacidade.html">
 <meta property="og:image" content="https://cliphook.com.br/compartilhar.png">
 <meta property="og:image:width" content="1200">
@@ -15,7 +15,7 @@
 <meta property="og:image:alt" content="ClipHook: cortes verticais editados a partir de vídeos longos">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Como o ClipHook trata dados pessoais: o programa roda no seu computador, o vídeo não é enviado, e só o texto da transcrição vai à IA da Anthropic, passando pelo nosso servidor sem ser guardado.">
+<meta name="description" content="Como o ClipHook trata dados pessoais: o programa roda no seu computador, o vídeo não é enviado, e só o texto da transcrição vai à IA, passando pelo nosso servidor sem ser guardado.">
 <link rel="canonical" href="https://cliphook.com.br/privacidade.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
@@ -633,12 +633,12 @@ main:focus { outline: none; }
   <section class="wrap pagina-topo">
     <h1>Política de privacidade</h1>
     <p class="lead">Resumo: o ClipHook roda no seu computador. Seus vídeos não são enviados a nós nem a ninguém. Nós só recebemos os dados da compra, informados na página de assinatura.</p>
-    <p class="vigencia">Versão 1.2 · em vigor a partir de 4 de novembro de 2026</p>
+    <p class="vigencia">Versão 1.3 · em vigor a partir de 5 de novembro de 2026</p>
   </section>
 
   <div class="wrap legal">
     <nav class="legal-indice" aria-label="Seções">
-      <a href="#controlador">1. Quem é responsável</a><a href="#programa">2. O programa no seu PC</a><a href="#anthropic">3. A IA da Anthropic</a><a href="#outras">4. Outras conexões</a><a href="#compra">5. Dados da compra</a><a href="#site">6. Este site</a><a href="#compartilhamento">7. Compartilhamento</a><a href="#retencao">8. Por quanto tempo</a><a href="#direitos">9. Seus direitos</a><a href="#seguranca">10. Segurança</a><a href="#mudancas">11. Mudanças</a>
+      <a href="#controlador">1. Quem é responsável</a><a href="#programa">2. O programa no seu PC</a><a href="#ia">3. A IA</a><a href="#outras">4. Outras conexões</a><a href="#compra">5. Dados da compra</a><a href="#site">6. Este site</a><a href="#compartilhamento">7. Compartilhamento</a><a href="#retencao">8. Por quanto tempo</a><a href="#direitos">9. Seus direitos</a><a href="#seguranca">10. Segurança</a><a href="#mudancas">11. Mudanças</a>
     </nav>
 
     <div class="legal-texto">
@@ -655,17 +655,17 @@ main:focus { outline: none; }
       </ul>
       <p>Os vídeos podem conter imagem e voz de outras pessoas. Como esse tratamento acontece no seu computador e por sua decisão, você é o responsável por ter autorização para usar esses vídeos.</p>
 
-      <h2 id="anthropic">3. A IA da Anthropic</h2>
-      <p>Para sugerir os cortes, o programa envia à API da Anthropic (api.anthropic.com) o <strong>texto da transcrição</strong> do vídeo e o título do corte, junto com as preferências que você escreveu (tom, duração, o que evitar). O vídeo e o áudio <strong>não</strong> são enviados.</p>
-      <p>O texto vai do seu computador ao nosso servidor e dele à Anthropic, usando a nossa conta. O servidor confere a assinatura e repassa o pedido; ele <strong>não guarda nem registra</strong> o texto enviado nem a resposta. Guardamos só a quantidade de texto processada (em tokens) por assinatura e por mês, para a cota. A Anthropic trata os dados conforme os termos comerciais dela, e eles podem ser processados fora do Brasil (LGPD, art. 33).</p>
+      <h2 id="ia">3. A IA</h2>
+      <p>Para sugerir os cortes, o programa envia a um provedor de inteligência artificial contratado pelo ClipHook o <strong>texto da transcrição</strong> do vídeo e o título do corte, junto com as preferências que você escreveu (tom, duração, o que evitar). O vídeo e o áudio <strong>não</strong> são enviados.</p>
+      <p>O texto vai do seu computador ao nosso servidor e dele ao provedor de IA, usando a nossa conta. O servidor confere a assinatura e repassa o pedido; ele <strong>não guarda nem registra</strong> o texto enviado nem a resposta. Guardamos só a quantidade de texto processada (em tokens) por assinatura e por mês, para a cota. O provedor de IA trata o texto só para responder ao pedido, conforme o contrato comercial com o ClipHook, que não permite usá-lo para treinar modelos. O processamento é feito fora do Brasil (transferência internacional, LGPD, art. 33). Se quiser saber qual é o provedor, escreva para contato@cliphook.com.br.</p>
       <p>Se a transcrição contiver dados pessoais de terceiros, avalie se você pode enviá-los antes de pedir a análise.</p>
 
       <h2 id="outras">4. Outras conexões do programa</h2>
-      <p>Além da Anthropic, o programa se conecta à internet só para conferir a assinatura e baixar componentes:</p>
+      <p>Além da IA, o programa se conecta à internet só para conferir a assinatura e baixar componentes:</p>
       <ul>
         <li><strong>Conferência da assinatura:</strong> na ativação, o programa envia ao nosso servidor de licenças o e-mail e o código de ativação da assinatura e um código do computador (um resumo criptográfico do identificador do Windows, que não revela quem você é nem o que há no computador). Depois, ao menos uma vez por semana, envia a licença atual para renová-la. Guardamos o código de cada computador ativado enquanto a assinatura existir, para respeitar o limite de computadores.</li>
-        <li><strong>Na instalação:</strong> o FFmpeg pelo gyan.dev (e, se esse download falhar, pelo winget da Microsoft), o Visual C++ da Microsoft, se faltar, e as bibliotecas do programa pelo PyPI. Em computadores com placa de vídeo AMD ou Intel, também o modelo de transcrição pela placa, baixado do Hugging Face.</li>
-        <li><strong>Na primeira transcrição:</strong> o modelo de transcrição Whisper, baixado do Hugging Face.</li>
+        <li><strong>Na instalação:</strong> os componentes que faltarem no computador (como o processador de vídeo, as bibliotecas do Windows e as do programa) e, em computadores com placa de vídeo AMD ou Intel, o modelo de transcrição pela placa, baixados dos servidores dos fornecedores desses componentes.</li>
+        <li><strong>Na primeira transcrição:</strong> o modelo de transcrição, baixado do serviço que o hospeda.</li>
       </ul>
       <p>Nesses downloads, os serviços recebem os dados técnicos de qualquer download (como o seu endereço IP), conforme as políticas deles. Nenhum conteúdo seu é enviado.</p>
 
@@ -696,8 +696,8 @@ main:focus { outline: none; }
       <ul>
         <li><strong>Asaas:</strong> processa os pagamentos da assinatura (Pix e cartão) e das horas extras, com o nome, o e-mail e o CPF ou CNPJ de quem paga.</li>
         <li><strong>YouTube e TikTok:</strong> quando você cola um link e pede o download, o programa busca o vídeo direto nessas plataformas, do seu computador; nós não recebemos o link nem o vídeo.</li>
-        <li><strong>Hugging Face:</strong> de onde o app baixa o modelo de transcrição na primeira vez (o seu vídeo e o áudio não vão para lá).</li>
-        <li><strong>Anthropic:</strong> processa o texto das transcrições enviadas à IA incluída na assinatura (seção 3).</li>
+        <li><strong>Serviço que hospeda os modelos de transcrição:</strong> de onde o app baixa o modelo na primeira vez (o seu vídeo e o áudio não vão para lá).</li>
+        <li><strong>Provedor de inteligência artificial:</strong> processa o texto das transcrições enviadas à IA incluída na assinatura (seção 3).</li>
         <li><strong>Provedor de hospedagem em nuvem do servidor do ClipHook:</strong> hospeda o servidor que confere a assinatura e repassa os pedidos de IA.</li>
         <li><strong>Brevo:</strong> envia os e-mails automáticos do ClipHook (o código de ativação depois do pagamento e as respostas a quem pede para testar), com o e-mail e o nome de quem vai recebê-los.</li>
         <li><strong>ImprovMX:</strong> encaminha as mensagens que chegam em contato@cliphook.com.br para a nossa caixa de e-mail.</li>
