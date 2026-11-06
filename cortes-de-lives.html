@@ -616,17 +616,12 @@ main:focus { outline: none; }
 @media (max-width: 480px) { .nav-contato { font-size: 12px; } }
 </style>
 <style>
-  .passos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 48px; counter-reset: passo; }
-  .passos div { border-top: 1px solid var(--line); padding-top: 20px; }
-  .passos div::before { counter-increment: passo; content: counter(passo); display: block; font-family: var(--display); font-weight: 900;
-    font-size: 56px; line-height: 1; color: var(--lime); margin-bottom: 14px; }
-  .passos h3 { font-size: 20px; margin: 0 0 8px; } .passos p { color: var(--text-2); margin: 0; }
   .lista-seo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: 40px; }
   .lista-seo dt { font-weight: 600; font-size: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
   .lista-seo dd { margin: 8px 0 26px; color: var(--text-2); }
   .conta { margin-top: 40px; font-size: 18px; color: var(--text-2); max-width: 62ch; }
   .conta b { color: var(--text); }
-  @media (max-width: 860px) { .passos, .lista-seo { grid-template-columns: 1fr; gap: 0; } .passos { gap: 28px; } }
+  @media (max-width: 860px) { .lista-seo { grid-template-columns: 1fr; gap: 0; } }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Dá para cortar a live enquanto ela acontece?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O ClipHook trabalha com a gravação: depois que a live termina, use o arquivo do seu computador ou o link do vídeo no YouTube."}}, {"@type": "Question", "name": "Funciona com live da Twitch ou do Kick?", "acceptedAnswer": {"@type": "Answer", "text": "Funciona com a gravação. Baixe o vídeo da plataforma e escolha o arquivo no ClipHook. Por link, ele aceita YouTube e TikTok."}}, {"@type": "Question", "name": "Quanto da cota uma live gasta?", "acceptedAnswer": {"@type": "Answer", "text": "O tempo da gravação: uma live de 2 horas gasta 2 horas de IA da cota do mês."}}, {"@type": "Question", "name": "Posso cortar a live de outro canal?", "acceptedAnswer": {"@type": "Answer", "text": "Só com autorização de quem tem os direitos do vídeo. Antes de baixar por link, o ClipHook pede que você confirme essa autorização."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://cliphook.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Cortes de lives", "item": "https://cliphook.com.br/cortes-de-lives.html"}]}</script>
@@ -683,14 +678,35 @@ main:focus { outline: none; }
   </section>
 
   <section class="wrap" style="padding-bottom:72px">
-    <h2>Três passos, do arquivo ao post.</h2>
-    <div class="passos"><div><h3>Escolha a gravação</h3><p>O arquivo da live no seu computador, ou o link do vídeo no YouTube depois que a live termina.</p></div><div><h3>A IA acha os trechos</h3><p>Ela lê a fala inteira e sugere os momentos que fazem sentido fora da live, com o motivo de cada escolha.</p></div><div><h3>Revise e exporte</h3><p>Aprove os cortes, ajuste o que quiser e exporte. O vídeo é editado no seu computador.</p></div></div>
+    <h2>Três horas de live. Você revisa só o que presta.</h2>
+    <p class="lead">Live tem espera para começar, áudio caindo, leitura de chat. A IA lê a transcrição da gravação inteira e separa os trechos que se entendem sem o resto da transmissão: a reação, o embate, a opinião com o argumento completo.</p>
+    <dl class="lista-seo"><dt>Aviso de contexto</dt><dd>Se o trecho depende de algo dito antes na live, o corte chega marcado, e um clique inclui o começo da ideia.</dd><dt>Procure por assunto</dt><dd>Quer só os momentos sobre um tema da live? Escreva o assunto e a IA procura os trechos sobre ele, sem mexer nos cortes que você já revisou.</dd><dt>Ache a fala em todas as lives</dt><dd>A busca no que foi dito encontra uma palavra ou frase em todas as gravações já transcritas. Abra no segundo exato ou crie o corte dali.</dd></dl>
+    <p class="conta">A IA lê a fala, não o chat: se uma pergunta do chat importa para o corte, ela precisa ter sido lida em voz alta.</p>
   </section>
 
   <section class="wrap" style="padding-bottom:72px">
-    <h2>Feito para o jeito de uma live.</h2>
-    <dl class="lista-seo"><dt>Modo react</dt><dd>O vídeo reagido vai em cima e a webcam de quem reage embaixo. O ClipHook sabe quando quem reage está falando e prioriza os comentários dele, não o vídeo reagido.</dd><dt>Câmera em quem fala</dt><dd>Live com convidados ou mesa de debate: o recorte vertical <a href="recursos.html#falante">acompanha quem está com a palavra</a>.</dd><dt>Pausas cortadas, emendas disfarçadas</dt><dd>As pausas longas saem, as naturais ficam, e um zoom sutil esconde cada emenda.</dd><dt>Legenda palavra a palavra</dt><dd><a href="recursos.html#legenda">A palavra falada acende no ritmo da fala</a>, longe do rosto, nas cores do seu canal. Os nomes que a transcrição erra você corrige uma vez na marca.</dd><dt>Nota de 0 a 100 do potencial de viralizar</dt><dd>Cada corte vem com uma nota e o motivo dela. É uma avaliação do trecho, não uma garantia de views.</dd><dt>Cortes longos para o YouTube</dt><dd>Além dos Shorts, <a href="recursos.html#longos">blocos de 4 a 15 minutos em 16:9</a>, que se entendem sozinhos, para o canal de cortes.</dd></dl>
-    <p class="conta">A conta é simples: <b>uma live de 3 horas gasta 3 horas da cota</b>. O Básico tem 12 horas por mês, o Pro 36 e o Agência 150, com todos os recursos em todos os planos.</p>
+    <h2>No react, o corte é o comentário.</h2>
+    <p class="lead">O vídeo reagido não é seu. O que dá valor ao corte é quem reage, e o modo Reação é feito em volta disso.</p>
+    <dl class="lista-seo"><dt>Dois closes, um em cima do outro</dt><dd>O vídeo reagido vai em cima e a webcam embaixo. O ClipHook acha os dois sozinho; o chat da live e o fundo preto ficam de fora.</dd><dt>Prioriza quem reage</dt><dd>Ele sabe quando quem reage está falando e escolhe os trechos com o comentário, não os minutos em que o vídeo roda sozinho.</dd><dt>Se ajusta no meio do corte</dt><dd>Quando quem reage ocupa a tela inteira, o corte passa para uma pessoa só, e volta para a tela dividida quando o vídeo reagido aparece de novo.</dd></dl>
+    <p class="conta">Para o enquadramento achar a webcam sozinho, ela precisa ficar parada num canto da tela. E corte de react pede autorização dos dois lados: de quem tem os direitos da live e do vídeo reagido.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <h2>Convidado na live, os dois na tela.</h2>
+    <p class="lead">Entrevista, mesa de debate, dois apresentadores: no vertical, ou a câmera vai em quem está com a palavra, ou os dois aparecem juntos.</p>
+    <dl class="lista-seo"><dt>Câmera em quem fala</dt><dd>O recorte <a href="recursos.html#falante">acompanha quem está falando</a> e só se move quando a troca se confirma. Uma troca de câmera da transmissão vira corte seco, sem balançar.</dd><dt>Tela dividida</dt><dd>As duas pessoas em close, uma em cima e outra embaixo, para o bate-boca em que a reação de quem ouve importa tanto quanto a fala.</dd><dt>Você no controle</dt><dd>Prefere outro enquadramento num corte? Posicione o recorte à mão.</dd></dl>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <h2>Da mesma live, Shorts e o debate inteiro.</h2>
+    <p class="lead">Canal de cortes de live publica dois formatos: o minuto mais forte, em pé, e o assunto inteiro, deitado, no YouTube. Depois dos cortes curtos, em lives de mais de 20 minutos, um clique em “Criar cortes longos horizontais” e a IA sugere <a href="recursos.html#longos">blocos de 4 a 15 minutos em 16:9</a>, com abertura, assunto e fechamento. Os Shorts que saem de dentro de cada bloco aparecem juntos na lista.</p>
+    <p class="lead">Os blocos usam horas da cota só quando você pede.</p>
+    <p class="conta">A conta é simples: <b>uma live de 3 horas gasta 3 horas da cota</b>. O Básico tem 12 horas por mês, o Pro 36 e o Agência 150, com todos os recursos em todos os planos. <a href="comparar.html">Quanto a mesma live custaria no OpusClip</a>.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <h2>E em todo corte.</h2>
+    <dl class="lista-seo"><dt>Pausas cortadas, emendas disfarçadas</dt><dd>As pausas longas saem, as naturais ficam, e um zoom sutil esconde cada emenda.</dd><dt>Legenda palavra a palavra</dt><dd><a href="recursos.html#legenda">A palavra falada acende no ritmo da fala</a>, longe do rosto, nas cores do seu canal. Os nomes que a transcrição erra você corrige uma vez na marca.</dd><dt>Nota de 0 a 100 do potencial de viralizar</dt><dd>Cada corte vem com uma nota e o motivo dela. É uma avaliação do trecho, não uma garantia de views.</dd></dl>
   </section>
 
   <section class="bloco" id="perguntas">

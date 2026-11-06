@@ -616,17 +616,12 @@ main:focus { outline: none; }
 @media (max-width: 480px) { .nav-contato { font-size: 12px; } }
 </style>
 <style>
-  .passos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 48px; counter-reset: passo; }
-  .passos div { border-top: 1px solid var(--line); padding-top: 20px; }
-  .passos div::before { counter-increment: passo; content: counter(passo); display: block; font-family: var(--display); font-weight: 900;
-    font-size: 56px; line-height: 1; color: var(--lime); margin-bottom: 14px; }
-  .passos h3 { font-size: 20px; margin: 0 0 8px; } .passos p { color: var(--text-2); margin: 0; }
   .lista-seo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: 40px; }
   .lista-seo dt { font-weight: 600; font-size: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
   .lista-seo dd { margin: 8px 0 26px; color: var(--text-2); }
   .conta { margin-top: 40px; font-size: 18px; color: var(--text-2); max-width: 62ch; }
   .conta b { color: var(--text); }
-  @media (max-width: 860px) { .passos, .lista-seo { grid-template-columns: 1fr; gap: 0; } .passos { gap: 28px; } }
+  @media (max-width: 860px) { .lista-seo { grid-template-columns: 1fr; gap: 0; } }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Preciso gravar de um jeito especial?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Funciona com a gravação que você já faz, de uma câmera ou de várias. Com câmera parada, o ClipHook acompanha cada pessoa no lugar dela."}}, {"@type": "Question", "name": "Ele acerta os nomes dos convidados?", "acceptedAnswer": {"@type": "Answer", "text": "Cadastre na marca os nomes que a transcrição costuma errar. O ClipHook corrige na legenda, no título, nas hashtags e na capa."}}, {"@type": "Question", "name": "O vídeo do podcast sai do meu computador?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A transcrição, a edição e a exportação acontecem no seu PC. Só o texto da transcrição vai para a IA escolher as falas."}}, {"@type": "Question", "name": "Também faz o corte longo para o YouTube?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Além dos Shorts, ele sugere blocos de 4 a 15 minutos em 16:9, que se entendem sozinhos."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://cliphook.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Cortes de podcast", "item": "https://cliphook.com.br/cortes-de-podcast.html"}]}</script>
@@ -683,14 +678,29 @@ main:focus { outline: none; }
   </section>
 
   <section class="wrap" style="padding-bottom:72px">
-    <h2>Três passos, do arquivo ao post.</h2>
-    <div class="passos"><div><h3>Escolha o episódio</h3><p>O arquivo do seu computador, ou o link do vídeo no YouTube.</p></div><div><h3>A IA acha as falas</h3><p>Ela sugere os trechos que se entendem sem o resto do episódio e explica por que cada um funciona.</p></div><div><h3>Revise e exporte</h3><p>Aprove, ajuste o começo e o fim, troque a chamada da capa e exporte.</p></div></div>
+    <h2>Quatro na mesa. A câmera sabe quem está falando.</h2>
+    <p class="lead">O ClipHook encontra os rostos, mede o movimento da boca em relação ao resto do rosto e cruza com o volume do áudio. Quem fala ganha o quadro; quem só escuta, não.</p>
+    <dl class="lista-seo"><dt>Uma câmera ou várias</dt><dd>Funciona com a gravação que você já faz. Com câmera parada, o recorte acompanha cada pessoa no lugar dela; na troca de câmera, o corte é seco, sem balançar.</dd><dt>Sem pular à toa</dt><dd>O recorte só se move quando a troca de falante se confirma. Rostos pequenos, de plateia ou plano aberto, nunca viram alvo.</dd><dt>Ajuste à mão, se quiser</dt><dd>Prefere outro enquadramento num corte? Posicione o recorte você mesmo.</dd></dl>
+    <p class="conta">Funciona melhor com os rostos de frente para a câmera. <a href="recursos.html#falante">Como o recorte segue quem fala</a>.</p>
   </section>
 
   <section class="wrap" style="padding-bottom:72px">
-    <h2>Feito para conversa com mais de uma pessoa.</h2>
-    <dl class="lista-seo"><dt>A câmera vai em quem fala</dt><dd>Com dois, três ou quatro na mesa, o recorte vertical <a href="recursos.html#falante">acompanha quem está com a palavra</a>.</dd><dt>Tela dividida</dt><dd>Para debate e entrevista: as duas pessoas em close, uma em cima e outra embaixo.</dd><dt>Capa Citação</dt><dd>Quem fala recortado sobre a cor da marca, com a frase mais forte em destaque. Num debate, os dois lados frente a frente.</dd><dt>Legenda palavra a palavra</dt><dd><a href="recursos.html#legenda">No ritmo da fala</a>, longe do rosto, nas cores do seu canal, com os nomes dos convidados sempre certos.</dd><dt>Nota de 0 a 100 do potencial de viralizar</dt><dd>Cada corte vem com uma nota e o motivo dela. É uma avaliação do trecho, não uma garantia de views.</dd><dt>Projeto para Premiere e DaVinci</dt><dd>Quer finalizar no seu editor? Cada corte sai também <a href="recursos.html#editores">como projeto</a>, com os mesmos trechos e enquadramento.</dd></dl>
-    <p class="conta">Um episódio de 2 horas gasta <b>2 horas da cota</b>. No Básico, com 12 horas por mês, cabem cerca de 6 episódios assim; no Pro, com 36, cerca de 18.</p>
+    <h2>Debate tem dois lados. O corte mostra os dois.</h2>
+    <p class="lead">No corte de um debate, a cara de quem ouve conta tanto quanto a fala. E uma frase tirada do meio da resposta pode dizer o contrário do que a pessoa quis dizer.</p>
+    <dl class="lista-seo"><dt>Tela dividida</dt><dd>Os dois em close, um em cima e o outro embaixo, durante o corte inteiro.</dd><dt>Capa Citação, frente a frente</dt><dd>Cada lado recortado de um bom quadro do vídeo, sobre a cor da marca, com a frase mais forte em destaque. Empilhados no vertical, lado a lado no horizontal.</dd><dt>Versão Contexto</dt><dd>Quando o trecho depende do que foi dito antes, a versão Contexto começa mais cedo e mantém as pausas naturais. Junto com Padrão, Retenção e Impacto, é uma das <a href="recursos.html#versoes">quatro versões do mesmo corte</a>.</dd></dl>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <h2>Do episódio, a semana de posts.</h2>
+    <p class="lead">Cada corte já sai com título, texto e hashtags para TikTok e Reels, YouTube Shorts e LinkedIn. Se quiser, o ClipHook gera também o pacote do episódio inteiro: textos de post para Instagram, LinkedIn e X, um roteiro de carrossel e ideias de pauta.</p>
+    <p class="lead">Cada frase citada no pacote foi conferida na transcrição e vem com o horário; sugestão sem citação encontrada fica de fora. São sugestões para você revisar.</p>
+    <p class="conta">Quer finalizar no seu editor? Cada corte sai também <a href="recursos.html#editores">como projeto para o Premiere Pro e o DaVinci Resolve</a>, sem plugin, com os mesmos trechos e enquadramento.</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <h2>E em todo corte.</h2>
+    <dl class="lista-seo"><dt>Legenda palavra a palavra</dt><dd><a href="recursos.html#legenda">No ritmo da fala</a>, longe do rosto, nas cores do seu canal, com os nomes dos convidados sempre certos.</dd><dt>Nota de 0 a 100 do potencial de viralizar</dt><dd>Cada corte vem com uma nota e o motivo dela. É uma avaliação do trecho, não uma garantia de views.</dd></dl>
+    <p class="conta">Um episódio de 2 horas gasta <b>2 horas da cota</b>. No Básico, com 12 horas por mês, cabem cerca de 6 episódios assim; no Pro, com 36, cerca de 18. <a href="comparar.html">Veja quantos episódios caberiam no mesmo dinheiro no OpusClip</a>.</p>
   </section>
 
   <section class="bloco" id="perguntas">
