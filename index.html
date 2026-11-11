@@ -1418,7 +1418,10 @@ main:focus { outline: none; }
       <label>Que vídeo você corta?<select name="tipo" required><option value="">Escolha</option><option>Podcast</option><option>Debate</option><option>Live</option><option>Entrevista</option><option>Aula ou palestra</option><option>Outro</option></select></label>
       <label>Vídeos longos por semana<select name="volume" required><option value="">Escolha</option><option>1 ou menos</option><option>2 a 4</option><option>5 a 10</option><option>Mais de 10</option></select></label>
     </div>
-    <label>Como faz os cortes hoje?<select name="hoje" required><option value="">Escolha</option><option>Edito na mão</option><option>Uso outra ferramenta</option><option>Pago um editor</option><option>Ainda não faço</option></select></label>
+    <div class="testador-duplo">
+      <label>Como faz os cortes hoje?<select name="hoje" required><option value="">Escolha</option><option>Edito na mão</option><option>Uso outra ferramenta</option><option>Pago um editor</option><option>Ainda não faço</option></select></label>
+      <label>Como nos conheceu?<select name="conheceu"><option value="">Opcional</option><option>TikTok</option><option>YouTube</option><option>Instagram</option><option>Pesquisa no Google</option><option>Indicação de alguém</option><option>Recebi um e-mail</option><option>Outro</option></select></label>
+    </div>
     <label class="testador-aceite"><input type="checkbox" name="aceite" required>Aceito que o ClipHook entre em contato por e-mail e WhatsApp sobre o teste. <a href="privacidade.html">Privacidade</a></label>
     <input class="testador-isca" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Não preencha">
     <p class="testador-erro" id="testador-erro" role="alert" hidden></p>
